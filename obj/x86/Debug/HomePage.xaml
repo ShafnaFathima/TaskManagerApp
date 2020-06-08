@@ -6,23 +6,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Beige">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock x:ConnectionId='2' Name="DisplayTxt"
-                   Style="{StaticResource TextBlockStyle}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-        <Button x:ConnectionId='3' Grid.Row="1" 
+        <RelativePanel>
+            <Button x:ConnectionId='2' 
                 Name="LogoutBtn"
                 Content="Logout"
-                HorizontalAlignment="Center"
+                RelativePanel.AlignRightWithPanel="True"
+                Margin="0,20,20,0"
                                        
                 Style="{StaticResource BtnStyle}"/>
+            <TextBlock x:ConnectionId='3' 
+                Name="DisplayTxt"
+                RelativePanel.Below="LogoutBtn"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                FontSize="28"
+                
+                  />
+           
+        </RelativePanel>
     </Grid>
 </Page>
 

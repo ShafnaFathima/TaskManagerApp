@@ -5,24 +5,27 @@
     xmlns:local="using:TaskManagerApp">
 
     <Application.Resources>
-        <Style TargetType="TextBlock"  x:Key="TextBlockStyle">
-            <Setter Property="FontSize" Value="28" />
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="15,0,0,0"/>
-        </Style>
         <Style TargetType="Button" x:Key="BtnStyle">
-            <Setter Property="Background" Value="LightBlue"/>
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Background" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="DimGray"/>
+            <Setter Property="Height" Value="65"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="24"/>
         </Style>
         <Style TargetType="TextBox" x:Key="TextBoxStyle">
-            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="Height" Value="75"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="BorderBrush" Value="CadetBlue"/>
+            <Setter Property="BorderBrush" Value="DarkBlue"/>
+            <Setter Property="PlaceholderForeground" Value="CornflowerBlue"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="ErrorTxt">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
         </Style>
     </Application.Resources>
 </Application>

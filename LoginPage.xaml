@@ -6,47 +6,46 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="LightBlue">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1"
-                   Text="Username: "
-                   Style="{StaticResource TextBlockStyle}"/>
-        <TextBox Grid.Row="1" Grid.Column="1"
+        <RelativePanel>
+            <TextBox 
                  Name="UsernameTxt"
+                 PlaceholderText="Enter your username"
+                 RelativePanel.AlignHorizontalCenterWithPanel="True"
+                 Margin="0,200,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-        <TextBlock Grid.Row="2"
-                   Text="Password: "
-                   Style="{StaticResource TextBlockStyle}"/>
-        <TextBox Grid.Row="2" Grid.Column="1"
+             <TextBox 
                  Name="PasswordTxt"
+                 PlaceholderText="Enter your password"
+                 HorizontalAlignment="Center"
+                 RelativePanel.Below="UsernameTxt"
+                 RelativePanel.AlignHorizontalCenterWith="UsernameTxt"
+                 Margin="0,20,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-        <Button Grid.Row="3" Grid.Column="1"
+            <Button
                 Name="LoginBtn"
                 Content="Login"
                 Click="LoginBtn_Click"
+                RelativePanel.Below="PasswordTxt"
+                RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                Margin="0,20,0,0"
                 Style="{StaticResource BtnStyle}"/>
-        <Button Grid.Row="4" Grid.Column="1"
+             <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
                 Style="{StaticResource BtnStyle}"
-                VerticalAlignment="Top"/>
-        <TextBlock Grid.Row="5" Grid.Column="1"
+                RelativePanel.Below="LoginBtn"
+                RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                Margin="0,20,0,0"/>
+             <TextBlock 
                    Name="ErrorTxt"
-                   FontSize="24"
-                   Foreground="Red"/>
+                   RelativePanel.Below="SignUpBtn"
+                   RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                   Style="{StaticResource ErrorTxt}"
+                   />
+        </RelativePanel>
     </Grid>
 </Page>
