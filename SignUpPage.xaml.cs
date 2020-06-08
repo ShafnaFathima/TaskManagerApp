@@ -29,24 +29,31 @@ namespace TaskManagerApp
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            string userName = UsernameTxt.Text;
-            bool isValid = UserDB.CheckValidUser(UsernameTxt.Text);
-            if (isValid == true)
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Text) == true))
             {
-                ErrorTxt.Text = "User Name already exists!";
+                ErrorTxt.Text = "Enter all the fields!";
             }
             else
             {
-                if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
+                string userName = UsernameTxt.Text;
+                bool isValid = UserDB.CheckValidUser(UsernameTxt.Text);
+                if (isValid == true)
                 {
-                    UserDB.AddUser(UsernameTxt.Text);
-                    var vault = new Windows.Security.Credentials.PasswordVault();
-                    vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Text));
-                    Frame.Navigate(typeof(LoginPage));
+                    ErrorTxt.Text = "User Name already exists!";
                 }
                 else
                 {
-                    ErrorTxt.Text = "Passwords don't match!";
+                    if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
+                    {
+                        UserDB.AddUser(UsernameTxt.Text);
+                        var vault = new Windows.Security.Credentials.PasswordVault();
+                        vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Text));
+                        Frame.Navigate(typeof(LoginPage));
+                    }
+                    else
+                    {
+                        ErrorTxt.Text = "Passwords don't match!";
+                    }
                 }
             }
         }

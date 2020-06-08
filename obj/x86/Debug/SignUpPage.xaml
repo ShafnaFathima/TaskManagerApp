@@ -15,7 +15,7 @@
                  Style="{StaticResource TextBoxStyle}"
                  RelativePanel.AlignHorizontalCenterWithPanel="True"
                  PlaceholderText="Enter your username"
-                 Margin="0,250,0,0"/>
+                 Margin="0,150,0,0"/>
                                  
              <TextBox x:ConnectionId='3' 
                  Name="PasswordTxt"

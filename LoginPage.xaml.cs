@@ -35,23 +35,30 @@ namespace TaskManagerApp
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            bool isValid = UserDB.CheckValidUser(UsernameTxt.Text);
-            if (isValid == true)
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true))
             {
-                var vault = new Windows.Security.Credentials.PasswordVault();
-                var credential = vault.Retrieve("TaskManagerApp", UsernameTxt.Text);
-                if (credential.Password.Equals(PasswordTxt.Text))
-                {
-                    Frame.Navigate(typeof(HomePage), UsernameTxt.Text);
-                }
-                else
-                {
-                    ErrorTxt.Text = "Incorrect Password!";
-                }
+                ErrorTxt.Text = "Enter all the fields!";
             }
             else
             {
-                ErrorTxt.Text = "User Name does not exist!";
+                bool isValid = UserDB.CheckValidUser(UsernameTxt.Text);
+                if (isValid == true)
+                {
+                    var vault = new Windows.Security.Credentials.PasswordVault();
+                    var credential = vault.Retrieve("TaskManagerApp", UsernameTxt.Text);
+                    if (credential.Password.Equals(PasswordTxt.Text))
+                    {
+                        Frame.Navigate(typeof(HomePage), UsernameTxt.Text);
+                    }
+                    else
+                    {
+                        ErrorTxt.Text = "Incorrect Password!";
+                    }
+                }
+                else
+                {
+                    ErrorTxt.Text = "User Name does not exist!";
+                }
             }
         }
     }
