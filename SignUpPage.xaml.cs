@@ -33,7 +33,7 @@ namespace TaskManagerApp
             bool isValid = UserDB.CheckValidUser(UsernameTxt.Text);
             if (isValid == true)
             {
-                ErrorTxt.Text = "User Name aldready exists!";
+                ErrorTxt.Text = "User Name already exists!";
             }
             else
             {
