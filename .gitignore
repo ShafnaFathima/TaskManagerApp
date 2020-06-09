@@ -122,6 +122,13 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+
 # JustCode is a .NET coding add-in
 .JustCode
 
