@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TaskManagerApp.Model;
+using System.Runtime.CompilerServices;
+using TaskManagerApp.DB;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,7 +28,7 @@ namespace TaskManagerApp
         public MainPage()
         {
             this.InitializeComponent();
-            MyFrame.Navigate(typeof(LoginPage));
+            MyFrame.Navigate(typeof(LoginPage));          
         }
     }
 }

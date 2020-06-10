@@ -14,6 +14,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.SqlServer;
+using SQLite.Net;
+using System.Security.Cryptography.X509Certificates;
+using TaskManagerApp.DB;
 
 namespace TaskManagerApp
 {
@@ -30,6 +34,7 @@ namespace TaskManagerApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            DBAdapter.InitializeConnection();
         }
 
         /// <summary>
@@ -39,6 +44,7 @@ namespace TaskManagerApp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+           
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

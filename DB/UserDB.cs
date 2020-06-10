@@ -6,26 +6,38 @@ using System.Threading.Tasks;
 using System.Linq;
 using Windows.System;
 using TaskManagerApp.Model;
+using Microsoft.SqlServer;
+using SQLite.Net;
+using System.IO;
+
 
 namespace TaskManagerApp.DB
 {
-    class UserDB
-    {
-        private static List<UserModel> _userList = new List<UserModel>();
 
+    public class UserDB : DBAdapter
+    {
         public static void AddUser(string userName)
         {
             UserModel user = new UserModel();
             user.Username = userName;
-            _userList.Add(user);
+            Connection.Insert(user);
         }
 
         public static bool CheckValidUser(string userName)
         {
-            bool isValid = (from user in _userList
-                            where user.Username.Equals(userName)
-                            select user).Any();
-            return isValid;
-        }    
+            var users = Connection.Table<UserModel>();
+
+            if (users.Count() == 0)
+            {
+                return false;
+            }
+            else
+            {
+                var isValid = (from user in users
+                               where user.Username.Equals(userName)
+                               select user).Any();
+                return isValid;
+            }
+        }
     }
 }
