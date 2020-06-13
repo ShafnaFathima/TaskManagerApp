@@ -8,23 +8,69 @@
     mc:Ignorable="d"
     Background="Beige">
 
+    <Page.Resources>
+        <Style x:Key="NameStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <RelativePanel>
-            <Button 
-                Name="LogoutBtn"
-                Content="Logout"
-                RelativePanel.AlignRightWithPanel="True"
-                Margin="0,20,20,0"
-                Click="LogoutBtn_Click"
-                Style="{StaticResource BtnStyle}"/>
-            <TextBlock 
-                Name="DisplayTxt"
-                RelativePanel.Below="LogoutBtn"
-                RelativePanel.AlignHorizontalCenterWithPanel="True"
-                FontSize="28"
-                
-                  />
-           
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <RelativePanel Background="CornflowerBlue">
+            <Button Name="HamburgerButton" 
+                    RelativePanel.AlignLeftWithPanel="True"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="36" 
+                    Content="&#xE700;" 
+                    Click="HamburgerButton_Click"
+                    Background="CornflowerBlue"/>
         </RelativePanel>
+
+        <SplitView Grid.Row="1" 
+                   Name="MySplitView"
+                   DisplayMode="CompactOverlay" 
+                   OpenPaneLength="250" 
+                   CompactPaneLength="56">
+            <SplitView.Pane>
+                <ListView SelectionMode="Single" 
+                         SelectionChanged="ListBox_SelectionChanged"
+                         Background="CornflowerBlue">
+                    <ListViewItem Name="AddTask">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE710;" />
+                            <TextBlock Style="{StaticResource NameStyle}">Add a Task</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Name="ViewMyTask">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE728;" />
+                            <TextBlock  Style="{StaticResource NameStyle}">View My Task</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Name="ViewUserTask">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE779;" />
+                            <TextBlock  Style="{StaticResource NameStyle}">View User Task</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Name="Logout">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xF3B1;" />
+                            <TextBlock  Style="{StaticResource NameStyle}">Logout</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="HomeFrame"></Frame>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

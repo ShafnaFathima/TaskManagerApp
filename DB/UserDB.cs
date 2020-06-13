@@ -14,18 +14,18 @@ using System.IO;
 namespace TaskManagerApp.DB
 {
 
-    public class UserDB : DBAdapter
+    public class UserDB
     {
         public static void AddUser(string userName)
         {
             UserModel user = new UserModel();
             user.Username = userName;
-            Connection.Insert(user);
+            DBAdapter.Connection.Insert(user);
         }
 
         public static bool CheckValidUser(string userName)
         {
-            var users = Connection.Table<UserModel>();
+            var users = DBAdapter.Connection.Table<UserModel>();
 
             if (users.Count() == 0)
             {
@@ -38,6 +38,17 @@ namespace TaskManagerApp.DB
                                select user).Any();
                 return isValid;
             }
+        }
+
+        public static List<UserModel> GetUserList()
+        {
+            List<UserModel> users = new List<UserModel>();
+            var query = DBAdapter.Connection.Table<UserModel>();
+            foreach (var user in query)
+            {
+                users.Add(user);
+            }
+            return users;
         }
     }
 }

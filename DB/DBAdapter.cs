@@ -13,12 +13,13 @@ namespace TaskManagerApp.DB
     public class DBAdapter
     {
         protected static string DBpath;
-        protected static SQLite.Net.SQLiteConnection Connection;
+        public static SQLite.Net.SQLiteConnection Connection;
         public static void InitializeConnection()
         {
-            DBpath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "db.sqlite");
+            DBpath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "newdb.sqlite");
             Connection = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), DBpath);
             Connection.CreateTable<UserModel>();
+            Connection.CreateTable<TaskModel>();
         }
     }
 }

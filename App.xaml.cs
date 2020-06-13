@@ -18,6 +18,8 @@ using Microsoft.SqlServer;
 using SQLite.Net;
 using System.Security.Cryptography.X509Certificates;
 using TaskManagerApp.DB;
+using Windows.Storage;
+using System.ServiceModel.Channels;
 
 namespace TaskManagerApp
 {
@@ -30,6 +32,10 @@ namespace TaskManagerApp
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+
+        internal static string CurrentUser;
+        public static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
         public App()
         {
             this.InitializeComponent();
@@ -44,7 +50,7 @@ namespace TaskManagerApp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-           
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.DB;
+using Windows.Storage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -48,7 +49,9 @@ namespace TaskManagerApp
                     var credential = vault.Retrieve("TaskManagerApp", UsernameTxt.Text);
                     if (credential.Password.Equals(PasswordTxt.Text))
                     {
-                        Frame.Navigate(typeof(HomePage), UsernameTxt.Text);
+                        App.CurrentUser = UsernameTxt.Text;
+                        App.localSettings.Values["UserLoggedIn"] = App.CurrentUser;
+                        this.Frame.Navigate(typeof(HomePage));
                     }
                     else
                     {

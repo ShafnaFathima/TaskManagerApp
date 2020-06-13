@@ -6,47 +6,53 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="LightBlue">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <RelativePanel>
             <TextBox
                  Name="UsernameTxt"
-                 Style="{StaticResource TextBoxStyle}"
+                 Style="{StaticResource ResourceKey=TextBoxStyle}"
                  RelativePanel.AlignHorizontalCenterWithPanel="True"
                  PlaceholderText="Enter your username"
                  Margin="0,150,0,0"/>
-                                 
-             <TextBox 
+            <TextBox 
                  Name="PasswordTxt"
-                 Style="{StaticResource TextBoxStyle}"
+                 Style="{StaticResource ResourceKey=TextBoxStyle}"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
                  RelativePanel.Below="UsernameTxt"
                  RelativePanel.AlignHorizontalCenterWith="UsernameTxt"
                  Margin="0,20,0,0"/>
-         
-              <TextBox 
+            <TextBox 
                  Name="ConfirmPasswordTxt"
-                 Style="{StaticResource TextBoxStyle}"
+                 Style="{StaticResource ResourceKey=TextBoxStyle}"
                  Margin="0,20,0,0"
                  PlaceholderText="Re-enter your password"
                  HorizontalAlignment="Center"
                  RelativePanel.Below="PasswordTxt"
                  RelativePanel.AlignHorizontalCenterWith="PasswordTxt"/>
-              <Button 
+            <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
-                Style="{StaticResource BtnStyle}"
+                Style="{StaticResource ResourceKey=BtnStyle}"
                 RelativePanel.Below="ConfirmPasswordTxt"
                 RelativePanel.AlignHorizontalCenterWith="ConfirmPasswordTxt"
                 Margin="0,20,0,0"/>
-              <TextBlock 
+            <Button 
+                Name="LoginBtn"
+                Content="Login"
+                Click="LoginBtn_Click"
+                Style="{StaticResource ResourceKey=BtnStyle}"
+                RelativePanel.Below="SignUpBtn"
+                RelativePanel.AlignHorizontalCenterWith="ConfirmPasswordTxt"
+                Margin="0,20,0,0"/>
+            <TextBlock 
                    Name="ErrorTxt"
-                   RelativePanel.Below="SignUpBtn"
+                   RelativePanel.Below="LoginBtn"
                    RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
-                  Style="{StaticResource ErrorTxt}"/>
+                  Style="{StaticResource ResourceKey=ErrorTxt}"/>
         </RelativePanel>
     </Grid>
 </Page>
