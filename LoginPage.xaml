@@ -8,44 +8,44 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <RelativePanel>
-            <TextBox 
+    <StackPanel>
+        <TextBlock Text="Login to TaskManagement"
+                   Style="{StaticResource TitleStyle}"
+                   Margin="0,150,0,20"/>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="500,30,500,0" >
+            <StackPanel Width="Auto" Height="300" >
+                <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}" 
                  Name="UsernameTxt"
                  PlaceholderText="Enter your username"
-                 RelativePanel.AlignHorizontalCenterWithPanel="True"
-                 Margin="0,150,0,0"
+                 HorizontalAlignment="Center"
+                 Margin="0,30,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-             <TextBox 
+                <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}"
                  Name="PasswordTxt"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
-                 RelativePanel.Below="UsernameTxt"
-                 RelativePanel.AlignHorizontalCenterWith="UsernameTxt"
                  Margin="0,20,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-            <Button
+                <Button
                 Name="LoginBtn"
                 Content="Login"
                 Click="LoginBtn_Click"
-                RelativePanel.Below="PasswordTxt"
-                RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                HorizontalAlignment="Center"
                 Margin="0,20,0,0"
                 Style="{StaticResource BtnStyle}"/>
-             <Button 
+                <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
                 Style="{StaticResource BtnStyle}"
-                RelativePanel.Below="LoginBtn"
-                RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                HorizontalAlignment="Center"
                 Margin="0,20,0,0"/>
-             <TextBlock 
+                <TextBlock 
                    Name="ErrorTxt"
-                   RelativePanel.Below="SignUpBtn"
-                   RelativePanel.AlignHorizontalCenterWith="PasswordTxt"
+                   HorizontalAlignment="Center"
                    Style="{StaticResource ErrorTxt}"
                    />
-        </RelativePanel>
-    </Grid>
+            </StackPanel>
+        </Border>
+    </StackPanel>
 </Page>
