@@ -12,8 +12,8 @@
         <TextBlock Text="Login to TaskManagement"
                    Style="{StaticResource TitleStyle}"
                    Margin="0,150,0,20"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="500,30,500,0" >
-            <StackPanel Width="Auto" Height="300" >
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="500,30,450,0" >
+            <StackPanel Width="Auto" Height="350" >
                 <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}" 
                  Name="UsernameTxt"
                  PlaceholderText="Enter your username"
@@ -43,6 +43,7 @@
                 <TextBlock 
                    Name="ErrorTxt"
                    HorizontalAlignment="Center"
+                    Margin="0,20,0,20"
                    Style="{StaticResource ErrorTxt}"
                    />
             </StackPanel>
