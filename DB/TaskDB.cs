@@ -16,7 +16,6 @@ namespace TaskManagerApp.DB
             DBAdapter.Connection.Insert(task);
         }
 
-        private ObservableCollection<TaskModel> _tasks = new ObservableCollection<TaskModel>();
         public static ObservableCollection<TaskModel> GetTasks(string userName)
         {
             ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
@@ -27,6 +26,22 @@ namespace TaskManagerApp.DB
                 {
                     tasks.Add(usertask);
                 }
+            }
+            return tasks;
+        }
+
+        public static ObservableCollection<TaskModel> GetTasksFromId(ObservableCollection<long> taskIds)
+        {
+            ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
+            var query = DBAdapter.Connection.Table<TaskModel>();
+            foreach (long Id in taskIds) {
+                foreach (TaskModel usertask in query)
+                {
+                    if (usertask.TaskId ==Id)
+                    {
+                        tasks.Add(usertask);
+                    }
+                } 
             }
             return tasks;
         }

@@ -47,12 +47,12 @@ namespace TaskManagerApp
             {
                 HomeFrame.Navigate(typeof(AddTaskPage));
             }
-            if (ViewMyTask.IsSelected)
+            if (ViewFavTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewMyTaskPage));
 
             }
-            if (ViewUserTask.IsSelected)
+            if (ViewTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewUserTask));
 

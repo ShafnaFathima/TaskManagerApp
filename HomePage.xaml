@@ -42,32 +42,33 @@
                 <ListView SelectionMode="Single" 
                          SelectionChanged="ListBox_SelectionChanged"
                          Background="CornflowerBlue">
-                    <ListViewItem Name="AddTask">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE710;" />
+                    <ListViewItem Name="AddTask" Margin="0,10,0,10">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE710;" />
                             <TextBlock Style="{StaticResource NameStyle}">Add a Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="ViewMyTask">
+                    <ListViewItem Name="ViewFavTask" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE728;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE728;" />
                             <TextBlock  Style="{StaticResource NameStyle}">View My Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="ViewUserTask">
+                    <ListViewItem Name="ViewTask" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE779;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE779;" />
                             <TextBlock  Style="{StaticResource NameStyle}">View User Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="Logout">
+                    <ListViewItem Name="Logout" Margin="0,10,0,10">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xF3B1;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE7E8;" />
                             <TextBlock  Style="{StaticResource NameStyle}">Logout</TextBlock>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </SplitView.Pane>
+            
             <SplitView.Content>
                 <Frame Name="HomeFrame"></Frame>
             </SplitView.Content>

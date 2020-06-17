@@ -167,6 +167,34 @@
         <Setter Property="FontSize" Value="17"/>
         <Setter Property="Margin" Value="0,20,0,0"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="TitleStyle">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="ComboBox"  x:Key="ComboBoxStyle">
+        <Setter Property="Foreground" Value="DarkBlue"/>
+        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="PlaceholderForeground" Value="CornflowerBlue"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="45"/>
+    </Style>
+    <Style TargetType="CalendarDatePicker" x:Key="DatePickerStyle">
+        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="DetailTitle">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Black"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Details">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
     <Style TargetType="Button" x:Key="ReplyBtnStyle">
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Content" Value="Reply"/>
@@ -174,11 +202,6 @@
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="20"/>
         <Setter Property="Foreground" Value="Gray"/>
-    </Style>
-    <Style TargetType="TextBlock" x:Key="TitleStyle">
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Button" x:Key="AddCommentBtnStyle">
         <Setter Property="Content" Value="Comment"/>

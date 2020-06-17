@@ -28,8 +28,14 @@ namespace TaskManagerApp
         public ViewMyTaskPage()
         {
             this.InitializeComponent();
-            ObservableCollection<TaskModel> tasks = TaskDB.GetTasks(App.CurrentUser); 
+            ObservableCollection<long> favTaskIds = UserDB.GetFavTasks(App.CurrentUser);
+            ObservableCollection<TaskModel> tasks = TaskDB.GetTasksFromId(favTaskIds);
             TasksList.ItemsSource = tasks;
-        }       
+        }
+
+        private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TaskModel selectedTask=TasksList.SelectedItem as TaskModel;         
+        }        
     }
 }

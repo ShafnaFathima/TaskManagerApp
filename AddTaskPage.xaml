@@ -8,36 +8,87 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <RelativePanel>
-        <TextBox Name="TaskName"
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Add Task"
+                   Name="Title"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   Margin="100,50,0,0"
+                   Style="{StaticResource TitleStyle}"  Width="100"/>
+        <TextBox Name="TaskName" Grid.Row="1"
                  PlaceholderText="Enter Task Name"
+                 Template="{StaticResource TextBoxCenterAlignTemplate}"
                  Style="{StaticResource TextBoxStyle}"
-                 RelativePanel.AlignHorizontalCenterWithPanel="True"
-                 Margin="0,150,0,0"/>
+                 Width="250"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 Margin="0,0,0,0"/>
         <ComboBox  
-                 Name="AssignedToUser"
-                 PlaceholderText="   Select a User"
+                 Name="AssignedToUser" Grid.Row="2" 
+                 PlaceholderText=" Select a User"
                  FontSize="18"
-                 Foreground="DarkBlue"
-                 BorderBrush="DarkBlue"
-                 PlaceholderForeground="CornflowerBlue"
-                 RelativePanel.Below="TaskName"
-                 RelativePanel.AlignHorizontalCenterWith="TaskName"
-                 Margin="0,20,0,0"
-                 Width="200"
-                 Height="45" 
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 Style="{StaticResource ResourceKey=ComboBoxStyle}"
                  >
         </ComboBox>
-        <Button Name="AddBtn"
+        <ComboBox  
+                 Name="Priority" Grid.Row="2" Grid.Column="1"
+                 PlaceholderText=" Assign Priority"
+                 FontSize="18"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 Style="{StaticResource ResourceKey=ComboBoxStyle}"
+                 >
+        </ComboBox>
+        <CalendarDatePicker Grid.Row="3"
+                            Name="StartDate"
+                            PlaceholderText="StartDate"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource DatePickerStyle}"/>
+        <CalendarDatePicker Grid.Row="3" Grid.Column="1"
+                            Name="EndDate"
+                            PlaceholderText="EndDate"
+                            HorizontalAlignment="Center"
+                           Style="{StaticResource DatePickerStyle}"/>
+        <TextBox Name="DescriptionTxt"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="4"
+                 PlaceholderText="Enter Task Description"
+                 Style="{StaticResource TextBoxStyle}"
+                 Template="{StaticResource TextBoxCenterAlignTemplate}"
+                 VerticalAlignment="Center"
+                 BorderBrush="DarkBlue"
+                 CornerRadius="10" 
+                 HorizontalAlignment="Center" Width="700"
+                 Height="75"/>
+        <Button Name="AddBtn" Grid.Row="5"
                 Content="Add"
                 Click="AddBtn_Click"
                 Style="{StaticResource ResourceKey=BtnStyle}"
                 RelativePanel.Below="AssignedToUser"
+                Width="250"
                 Margin="0,20,0,0"
-                RelativePanel.AlignHorizontalCenterWith="AssignedToUser"/>
-        <TextBlock Name="ErrorTxt"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+        <TextBlock Name="ErrorTxt" Grid.Row="5" Grid.Column="1"
                    Style="{StaticResource ResourceKey=ErrorTxt}"
-                   RelativePanel.AlignHorizontalCenterWith="TaskName"
-                   RelativePanel.Below="AddBtn"/>
-    </RelativePanel>
+        />
+    </Grid>
 </Page>

@@ -9,7 +9,7 @@ using TaskManagerApp.Model;
 using Microsoft.SqlServer;
 using SQLite.Net;
 using System.IO;
-
+using System.Collections.ObjectModel;
 
 namespace TaskManagerApp.DB
 {
@@ -49,6 +49,39 @@ namespace TaskManagerApp.DB
                 users.Add(user);
             }
             return users;
+        }
+
+        public static bool IsFavouriteTask(long taskId,string userName)
+        {
+            var query = DBAdapter.Connection.Table<UserModel>();
+            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
+            foreach(long userTaskId in currentUser.FavouriteTasksId)
+            {
+                if(taskId==userTaskId)
+                {
+                    return true;
+                }
+            }return false;
+        }
+
+        public static void AddFavouriteTaskIds(long taskId, string userName)
+        {
+            var query = DBAdapter.Connection.Table<UserModel>();
+            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
+            currentUser.FavouriteTasksId.Add(taskId);
+        }
+        public static void RemoveFavouriteTaskIds(long taskId, string userName)
+        {
+            var query = DBAdapter.Connection.Table<UserModel>();
+            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
+            currentUser.FavouriteTasksId.Remove(taskId);
+        }
+
+        public static ObservableCollection<long> GetFavTasks(string userName)
+        {
+            var query = DBAdapter.Connection.Table<UserModel>();
+            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
+            return currentUser.FavouriteTasksId;
         }
     }
 }

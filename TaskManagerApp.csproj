@@ -122,11 +122,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\CommentDB.cs" />
     <Compile Include="DB\DBAdapter.cs" />
     <Compile Include="DB\TaskDB.cs" />
     <Compile Include="DB\UserDB.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewUserControl.xaml.cs">
+      <DependentUpon>ListViewUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -134,17 +138,18 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CommentModel.cs" />
     <Compile Include="Model\TaskModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewMyTaskPage.xaml.cs">
-      <DependentUpon>ViewMyTaskPage.xaml</DependentUpon>
+    <Compile Include="FavouriteTasks.xaml.cs">
+      <DependentUpon>FavouriteTasks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewUserTask.xaml.cs">
-      <DependentUpon>ViewUserTask.xaml</DependentUpon>
+    <Compile Include="ViewTasks.xaml.cs">
+      <DependentUpon>ViewTasks.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +176,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListViewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourcesDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,11 +200,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewMyTaskPage.xaml">
+    <Page Include="FavouriteTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewUserTask.xaml">
+    <Page Include="ViewTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="TaskManagerApp.ListViewUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaskManagerApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Name="TaskListControl">
+    
+    <RelativePanel Background="LightSkyBlue"
+                        Margin="10,10,0,0"
+                        Width="200"
+                        >
+        <TextBlock Name="TaskSymbol"
+                   FontFamily="Segoe MDL2 Assets"
+                   Text="&#xE8C9;"
+                   Foreground="Red"
+                   FontSize="17"
+                   Margin="15,5,0,0"/>
+        <TextBlock 
+                  Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
+                  Name="TaskName"
+                  FontWeight="Black"
+                  Margin="18,5,0,0"
+                  FontFamily="Calibri"
+                  FontSize="17"
+                  RelativePanel.RightOf="TaskSymbol"
+                   />
+    <Button Name="StarBtn"
+                 FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
+                  Content="&#xE734;"
+                    Tag="{Binding  ZTask.TaskId,ElementName=TaskListControl,Mode=OneWay}"
+                   Click="StarBtn_Click"
+                    RelativePanel.Below="TaskSymbol"
+                       Margin="5,5,0,0"/>
+    <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
+                    FontStyle="Italic"
+                    RelativePanel.Below="Task"
+                    RelativePanel.RightOf="StarBtn"
+                     Margin="10,5,0,0"
+                    />
+    </RelativePanel>
+
+</UserControl>

@@ -12,7 +12,7 @@
         <TextBlock Text="Sign Up to TaskManagement"
                    Style="{StaticResource TitleStyle}"
                    Margin="0,100,0,10" />
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="500,30,450,50">
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="550,30,500,50">
             <StackPanel VerticalAlignment="Center">
                 <TextBox
                  Name="UsernameTxt"

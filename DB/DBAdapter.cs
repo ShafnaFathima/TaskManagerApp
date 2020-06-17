@@ -20,6 +20,7 @@ namespace TaskManagerApp.DB
             Connection = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), DBpath);
             Connection.CreateTable<UserModel>();
             Connection.CreateTable<TaskModel>();
+            Connection.CreateTable<CommentModel>();
         }
     }
 }

@@ -13,6 +13,10 @@ namespace TaskManagerApp.Model
         public string TaskName { get; set; }
         public string AssignedToUser { get; set; }
         public string AssignedByUser { get; set; }
+        public string Description { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
+        public int Priority { get; set; }
         public long TaskId
         {
             get
@@ -20,5 +24,8 @@ namespace TaskManagerApp.Model
                 return _TaskId;
             }
         }
-    }
+    }   
+ 
+
+     
 }
