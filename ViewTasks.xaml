@@ -13,25 +13,37 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox 
-            Grid.Column="1"    
+        <TextBlock Text="View Tasks"
+                   Style="{StaticResource ResourceKey=TitleStyle}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="10,10,0,0"/>
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Grid.Column="1">
+            <TextBlock Text="Filter By User: "
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Top"
+                       Margin="30,15,10,0"/>
+
+            <ComboBox 
             Name="SelectUser"
-            PlaceholderText="    Select a User"
+            PlaceholderText="   User"
             Foreground="DarkBlue"
             BorderBrush="DarkBlue"
             PlaceholderForeground="CornflowerBlue"
             FontSize="20"
-            Height="45"
-            Width="200"
-            RelativePanel.AlignHorizontalCenterWithPanel="True"
-            RelativePanel.AlignTopWithPanel="True"
-            Margin="0,50,30,0"
+            Height="35"
+            Width="150"
+            VerticalAlignment="Top"
+            Margin="0,10,0,0"
             SelectionChanged="SelectUser_SelectionChanged"/>
+        </StackPanel>
         <ListView Name="TasksList"
                   Grid.Row="1"
+                  HorizontalAlignment="Stretch"
                   SelectionMode="Single"
                   SelectionChanged="TasksList_SelectionChanged">
             <ListView.ItemTemplate>
@@ -40,66 +52,73 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock Name="checkTxt"/>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Grid Height="300" Width="500" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"  BorderBrush="Gray" BorderThickness="1,0,0,0">
+            <Grid Height="300" Width="270" Background="LightGray" HorizontalAlignment="Left" Margin="30,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <TextBlock Text="TaskName"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="TaskName"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                </StackPanel>
-                <TextBlock Name="TaskDescription"
-                       Grid.ColumnSpan="2"
-                           Grid.Row="1"
-                        Style="{StaticResource ResourceKey=Details}"/>
 
-                <StackPanel Grid.Row="2">
-                    <TextBlock Text="Assigned By"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="AssignedBy"
-                            Style="{StaticResource ResourceKey=Details}"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Name="TaskName"
+                            Style="{StaticResource ResourceKey=Details}"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Margin="0,0,20,0"
+                               />
+
                 </StackPanel>
-                <StackPanel Grid.Row="2" Grid.Column="1">
-                    <TextBlock Text="Assigned To"
+                <StackPanel  Grid.Row="2">
+                    <TextBlock Text="Description"
                            Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="AssignedTo"
-                            Style="{StaticResource ResourceKey=Details}"/>
+                    <TextBlock Name="TaskDescription" VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="5,0,5,0"
+                          
+                        Style="{StaticResource ResourceKey=Details}"/>
                 </StackPanel>
-                <StackPanel Grid.Row="3">
-                    <TextBlock Text="Task ID"
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Left" Width="150" Margin="5,0,5,0">
+                        <TextBlock Text="Start Date"
                            Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="TaskId"
+                        <TextBlock Name="Startdate"
                             Style="{StaticResource ResourceKey=Details}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="3" Grid.Column="1">
-                    <TextBlock Text="Priority"
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" Width="150" Margin="5,0,5,0">
+                        <TextBlock Text="End Date"
                            Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="Priority"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="4">
-                    <TextBlock Text="Start Date"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="Startdate"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="4" Grid.Column="1">
-                    <TextBlock Text="End Date"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="EndDate"
+                        <TextBlock Name="EndDate"
                            Style="{StaticResource ResourceKey=Details}"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5,0,5,0">
+                    <StackPanel >
+                        <TextBlock Text="Priority"
+                    Style="{StaticResource ResourceKey=DetailTitle}"/>
+                        <TextBlock Text="Assigned By"
+                           Style="{StaticResource ResourceKey=DetailTitle}"/>
+                        <TextBlock Text="Assigned To"
+                           Style="{StaticResource ResourceKey=DetailTitle}"/>
+                        <TextBlock Text="Task Id"
+                           Style="{StaticResource ResourceKey=DetailTitle}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Name="Priority"
+                            Style="{StaticResource ResourceKey=Details}"/>
+                        <TextBlock Name="AssignedBy"
+                            Style="{StaticResource ResourceKey=Details}"/>
+
+                        <TextBlock Name="AssignedTo"
+                            Style="{StaticResource ResourceKey=Details}"/>
+
+                        <TextBlock Name="TaskId"
+                            Style="{StaticResource ResourceKey=Details}"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </StackPanel>

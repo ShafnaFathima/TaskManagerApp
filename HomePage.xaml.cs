@@ -28,6 +28,7 @@ namespace TaskManagerApp
         public HomePage()
         {
             this.InitializeComponent();
+            HomeFrame.Navigate(typeof(AddTaskPage));
 
         }
 

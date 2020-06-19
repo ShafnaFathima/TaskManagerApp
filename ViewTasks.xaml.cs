@@ -35,14 +35,16 @@ namespace TaskManagerApp
             this.InitializeComponent();
 
             List<UserModel> users = UserDB.GetUserList();
+
+            int index = users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
             SelectUser.ItemsSource = users;
-            SelectUser.DisplayMemberPath = "Username";          
+            SelectUser.DisplayMemberPath = "Username";
+            SelectUser.SelectedIndex = index;
         }
         
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UserModel user = SelectUser.SelectedItem as UserModel;
-            checkTxt.Text = user.Username;
+            UserModel user = (UserModel)SelectUser.SelectedItem; 
             ObservableCollection<TaskModel> tasks = TaskDB.GetTasks(user.Username);
             if(tasks.Count!=0)
             {
@@ -57,16 +59,21 @@ namespace TaskManagerApp
 
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TaskModel task = TasksList.SelectedItem as TaskModel;
-            TaskName.Text = task.TaskName;
-            TaskDescription.Text = task.Description;
-            TaskId.Text = task.TaskId.ToString();
-            string priority = Enum.GetName(typeof(AddTaskPage.PriorityTypes), task.Priority);
-            Priority.Text = priority;
-            AssignedBy.Text = task.AssignedByUser;
-            AssignedTo.Text = task.AssignedToUser;
-            Startdate.Text = task.StartDate.ToString();
-            EndDate.Text = task.EndDate.ToString();
-        }
+            if (TasksList.SelectedItem != null)
+            {
+                TaskModel task = (TaskModel)TasksList.SelectedItem;
+
+                TaskName.Text = task.TaskName;
+                TaskDescription.Text = task.Description;
+                TaskId.Text = task.TaskId.ToString();
+                string priority = Enum.GetName(typeof(AddTaskPage.PriorityTypes), task.Priority);
+                Priority.Text = priority;
+                AssignedBy.Text = task.AssignedByUser;
+                AssignedTo.Text = task.AssignedToUser;
+                string fmt = "d";
+                Startdate.Text = task.StartDate.Date.ToString(fmt);
+                EndDate.Text = task.EndDate.Date.ToString(fmt);
+
+            }        }
     }
 }

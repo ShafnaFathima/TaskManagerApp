@@ -6,41 +6,46 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    Name="TaskListControl">
     
-    <RelativePanel Background="LightSkyBlue"
-                        Margin="10,10,0,0"
-                        Width="200"
-                        >
+    Name="TaskListControl">
+
+    <RelativePanel   HorizontalAlignment="Stretch"
+                     Margin="0,10,0,0"
+                     Width="220"
+                     BorderBrush="Gray"
+                     BorderThickness="1">
         <TextBlock Name="TaskSymbol"
                    FontFamily="Segoe MDL2 Assets"
                    Text="&#xE8C9;"
                    Foreground="Red"
                    FontSize="17"
-                   Margin="15,5,0,0"/>
+                   Margin="15,5,0,0"
+                   />
         <TextBlock 
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
                   Name="TaskName"
+             HorizontalAlignment="Stretch"
                   FontWeight="Black"
                   Margin="18,5,0,0"
                   FontFamily="Calibri"
                   FontSize="17"
                   RelativePanel.RightOf="TaskSymbol"
                    />
-    <Button Name="StarBtn"
-                 FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
-                  Content="&#xE734;"
-                    Tag="{Binding  ZTask.TaskId,ElementName=TaskListControl,Mode=OneWay}"
-                   Click="StarBtn_Click"
-                    RelativePanel.Below="TaskSymbol"
-                       Margin="5,5,0,0"/>
-    <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
+        <Button Name="StarBtn"
+                FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
+                Content="&#xE734;"
+                Tag="{Binding  ZTask.TaskId,ElementName=TaskListControl,Mode=TwoWay}"
+                Click="StarBtn_Click"
+                RelativePanel.Below="TaskSymbol"
+                Margin="5,5,0,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                     />
+        <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
                     FontStyle="Italic"
-                    RelativePanel.Below="Task"
+                    HorizontalAlignment="Stretch"
+                    RelativePanel.Below="TaskName"
                     RelativePanel.RightOf="StarBtn"
-                     Margin="10,5,0,0"
+                    Margin="10,5,0,0"
                     />
     </RelativePanel>
 

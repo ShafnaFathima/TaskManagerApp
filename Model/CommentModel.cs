@@ -13,7 +13,6 @@ namespace TaskManagerApp.Model
         public string AuthorName { get; set; }
         public long CommentToTaskId { get; set; }
         public long ParentCommentId { get; set; }
-
         public long CommentId
         {
             get

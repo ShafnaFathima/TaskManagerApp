@@ -34,14 +34,16 @@ namespace TaskManagerApp.DB
         {
             ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
             var query = DBAdapter.Connection.Table<TaskModel>();
-            foreach (long Id in taskIds) {
-                foreach (TaskModel usertask in query)
+            foreach (TaskModel task in query)
+            {
+                foreach (long Id in taskIds)
                 {
-                    if (usertask.TaskId ==Id)
+
+                    if (task.TaskId == Id)
                     {
-                        tasks.Add(usertask);
+                        tasks.Add(task);
                     }
-                } 
+                }
             }
             return tasks;
         }

@@ -15,7 +15,6 @@ namespace TaskManagerApp.DB
             DBAdapter.Connection.Insert(comment);
         }
 
-        //private ObservableCollection<CommentModel> _comments = new ObservableCollection<CommentModel>();
         public static ObservableCollection<CommentModel> GetComments(long taskId)
         {
             ObservableCollection<CommentModel> comments
@@ -23,7 +22,7 @@ namespace TaskManagerApp.DB
             var query = DBAdapter.Connection.Table<CommentModel>();
             foreach (CommentModel comment in query)
             {
-                if (comment.CommentToTaskId==taskId)
+                if (comment.CommentToTaskId == taskId)
                 {
                     comments.Add(comment);
                 }

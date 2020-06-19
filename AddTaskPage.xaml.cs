@@ -9,6 +9,7 @@ using TaskManagerApp.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Capture;
+using Windows.Security.Authentication.OnlineId;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,8 +28,7 @@ namespace TaskManagerApp
     /// </summary>
     public sealed partial class AddTaskPage : Page
     {
-        //private List<string> _priorityTypes = new List<string>() {"Low","Medium","High"};
-
+        
         public enum PriorityTypes
         {
             Low,
@@ -40,12 +40,16 @@ namespace TaskManagerApp
         {
             this.InitializeComponent();
             List<UserModel> Users = UserDB.GetUserList();
+            int index = Users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
             AssignedToUser.ItemsSource = Users;
             AssignedToUser.DisplayMemberPath = "Username";
             AssignedToUser.SelectedValuePath = "Username";
-
-            var _enumval = Enum.GetValues(typeof(PriorityTypes)).Cast<PriorityTypes>();
-            Priority.ItemsSource = _enumval.ToList();
+            AssignedToUser.SelectedIndex = index;
+            var enumval = Enum.GetValues(typeof(PriorityTypes)).Cast<PriorityTypes>();
+            Priority.ItemsSource = enumval.ToList();
+            Priority.SelectedIndex = 1;
+            StartDate.Date = DateTime.Today;
+            EndDate.Date = DateTime.Today;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -55,18 +59,24 @@ namespace TaskManagerApp
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }
+            else if(StartDate.Date>EndDate.Date)
+            {
+                ErrorTxt.Text = "Start Date cannot exceed End date!";
+            }
             else
             {
-                TaskModel Task = new TaskModel();
-                Task.AssignedToUser = AssignedToUser.SelectedValue.ToString();
-                Task.AssignedByUser = App.CurrentUser;
-                Task.TaskName = TaskName.Text;
+               
+                 TaskModel task = new TaskModel();
+                task.AssignedToUser = AssignedToUser.SelectedValue.ToString();
+                task.AssignedByUser = App.CurrentUser;
+                task.TaskName = TaskName.Text;
                 PriorityTypes priority = (PriorityTypes)Enum.Parse(typeof(PriorityTypes),Priority.SelectedItem.ToString());
-                Task.Priority = (int)priority;
-                Task.StartDate =(DateTimeOffset)StartDate.Date;
-                Task.EndDate = (DateTimeOffset)EndDate.Date;
-                Task.Description = DescriptionTxt.Text;
-                TaskDB.AddTask(Task);
+                task.Priority = (int)priority;
+                task.StartDate =(DateTimeOffset)StartDate.Date;
+                task.EndDate = (DateTimeOffset)EndDate.Date;
+                task.Description = DescriptionTxt.Text;
+                task.TaskId = DateTime.Now.Ticks;
+                TaskDB.AddTask(task);
                 ErrorTxt.Text = "Successfully Added!";
             }
         }

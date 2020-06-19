@@ -25,8 +25,6 @@ namespace TaskManagerApp
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
 
-        //public TaskModel currentTask { get { return this.DataContext as TaskModel; } }
-
         public TaskModel ZTask
         {
             get { return (TaskModel)GetValue(TaskProperty); }
@@ -56,17 +54,17 @@ namespace TaskManagerApp
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
 
-            bool isFavourite = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
+            bool isFavourite = UserDB.IsFavouriteTask(taskId, App.CurrentUser.ToString());
 
             if (isFavourite)
             {
                 StarBtn.Background = originalBrush;
-                UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser);
+                UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
             }
             else
             {
                 StarBtn.Background = newBrush;
-                UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser);
+                UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
             }
         }
     }

@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace TaskManagerApp.Model
 {
     public class TaskModel
-    {
-        private readonly long _TaskId = DateTime.Now.Ticks;
+    {     
         public string TaskName { get; set; }
         public string AssignedToUser { get; set; }
         public string AssignedByUser { get; set; }
@@ -17,15 +16,8 @@ namespace TaskManagerApp.Model
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
         public int Priority { get; set; }
-        public long TaskId
-        {
-            get
-            {
-                return _TaskId;
-            }
-        }
-    }   
- 
-
+        [PrimaryKey]
+        public long TaskId { get; set; }
+    }
      
 }

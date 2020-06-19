@@ -28,7 +28,7 @@ namespace TaskManagerApp
         public ViewMyTaskPage()
         {
             this.InitializeComponent();
-            ObservableCollection<long> favTaskIds = UserDB.GetFavTasks(App.CurrentUser);
+            ObservableCollection<long> favTaskIds = UserDB.GetFavTasks(App.CurrentUser.ToString());
             ObservableCollection<TaskModel> tasks = TaskDB.GetTasksFromId(favTaskIds);
             TasksList.ItemsSource = tasks;
         }

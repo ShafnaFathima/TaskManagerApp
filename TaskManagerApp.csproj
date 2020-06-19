@@ -129,8 +129,8 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListViewUserControl.xaml.cs">
-      <DependentUpon>ListViewUserControl.xaml</DependentUpon>
+    <Compile Include="UserListView.xaml.cs">
+      <DependentUpon>UserListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -139,6 +139,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CommentModel.cs" />
+    <Compile Include="Model\FavoriteTask.cs" />
     <Compile Include="Model\TaskModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,7 +177,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListViewUserControl.xaml">
+    <Page Include="UserListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

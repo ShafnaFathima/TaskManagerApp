@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite.Net.Attributes;
+using Windows.ApplicationModel.Store.Preview.InstallControl;
 
 namespace TaskManagerApp.Model
 {
@@ -13,6 +14,6 @@ namespace TaskManagerApp.Model
         [PrimaryKey, AutoIncrement]
         public int UserID { get; set; }
         public string Username { get; set; }
-        public ObservableCollection<long> FavouriteTasksId = new ObservableCollection<long>();
+       
     }
 }

@@ -18,39 +18,20 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Favourite Tasks"
-                   Style="{StaticResource ResourceKey=TitleStyle}"/>
-        <ListView Name="TasksList" Grid.Row="1">
+                   Style="{StaticResource ResourceKey=TitleStyle}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10,10,0,0"/>
+        <ListView Name="TasksList"
+                  Grid.Row="1"
+                  HorizontalAlignment="Stretch"
+                  SelectionMode="Single"
+                  SelectionChanged="TasksList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <RelativePanel 
-                        Grid.Row="1"
-                        Background="LightSkyBlue"
-                        Margin="10,10,0,0">
-                        <TextBlock Name="TaskSymbol"
-                   FontFamily="Segoe MDL2 Assets"
-                   Text="&#xE8C9;"
-                   Foreground="Red"
-                   FontSize="17"/>
-                        <TextBlock 
-                  Text="{Binding TaskName}"
-                  Name="Task"
-                  FontWeight="Black"
-                  Margin="0,5,0,0"
-                  FontFamily="Calibri"
-                  FontSize="17"
-                  RelativePanel.RightOf="TaskSymbol"/>
-                        <Button Name="StarBtn"
-                 FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
-                  Content="&#xE734;"
-                    Tag="{Binding TaskId}"
-                    RelativePanel.Below="TaskSymbol"/>
-                        <TextBlock  Text="{Binding AssignedByUser}"
-                    FontStyle="Italic"
-                    RelativePanel.Below="Task"/>
-                    </RelativePanel>
+                    <local:ListViewUserControl ZTask="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
 </Page>

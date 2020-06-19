@@ -51,37 +51,48 @@ namespace TaskManagerApp.DB
             return users;
         }
 
-        public static bool IsFavouriteTask(long taskId,string userName)
+        public static bool IsFavouriteTask(long taskId, string userName)
         {
-            var query = DBAdapter.Connection.Table<UserModel>();
-            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
-            foreach(long userTaskId in currentUser.FavouriteTasksId)
+            var query = DBAdapter.Connection.Table<FavoriteTask>();
+            var favoriteTasks = query.Where(user => user.UserName.Equals(userName))
+                                                .Select(user => user.TaskId);
+
+            foreach (long userTaskId in favoriteTasks)
             {
-                if(taskId==userTaskId)
+                if (taskId == userTaskId)
                 {
                     return true;
                 }
-            }return false;
+            }
+            return false;
         }
 
         public static void AddFavouriteTaskIds(long taskId, string userName)
         {
-            var query = DBAdapter.Connection.Table<UserModel>();
-            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
-            currentUser.FavouriteTasksId.Add(taskId);
+            FavoriteTask favorite = new FavoriteTask() { TaskId = taskId, UserName = userName };
+            DBAdapter.Connection.Insert(favorite);
+
+
         }
         public static void RemoveFavouriteTaskIds(long taskId, string userName)
         {
-            var query = DBAdapter.Connection.Table<UserModel>();
-            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
-            currentUser.FavouriteTasksId.Remove(taskId);
+            var query = DBAdapter.Connection.Table<FavoriteTask>();
+            var favoriteTask = query.Where(task => task.UserName.Equals(userName) && task.TaskId == taskId)
+                                                .Select(task => task);
+            if (favoriteTask != null)
+            {
+                DBAdapter.Connection.Delete(favoriteTask);
+            }
         }
 
         public static ObservableCollection<long> GetFavTasks(string userName)
         {
-            var query = DBAdapter.Connection.Table<UserModel>();
-            UserModel currentUser = query.FirstOrDefault(user => user.Username.Equals(userName));
-            return currentUser.FavouriteTasksId;
+            var query = DBAdapter.Connection.Table<FavoriteTask>();
+            var FavTaskIds = query.Where(task => task.UserName.Equals(userName))
+                                                .Select(task => task.TaskId);
+
+            ObservableCollection<long> FavTasksId = new ObservableCollection<long>(FavTaskIds);
+            return FavTasksId;
         }
     }
 }
