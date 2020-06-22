@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.Model;
 using Windows.UI;
 using TaskManagerApp.DB;
+using System.Globalization;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -46,7 +47,7 @@ namespace TaskManagerApp
         }
         public ListViewUserControl()
         {
-            this.InitializeComponent();  
+            this.InitializeComponent();
         }
 
         private void StarBtn_Click(object sender, RoutedEventArgs e)

@@ -122,6 +122,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoolToColourConverter.cs" />
     <Compile Include="DB\CommentDB.cs" />
     <Compile Include="DB\DBAdapter.cs" />
     <Compile Include="DB\TaskDB.cs" />
