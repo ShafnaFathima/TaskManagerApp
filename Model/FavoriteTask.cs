@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TaskManagerApp.Model
-{
+{   
+    [Table("FavoriteTasks")]
     public class FavoriteTask
     {   [PrimaryKey,AutoIncrement]    
         public int Id { get; set; }

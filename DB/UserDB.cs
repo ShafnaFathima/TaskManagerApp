@@ -10,6 +10,7 @@ using Microsoft.SqlServer;
 using SQLite.Net;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace TaskManagerApp.DB
 {
@@ -76,13 +77,7 @@ namespace TaskManagerApp.DB
         }
         public static void RemoveFavouriteTaskIds(long taskId, string userName)
         {
-            var query = DBAdapter.Connection.Table<FavoriteTask>();
-            var favoriteTask = query.Where(task => task.UserName.Equals(userName) && task.TaskId == taskId)
-                                                .Select(task => task);
-            if (favoriteTask != null)
-            {
-                DBAdapter.Connection.Delete(favoriteTask);
-            }
+            DBAdapter.Connection.Table<FavoriteTask>().Delete(task => task.UserName.Equals(userName) && task.TaskId == taskId);
         }
 
         public static ObservableCollection<long> GetFavTasks(string userName)

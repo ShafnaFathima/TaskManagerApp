@@ -20,7 +20,7 @@
                  Style="{StaticResource ResourceKey=TextBoxStyle}"
                  PlaceholderText="Enter your username"
                  HorizontalAlignment="Center"
-                 Margin="0,35,0,0"/>
+                 Margin="0,50,0,0"/>
                 <TextBox 
                  Name="PasswordTxt"
                  Template="{StaticResource TextBoxCenterAlignTemplate}" 
