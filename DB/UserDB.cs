@@ -11,12 +11,15 @@ using SQLite.Net;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Collections.Specialized;
 
 namespace TaskManagerApp.DB
 {
 
     public class UserDB
     {
+       // public event NotifyCollectionChangedEventHandler CollectionChanged;
+
         public static void AddUser(string userName)
         {
             UserModel user = new UserModel();

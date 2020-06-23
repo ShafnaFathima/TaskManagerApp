@@ -27,14 +27,8 @@ namespace TaskManagerApp
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AddTaskPage : Page
-    {
+    {      
         
-        public enum PriorityTypes
-        {
-            Low,
-            Medium,
-            High
-        }
 
         public AddTaskPage()
         {

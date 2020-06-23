@@ -48,8 +48,9 @@ namespace TaskManagerApp
         public ListViewUserControl()
         {
             this.InitializeComponent();
+          
         }
-
+       
         private void StarBtn_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;

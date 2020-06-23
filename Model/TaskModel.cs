@@ -19,5 +19,11 @@ namespace TaskManagerApp.Model
         [PrimaryKey]
         public long TaskId { get; set; }
     }
-     
+    public enum PriorityTypes
+    {
+        Low,
+        Medium,
+        High
+    }
+
 }

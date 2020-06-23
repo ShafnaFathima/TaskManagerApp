@@ -7,6 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <local:BoolToColourConverter x:Key="BoolToColour">
+        </local:BoolToColourConverter>
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -63,11 +69,20 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <Button Name="StarBtnDetails"
+                         FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
+                        Content="&#xE734;"                   
+                        Click="StarBtnDetails_Click"                     
+                         Margin="5,5,0,0"
+                        Style="{StaticResource TextBlockButtonStyle}"/>
+                    <!--Background="{Binding ElementName=StarBtnDetails, Path=Tag ,Converter={StaticResource BoolToColour}}"--> 
+
                     <TextBlock Name="TaskName"
                             Style="{StaticResource ResourceKey=Details}"
                                FontSize="16"
                                FontWeight="SemiBold"
-                               Margin="0,0,20,0"
+                               Margin="10,0,20,0"
                                />
 
                 </StackPanel>
