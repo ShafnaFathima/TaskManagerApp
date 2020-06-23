@@ -68,7 +68,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal"> 
 
                     <Button Name="StarBtnDetails"
                          FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
@@ -76,13 +76,13 @@
                         Click="StarBtnDetails_Click"                     
                          Margin="5,5,0,0"
                         Style="{StaticResource TextBlockButtonStyle}"/>
-                    <!--Background="{Binding ElementName=StarBtnDetails, Path=Tag ,Converter={StaticResource BoolToColour}}"--> 
+                    <!--Background="{Binding ElementName=StarBtnDetails, Path=Tag ,Converter={StaticResource BoolToColour}}"/>-->
 
                     <TextBlock Name="TaskName"
                             Style="{StaticResource ResourceKey=Details}"
                                FontSize="16"
                                FontWeight="SemiBold"
-                               Margin="10,0,20,0"
+                               Margin="50,0,20,0"
                                />
 
                 </StackPanel>

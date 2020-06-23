@@ -49,6 +49,7 @@ namespace TaskManagerApp
         {
             this.InitializeComponent();
           
+
         }
        
         private void StarBtn_Click(object sender, RoutedEventArgs e)
