@@ -82,6 +82,8 @@ namespace TaskManagerApp
                 binding.Source = StarBtnDetails;
                 binding.Path =new PropertyPath("Tag");
                 StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
+
+
             } 
         }
 
@@ -96,20 +98,39 @@ namespace TaskManagerApp
             {
                 StarBtnDetails.Background = originalBrush;
                 UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Background");
+                OnPropertyChanged("Removed");
             }
             else
             {
                 StarBtnDetails.Background = newBrush;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Background");
+                OnPropertyChanged("Added");
             }
         }
         public string propertyName;
-        public event PropertyChangedEventHandler PropertyChanged;
+       public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
+
+        /* 
+                private void AddCommentBtn_Click()
+        {   
+        var tag = (sender as Button).Tag;
+            long taskId = (long)tag;
+        CommentModel comment=new CommentModel();
+        comment.CommentToTaskId=taskId;
+        comment.AuthorName=App.CurrentUser.ToString();
+        comment.CommentId=DateTime.Now.Ticks;
+        comment.ParentCommentID=0;
+        comment.Date=DateTime.Now;
+        comment.Content=TextBox.Text;
+
+         */
+
     }
 }

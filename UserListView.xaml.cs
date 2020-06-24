@@ -16,12 +16,13 @@ using TaskManagerApp.Model;
 using Windows.UI;
 using TaskManagerApp.DB;
 using System.Globalization;
+using System.ComponentModel;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace TaskManagerApp
 {
-    public sealed partial class ListViewUserControl : UserControl
+    public sealed partial class ListViewUserControl : UserControl ,INotifyPropertyChanged
     {
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
@@ -36,6 +37,10 @@ namespace TaskManagerApp
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("ZTask", typeof(TaskModel), typeof(ListViewUserControl), new PropertyMetadata(null, new PropertyChangedCallback(TaskChanged)));
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ViewUserTask view { get; set; }
+        
+
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
         {
             if (dpo is ListViewUserControl page && page.ZTask != null)
@@ -45,12 +50,32 @@ namespace TaskManagerApp
             }
 
         }
+
+
         public ListViewUserControl()
         {
             this.InitializeComponent();
-          
+            view.PropertyChanged += ViewUserTask_PropertyChanged;
+
         }
-       
+        
+      
+          
+        
+
+        private void ViewUserTask_PropertyChanged(object sender,PropertyChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if(e.PropertyName.Equals("Removed"))
+            {
+                StarBtn.Background= originalBrush;
+            }
+            else if(e.PropertyName.Equals("Added"))
+            {
+                StarBtn.Background = newBrush;
+            }
+        }
+
         private void StarBtn_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;

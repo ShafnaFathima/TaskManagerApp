@@ -43,7 +43,8 @@
                 RelativePanel.Below="TaskSymbol"
                 Margin="5,5,0,0"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Background="{Binding UpdateSourceTrigger=PropertyChanged,Path=Background}"/>
+                Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>
+        <!--Background="{Binding UpdateSourceTrigger=PropertyChanged,Path=Background}"/>-->
                 <!--Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"-->
                 
 

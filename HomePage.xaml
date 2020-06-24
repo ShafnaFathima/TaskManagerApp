@@ -38,7 +38,8 @@
                    Name="MySplitView"
                    DisplayMode="Inline" 
                    OpenPaneLength="250" 
-                   CompactPaneLength="56">
+                   CompactPaneLength="56"
+                   IsPaneOpen="True">
             <SplitView.Pane>
                 <ListView SelectionMode="Single" 
                          SelectionChanged="ListBox_SelectionChanged"

@@ -11,13 +11,13 @@
     <RelativePanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="500"/>
@@ -34,7 +34,7 @@
                  PlaceholderText="Enter Task Name"
                  Template="{StaticResource TextBoxCenterAlignTemplate}"
                  Style="{StaticResource TextBoxStyle}"
-                 Width="335"
+                 Width="340"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left"
                  Margin="10,0,0,30"
@@ -49,28 +49,43 @@
                  Margin="10,0,10,30"
                  Style="{StaticResource ResourceKey=ComboBoxStyle}"/>
             </StackPanel>
-            <ComboBox  
-                 Name="Priority" Grid.Row="1" Grid.Column="1"
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Start On:"
+                            FontSize="16"
+                           Margin="10,10,10,30"/>
+                <ComboBox  
+                 Name="Priority"
                  PlaceholderText=" Assign Priority"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left"
-            Margin="10,0,0,30"
+                 Margin="10,0,0,30"
                  Style="{StaticResource ResourceKey=ComboBoxStyle}">
-            </ComboBox>
-            <CalendarDatePicker Grid.Row="3"
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <TextBlock Text="Start On:"
+                            FontSize="16"
+                           Margin="10,10,10,30"/>
+                <CalendarDatePicker 
                             Name="StartDate"
                             PlaceholderText="StartDate"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                             Margin="10,0,0,30"
+                             Margin="20,0,0,30"
                             Style="{StaticResource DatePickerStyle}"/>
-            <CalendarDatePicker Grid.Row="3" Grid.Column="1"
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                <TextBlock Text="End On:"
+                            FontSize="16"
+                           Margin="10,10,10,30"/>
+                <CalendarDatePicker 
                             Name="EndDate"
                             PlaceholderText="EndDate"
                             HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Margin="10,0,0,30"
                            Style="{StaticResource DatePickerStyle}"/>
+            </StackPanel>
             <TextBox Name="DescriptionTxt"
                  Grid.ColumnSpan="2"
                  Grid.Row="4"
@@ -79,10 +94,12 @@
                  Template="{StaticResource TextBoxCenterAlignTemplate}"
                  VerticalAlignment="Top"
                  BorderBrush="DarkBlue"               
-                 HorizontalAlignment="Left" 
+                 HorizontalAlignment="Left"
+                 AcceptsReturn="True" 
+                 TextWrapping="Wrap"
                  Margin="10,0,0,0"
                  Height="70"
-                 Width="750"/>
+                 Width="828"/>
             <Button Name="AddBtn" Grid.Row="5"
                 Content="Add"
                 Click="AddBtn_Click"
