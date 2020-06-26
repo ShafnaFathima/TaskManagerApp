@@ -13,7 +13,8 @@
         </local:BoolToColourConverter>
     </UserControl.Resources>
 
-    <RelativePanel   HorizontalAlignment="Stretch"
+    <RelativePanel  
+                    HorizontalAlignment="Stretch"
                      Margin="0,10,0,0"
                      Width="220"
                      BorderBrush="Gray"
@@ -43,9 +44,10 @@
                 RelativePanel.Below="TaskSymbol"
                 Margin="5,5,0,0"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>
+                Background="{Binding Path=view, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+        <!--Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>-->
         <!--Background="{Binding UpdateSourceTrigger=PropertyChanged,Path=Background}"/>-->
-                <!--Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"-->
+                
                 
 
         <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"

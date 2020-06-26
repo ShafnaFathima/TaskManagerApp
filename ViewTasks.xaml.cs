@@ -51,10 +51,13 @@ namespace TaskManagerApp
             if(tasks.Count!=0)
             {
                 TasksList.ItemsSource = tasks;
+                TasksList.SelectedItem = tasks[0];
+                TaskEmptyTxt.Visibility = Visibility.Collapsed;
             }
             else
             {
-                TaskName.Text = "No tasks";
+                TasksList.Visibility = Visibility.Collapsed;
+                TaskEmptyTxt.Text = "No Tasks!";
             }
            
         }
@@ -65,16 +68,16 @@ namespace TaskManagerApp
             {
                 TaskModel task = (TaskModel)TasksList.SelectedItem;
 
-                TaskName.Text = task.TaskName;
-                TaskDescription.Text = task.Description;
-                TaskId.Text = task.TaskId.ToString();
+                TitleTxt.Text = task.TaskName;
+                DescriptionTxt.Text = task.Description;
+                TaskIdTxt.Text = task.TaskId.ToString();
                 string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
-                Priority.Text = priority;
-                AssignedBy.Text = task.AssignedByUser;
-                AssignedTo.Text = task.AssignedToUser;
+                PriorityTxt.Text = priority;
+                AssignedByTxt.Text = task.AssignedByUser;
                 string fmt = "d";
-                Startdate.Text = task.StartDate.Date.ToString(fmt);
-                EndDate.Text = task.EndDate.Date.ToString(fmt);
+                string Startdate = task.StartDate.Date.ToString(fmt);
+                string EndDate = task.EndDate.Date.ToString(fmt);
+                DateTxt.Text = Startdate + " to " + EndDate;
                 StarBtnDetails.Tag=task.TaskId;
                 BoolToColourConverter BoolToColour = new BoolToColourConverter();
                 Binding binding = new Binding();
@@ -107,7 +110,7 @@ namespace TaskManagerApp
                 OnPropertyChanged("Added");
             }
         }
-        public string propertyName;
+      
        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {

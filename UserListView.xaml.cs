@@ -22,7 +22,7 @@ using System.ComponentModel;
 
 namespace TaskManagerApp
 {
-    public sealed partial class ListViewUserControl : UserControl ,INotifyPropertyChanged
+    public sealed partial class ListViewUserControl : UserControl //,INotifyPropertyChanged
     {
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
@@ -37,8 +37,21 @@ namespace TaskManagerApp
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("ZTask", typeof(TaskModel), typeof(ListViewUserControl), new PropertyMetadata(null, new PropertyChangedCallback(TaskChanged)));
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public ViewUserTask view { get; set; }
+       // public event PropertyChangedEventHandler PropertyChanged;
+      
+     /// private ViewUserTask view;
+       /* public ViewUserTask View
+        {
+            get { return view; }
+            private set
+            {
+                view = value;
+                if(view!=null)
+                {
+                    view.PropertyChanged += ViewUserTask_PropertyChanged;
+                }
+            }
+        }*/
         
 
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
@@ -50,27 +63,23 @@ namespace TaskManagerApp
             }
 
         }
-
-
         public ListViewUserControl()
         {
-            this.InitializeComponent();
-            view.PropertyChanged += ViewUserTask_PropertyChanged;
-
-        }
-        
-      
-          
-        
+            this.InitializeComponent();         
+          ViewUserTask view = new ViewUserTask();
+           view.PropertyChanged += ViewUserTask_PropertyChanged;
+            //StarBtn.DataContext = view;
+        }     
 
         private void ViewUserTask_PropertyChanged(object sender,PropertyChangedEventArgs e)
         {
+            string propertyname = e.PropertyName.ToString();
             //throw new NotImplementedException();
-            if(e.PropertyName.Equals("Removed"))
+            if(propertyname.Equals("Removed"))
             {
                 StarBtn.Background= originalBrush;
             }
-            else if(e.PropertyName.Equals("Added"))
+            else if(propertyname.Equals("Added"))
             {
                 StarBtn.Background = newBrush;
             }

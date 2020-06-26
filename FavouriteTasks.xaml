@@ -22,6 +22,12 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Margin="10,10,0,0"/>
+        <TextBlock Name="NoTasks"
+                   FontSize="15"
+                   Grid.Row="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="20,10,0,0"/>
         <ListView Name="TasksList"
                   Grid.Row="1"
                   HorizontalAlignment="Stretch"

@@ -30,7 +30,15 @@ namespace TaskManagerApp
             this.InitializeComponent();
             ObservableCollection<long> favTaskIds = UserDB.GetFavTasks(App.CurrentUser.ToString());
             ObservableCollection<TaskModel> tasks = TaskDB.GetTasksFromId(favTaskIds);
-            TasksList.ItemsSource = tasks;
+            if (tasks.Count == 0)
+            {
+                NoTasks.Text = "No Favourite tasks have been added!";
+            }
+            else
+            {
+                NoTasks.Visibility = Visibility.Collapsed;
+                TasksList.ItemsSource = tasks;
+            }
         }
 
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
