@@ -123,6 +123,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoolToColourConverter.cs" />
+    <Compile Include="CommentListView.xaml.cs">
+      <DependentUpon>CommentListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DB\CommentDB.cs" />
     <Compile Include="DB\DBAdapter.cs" />
     <Compile Include="DB\TaskDB.cs" />
@@ -139,7 +142,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CommentModel.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\FavoriteTask.cs" />
     <Compile Include="Model\TaskModel.cs" />
     <Compile Include="Model\UserModel.cs" />
@@ -175,6 +178,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AddTaskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommentListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

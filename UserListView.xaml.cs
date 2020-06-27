@@ -39,8 +39,8 @@ namespace TaskManagerApp
 
        // public event PropertyChangedEventHandler PropertyChanged;
       
-     /// private ViewUserTask view;
-       /* public ViewUserTask View
+     private ViewUserTask view;
+        public ViewUserTask View
         {
             get { return view; }
             private set
@@ -51,7 +51,7 @@ namespace TaskManagerApp
                     view.PropertyChanged += ViewUserTask_PropertyChanged;
                 }
             }
-        }*/
+        }
         
 
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
@@ -66,9 +66,9 @@ namespace TaskManagerApp
         public ListViewUserControl()
         {
             this.InitializeComponent();         
-          ViewUserTask view = new ViewUserTask();
-           view.PropertyChanged += ViewUserTask_PropertyChanged;
-            //StarBtn.DataContext = view;
+          //ViewUserTask view = new ViewUserTask();
+          // view.PropertyChanged += ViewUserTask_PropertyChanged;
+          //  this.DataContext = view;
         }     
 
         private void ViewUserTask_PropertyChanged(object sender,PropertyChangedEventArgs e)

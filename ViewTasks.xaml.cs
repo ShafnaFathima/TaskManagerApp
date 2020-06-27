@@ -59,9 +59,12 @@ namespace TaskManagerApp
                 TasksList.Visibility = Visibility.Collapsed;
                 TaskEmptyTxt.Text = "No Tasks!";
             }
+            ;
+
            
         }
-
+         ObservableCollection<Comment> comments;
+       /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TasksList.SelectedItem != null)
@@ -86,7 +89,18 @@ namespace TaskManagerApp
                 binding.Path =new PropertyPath("Tag");
                 StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
 
-
+                comments = CommentDB.GetComments(task.TaskId);
+                
+               /* Comment comment = new Comment();
+                comment.AuthorName = "Shafna";
+                comment.Content = "hwqehid3kyrquksjuihndjhrtirkuihgkr";
+                Comment commentn = new Comment();
+                commentn.AuthorName = "Shafna";
+                commentn.Content = "hwqehid3kyrquksjuihndjhrtirkuihgkr";
+                comments.Add(comment);
+                comments.Add(commentn);*/
+                CommentsList.ItemsSource = comments;
+                AddButton.Tag = task.TaskId;
             } 
         }
 
@@ -120,20 +134,18 @@ namespace TaskManagerApp
             }
         }
 
-        /* 
-                private void AddCommentBtn_Click()
-        {   
-        var tag = (sender as Button).Tag;
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tag = (sender as Button).Tag;
             long taskId = (long)tag;
-        CommentModel comment=new CommentModel();
-        comment.CommentToTaskId=taskId;
-        comment.AuthorName=App.CurrentUser.ToString();
-        comment.CommentId=DateTime.Now.Ticks;
-        comment.ParentCommentID=0;
-        comment.Date=DateTime.Now;
-        comment.Content=TextBox.Text;
-
-         */
-
+            Comment comment = new Comment();
+            comment.CommentToTaskId = taskId;
+            comment.AuthorName = App.CurrentUser;
+            comment.Content = EnterComment.Text;
+            comment.CommentId = DateTime.Now.Ticks;
+            comment.Date = DateTime.Now;
+            CommentDB.AddComment(comment);
+            comments.Add(comment);
+        }
     }
 }

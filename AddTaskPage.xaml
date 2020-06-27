@@ -17,7 +17,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="500"/>
@@ -106,6 +106,7 @@
                 Style="{StaticResource ResourceKey=BtnStyle}"
                 RelativePanel.Below="AssignedToUser"
                 Width="250"
+                 
                 Margin="10,30,0,15"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"/>

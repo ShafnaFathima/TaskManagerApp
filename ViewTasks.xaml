@@ -5,6 +5,7 @@
     xmlns:local="using:TaskManagerApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TaskManagerApp.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -16,53 +17,62 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="270"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="View Tasks"
+        <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2">-->
+            <TextBlock Text="View Tasks"
                    Style="{StaticResource ResourceKey=TitleStyle}"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    Margin="10,10,0,0"/>
-        <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Grid.Column="1">
-            <TextBlock Text="Filter By User: "
+        <!--</Border>-->
+        <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2" Grid.Column="1">-->
+            <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Grid.Column="1" >
+
+                <TextBlock Text="Filter By User: "
                        FontSize="16"
                        FontWeight="SemiBold"
                        VerticalAlignment="Top"
                        Margin="30,15,10,0"/>
 
-            <ComboBox 
+                <ComboBox 
             Name="SelectUser"
             PlaceholderText="   User"
             Foreground="DarkBlue"
             BorderBrush="DarkBlue"
             PlaceholderForeground="CornflowerBlue"
-            FontSize="20"
+            FontSize="15"
             Height="35"
             Width="150"
             VerticalAlignment="Top"
             Margin="0,10,0,0"
             SelectionChanged="SelectUser_SelectionChanged"/>
-        </StackPanel>
+            </StackPanel>
+        <!--</Border>-->
         <TextBlock Name="TaskEmptyTxt"
                    FontSize="16"
-                   Grid.Row="1"/>
+                   Grid.Row="1"
+                   Grid.RowSpan="2"/>
         <ListView Name="TasksList"
                   Grid.Row="1"
                   HorizontalAlignment="Stretch"
                   SelectionMode="Single"
-                  SelectionChanged="TasksList_SelectionChanged">
+                  SelectionChanged="TasksList_SelectionChanged"
+                  Margin="0,25,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListViewUserControl ZTask="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <Grid Grid.Row="1" Grid.Column="1" Width="500" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" BorderBrush="Gray" BorderThickness="1">
+        <!--details view-->
+        <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1" Width="600" Height="175" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,35,0,0" BorderBrush="Gray" BorderThickness="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -151,93 +161,73 @@
                            FontSize="14"
                            Margin="10,10,10,0"/>
             </StackPanel>
-
-
-
         </Grid>
-        
-        
-        
-        
-        
-        
-        <!--<StackPanel Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"  BorderBrush="Gray" BorderThickness="1,0,0,0">
-            <Grid Height="300" Width="270" Background="LightGray" HorizontalAlignment="Left" Margin="30,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
 
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        </Border>
+        <!--comments section code-->
+        <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Grid.Row="2" Grid.Column="1">
+            <RelativePanel Grid.Row="2" Grid.Column="1" Width="640" HorizontalAlignment="Left">
+            <TextBlock Text="Comments"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       Name="CommentTitle"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Margin="30,0,0,10"/>
+            
+            <ListView Name="CommentsList"
+                      RelativePanel.Below="CommentTitle"
+                      ItemsSource="{x:Bind comments}"
+                      Margin="20,0,0,0"
+                     >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Comment">
+                        <StackPanel Orientation="Vertical" BorderBrush="Gray" BorderThickness="0,0,0,1" Width="750">
+                                <StackPanel Orientation="Horizontal"  Margin="0,2,0,0" >
+                                <Border BorderBrush="CornflowerBlue" Background="LightBlue" BorderThickness="2">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                                           Text="&#xE77B;"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           Foreground="CornflowerBlue"
+                                           Height="20"
+                                         Width="20"  
+                                               HorizontalTextAlignment="Center"
+                                             
+                                           />
+                                </Border>
+                                <TextBlock Text="{x:Bind AuthorName}"
+                                           FontWeight="Bold"
+                                           Margin="5,2,0,0"/>
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind Content}" 
+                                       Margin="31,0,0,0"/>
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                      
+                  
+            <TextBox Name="EnterComment"
+                     PlaceholderForeground="Gray"
+                     PlaceholderText="Write your comment here!"
+                     RelativePanel.AlignBottomWithPanel="True"
+                     AcceptsReturn="True" 
+                      TextWrapping="Wrap"
+                     Width="550"
+                     Margin="30,0,0,20"
+                     />
+            <Button Name="AddButton"
+                    Click="AddButton_Click"     
+                    FontFamily="Segoe MDL2 Assets"
+                    Background="LightBlue"
+                    Foreground="CornflowerBlue"
+                    Content="&#xE90A;"
+                    RelativePanel.RightOf="EnterComment"
+                    RelativePanel.AlignBottomWith="EnterComment"
+                     Margin="0,0,0,20"/>
+        </RelativePanel>
+        </Border>
 
-                    <Button Name="StarBtnDetails"
-                         FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
-                        Content="&#xE734;"                   
-                        Click="StarBtnDetails_Click"                     
-                         Margin="5,5,0,0"
-                        Style="{StaticResource TextBlockButtonStyle}"/>
-                    --><!--Background="{Binding ElementName=StarBtnDetails, Path=Tag ,Converter={StaticResource BoolToColour}}"--><!-- 
-
-                    <TextBlock Name="TaskName"
-                            Style="{StaticResource ResourceKey=Details}"
-                               FontSize="16"
-                               FontWeight="SemiBold"
-                               Margin="10,0,20,0"
-                               />
-
-                </StackPanel>
-                <StackPanel  Grid.Row="2">
-                    <TextBlock Text="Description"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    <TextBlock Name="TaskDescription" VerticalAlignment="Center"
-                           TextWrapping="Wrap"
-                           Margin="5,0,5,0"
-                          
-                        Style="{StaticResource ResourceKey=Details}"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <StackPanel HorizontalAlignment="Left" Width="150" Margin="5,0,5,0">
-                        <TextBlock Text="Start Date"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                        <TextBlock Name="Startdate"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Left" Width="150" Margin="5,0,5,0">
-                        <TextBlock Text="End Date"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                        <TextBlock Name="EndDate"
-                           Style="{StaticResource ResourceKey=Details}"/>
-                    </StackPanel>
-                </StackPanel>
-
-
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5,0,5,0">
-                    <StackPanel >
-                        <TextBlock Text="Priority"
-                    Style="{StaticResource ResourceKey=DetailTitle}"/>
-                        <TextBlock Text="Assigned By"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                        <TextBlock Text="Assigned To"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                        <TextBlock Text="Task Id"
-                           Style="{StaticResource ResourceKey=DetailTitle}"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock Name="Priority"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                        <TextBlock Name="AssignedBy"
-                            Style="{StaticResource ResourceKey=Details}"/>
-
-                        <TextBlock Name="AssignedTo"
-                            Style="{StaticResource ResourceKey=Details}"/>
-
-                        <TextBlock Name="TaskId"
-                            Style="{StaticResource ResourceKey=Details}"/>
-                    </StackPanel>
-                </StackPanel>-->
-            <!--</Grid>-->
-        <!--</StackPanel>-->
     </Grid>
 </Page>

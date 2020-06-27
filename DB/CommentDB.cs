@@ -10,17 +10,16 @@ namespace TaskManagerApp.DB
 {
     public class CommentDB
     {
-        public static void AddComment(CommentModel comment)
+       public static void AddComment(Comment comment)
         {
             DBAdapter.Connection.Insert(comment);
         }
 
-        public static ObservableCollection<CommentModel> GetComments(long taskId)
+        public static ObservableCollection<Comment> GetComments(long taskId)
         {
-            ObservableCollection<CommentModel> comments
-                = new ObservableCollection<CommentModel>();
-            var query = DBAdapter.Connection.Table<CommentModel>();
-            foreach (CommentModel comment in query)
+            ObservableCollection<Comment> comments= new ObservableCollection<Comment>();
+            var query = DBAdapter.Connection.Table<Comment>();
+            foreach (Comment comment in query)
             {
                 if (comment.CommentToTaskId == taskId)
                 {
