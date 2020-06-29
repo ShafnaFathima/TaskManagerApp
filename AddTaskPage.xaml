@@ -107,7 +107,7 @@
                 RelativePanel.Below="AssignedToUser"
                 Width="250"
                  
-                Margin="10,30,0,15"
+                Margin="10,30,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"/>
             <TextBlock Name="ErrorTxt" Grid.Row="5" Grid.Column="1"
