@@ -9,6 +9,10 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     Name="CommentsListView">
+    <UserControl.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisible"/>
+
+    </UserControl.Resources>
 
     <StackPanel Orientation="Vertical" BorderBrush="Gray" BorderThickness="0,0,0,1" Width="750">
         <StackPanel Orientation="Horizontal"  Margin="0,2,0,0" >
@@ -27,17 +31,20 @@
             <TextBlock Text= "{Binding ZComment.AuthorName,ElementName=CommentsListView,Mode=OneWay}"
                                            FontWeight="Bold"
                                            Margin="5,2,0,0"/>
-        </StackPanel>
-        <TextBlock x:Name="AuthorTxt" 
-                   Margin="31,0,0,0"
-            Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"/>
-        <Button x:Name="RemoveComment"
+            <Button x:Name="RemoveComment"
                 Tag="{Binding ZComment.CommentId,Mode=OneWay,ElementName=CommentsListView}"
                 Content="Remove"
                 Foreground="Gray"
                 Background="White"
                 FontSize="12"
-                Click="RemoveComment_Click"/>
+                Click="RemoveComment_Click"
+                Margin="450,0,0,0"
+                Visibility="{Binding ZComment.CommentId,Converter={StaticResource BoolToVisible},Mode=OneWay,ElementName=CommentsListView}"/>
+        </StackPanel>
+        <TextBlock x:Name="AuthorTxt" 
+                   Margin="31,0,0,0"
+            Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"/>
+        
 
     </StackPanel>
 </UserControl>

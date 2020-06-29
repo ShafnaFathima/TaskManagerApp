@@ -123,6 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoolToColourConverter.cs" />
+    <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="CommentListView.xaml.cs">
       <DependentUpon>CommentListView.xaml</DependentUpon>
     </Compile>

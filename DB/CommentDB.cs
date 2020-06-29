@@ -47,5 +47,20 @@ namespace TaskManagerApp.DB
             }
             return reqComment;
         }
+        public static bool IsMyComment(long commentId,string userName)
+        {
+            var query = DBAdapter.Connection.Table<Comment>();
+            var userComments = query.Where(user => user.AuthorName.Equals(userName))
+                                                .Select(user => user.CommentId);
+            foreach (long userCommentId in userComments)
+            {
+                if (userCommentId == commentId)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
     }
 }
