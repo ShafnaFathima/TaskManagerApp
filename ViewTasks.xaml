@@ -54,6 +54,8 @@
             SelectionChanged="SelectUser_SelectionChanged"/>
             </StackPanel>
         <!--</Border>-->
+        <!--taskslistview-->
+        
         <TextBlock Name="TaskEmptyTxt"
                    FontSize="16"
                    Grid.Row="1"
@@ -176,34 +178,12 @@
             
             <ListView Name="CommentsList"
                       RelativePanel.Below="CommentTitle"
-                      ItemsSource="{x:Bind comments}"
                       Margin="20,0,0,0"
                      >
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Comment">
-                        <StackPanel Orientation="Vertical" BorderBrush="Gray" BorderThickness="0,0,0,1" Width="750">
-                                <StackPanel Orientation="Horizontal"  Margin="0,2,0,0" >
-                                <Border BorderBrush="CornflowerBlue" Background="LightBlue" BorderThickness="2">
-                                    <TextBlock FontFamily="Segoe MDL2 Assets"
-                                           Text="&#xE77B;"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top"
-                                           Foreground="CornflowerBlue"
-                                           Height="20"
-                                         Width="20"  
-                                               HorizontalTextAlignment="Center"
-                                             
-                                           />
-                                </Border>
-                                <TextBlock Text="{x:Bind AuthorName}"
-                                           FontWeight="Bold"
-                                           Margin="5,2,0,0"/>
-                            </StackPanel>
-                            <TextBlock Text="{x:Bind Content}" 
-                                       Margin="31,0,0,0"/>
-                        </StackPanel>
-                        
-                    </DataTemplate>
+                    <DataTemplate >
+                            <local:CommentListView ZComment="{Binding}"/>
+                        </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
                       
@@ -225,7 +205,10 @@
                     Content="&#xE90A;"
                     RelativePanel.RightOf="EnterComment"
                     RelativePanel.AlignBottomWith="EnterComment"
-                     Margin="0,0,0,20"/>
+                     Margin="0,0,0,20"
+                    Height="32"
+                    BorderBrush="CornflowerBlue"
+                    BorderThickness="2"/>
         </RelativePanel>
         </Border>
 

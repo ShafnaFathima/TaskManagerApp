@@ -28,5 +28,24 @@ namespace TaskManagerApp.DB
             }
             return comments;
         }
+
+        public static void RemoveComment(long commentId)
+        {
+            DBAdapter.Connection.Table<Comment>().Delete(comment => comment.CommentId == commentId);
+        }
+        public static Comment GetComment(long commentId)
+        {
+           
+            var query = DBAdapter.Connection.Table<Comment>();
+            Comment reqComment = new Comment();
+            foreach (Comment comment in query)
+            {
+                if (comment.CommentId == commentId)
+                {
+                    reqComment=comment;
+                }
+            }
+            return reqComment;
+        }
     }
 }

@@ -10,13 +10,21 @@ namespace TaskManagerApp.Model
     [Table("Comment")]
     public class Comment
     {   
-        [PrimaryKey,AutoIncrement]
-        public int Id { get; set; }
+       
+        //public int Id { get; set; }
         public string Content { get; set; }
         public string AuthorName { get; set; }
         public long CommentToTaskId { get; set; }
+        [PrimaryKey]
         public long CommentId { get; set; }
         public DateTime Date { get; set; }
+        //public Action<Comment> OnRemoveCallback { get; set; }
+
+        //public void OnRemove()
+        //{
+        //    OnRemoveCallback(this);
+        //}
+
 
         /*   public string Content
            {

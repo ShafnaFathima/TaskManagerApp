@@ -63,7 +63,7 @@ namespace TaskManagerApp
 
            
         }
-         ObservableCollection<Comment> comments;
+        public static ObservableCollection<Comment> comments;
        /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -89,17 +89,9 @@ namespace TaskManagerApp
                 binding.Path =new PropertyPath("Tag");
                 StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
 
-                comments = CommentDB.GetComments(task.TaskId);
+                comments = CommentDB.GetComments(task.TaskId);  
+                  CommentsList.ItemsSource = comments;
                 
-               /* Comment comment = new Comment();
-                comment.AuthorName = "Shafna";
-                comment.Content = "hwqehid3kyrquksjuihndjhrtirkuihgkr";
-                Comment commentn = new Comment();
-                commentn.AuthorName = "Shafna";
-                commentn.Content = "hwqehid3kyrquksjuihndjhrtirkuihgkr";
-                comments.Add(comment);
-                comments.Add(commentn);*/
-                CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             } 
         }
@@ -146,6 +138,14 @@ namespace TaskManagerApp
             comment.Date = DateTime.Now;
             CommentDB.AddComment(comment);
             comments.Add(comment);
+        }
+        public static void RemoveComment(Comment comment)
+        {
+            comments.Remove(comment);
+            ViewUserTask page = new ViewUserTask();
+            page.CommentsList.ItemsSource = comments;
+
+
         }
     }
 }
