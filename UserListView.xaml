@@ -5,8 +5,7 @@
     xmlns:local="using:TaskManagerApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    
+    mc:Ignorable="d"  
     Name="TaskListControl">
     <UserControl.Resources>
         <local:BoolToColourConverter x:Key="BoolToColour">
@@ -29,7 +28,7 @@
         <TextBlock 
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
                   Name="TaskName"
-             HorizontalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
                   FontWeight="Black"
                   Margin="18,5,0,0"
                   FontFamily="Calibri"
@@ -44,12 +43,9 @@
                 RelativePanel.Below="TaskSymbol"
                 Margin="5,5,0,0"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Background="{Binding Path=view, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-        <!--Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>-->
+                Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>
+        <!--Background="{Binding Path=view, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>-->
         <!--Background="{Binding UpdateSourceTrigger=PropertyChanged,Path=Background}"/>-->
-                
-                
-
         <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
                     FontStyle="Italic"
                     HorizontalAlignment="Stretch"
@@ -58,5 +54,4 @@
                     Margin="10,5,0,0"
                     />
     </RelativePanel>
-
 </UserControl>

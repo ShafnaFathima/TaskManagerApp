@@ -14,9 +14,7 @@ namespace TaskManagerApp
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            // throw new NotImplementedException();
             long commentId = long.Parse(value.ToString());
-            //bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
             bool isMyComment = CommentDB.IsMyComment(commentId, App.CurrentUser);
             if (isMyComment == false)
             {

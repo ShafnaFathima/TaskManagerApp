@@ -113,7 +113,6 @@
             <TextBlock Name="ErrorTxt" Grid.Row="5" Grid.Column="1"
         Style="{StaticResource ResourceKey=ErrorTxt}"
                    VerticalAlignment="Center"/>
-
         </Grid>
     </RelativePanel>
 </Page>

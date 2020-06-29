@@ -18,10 +18,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="245"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2">-->
@@ -174,11 +174,13 @@
                        Name="CommentTitle"
                        FontSize="16"
                        FontWeight="Bold"
-                       Margin="30,0,0,10"/>
+                       Margin="30,7,0,5"/>
             
             <ListView Name="CommentsList"
                       RelativePanel.Below="CommentTitle"
+                      RelativePanel.Above="EnterComment"
                       Margin="20,0,0,0"
+                     
                      >
                 <ListView.ItemTemplate>
                     <DataTemplate >
@@ -194,8 +196,8 @@
                      RelativePanel.AlignBottomWithPanel="True"
                      AcceptsReturn="True" 
                       TextWrapping="Wrap"
-                     Width="550"
-                     Margin="30,0,0,20"
+                     Width="575"
+                     Margin="30,2,0,20"
                      />
             <Button Name="AddButton"
                     Click="AddButton_Click"     
@@ -205,7 +207,7 @@
                     Content="&#xE90A;"
                     RelativePanel.RightOf="EnterComment"
                     RelativePanel.AlignBottomWith="EnterComment"
-                     Margin="0,0,0,20"
+                     Margin="0,2,0,20"
                     Height="32"
                     BorderBrush="CornflowerBlue"
                     BorderThickness="2"/>

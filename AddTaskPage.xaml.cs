@@ -28,8 +28,6 @@ namespace TaskManagerApp
     /// </summary>
     public sealed partial class AddTaskPage : Page
     {      
-        
-
         public AddTaskPage()
         {
             this.InitializeComponent();
@@ -60,7 +58,7 @@ namespace TaskManagerApp
             else
             {
                
-                 TaskModel task = new TaskModel();
+                TaskModel task = new TaskModel();
                 task.AssignedToUser = AssignedToUser.SelectedValue.ToString();
                 task.AssignedByUser = App.CurrentUser;
                 task.TaskName = TaskName.Text;

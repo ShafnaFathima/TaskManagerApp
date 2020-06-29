@@ -17,8 +17,6 @@ namespace TaskManagerApp.DB
 
     public class UserDB
     {
-       // public event NotifyCollectionChangedEventHandler CollectionChanged;
-
         public static void AddUser(string userName)
         {
             UserModel user = new UserModel();
@@ -74,8 +72,6 @@ namespace TaskManagerApp.DB
         {
             FavoriteTask favorite = new FavoriteTask() { TaskId = taskId, UserName = userName };
             DBAdapter.Connection.Insert(favorite);
-
-
         }
         public static void RemoveFavouriteTaskIds(long taskId, string userName)
         {
@@ -87,7 +83,6 @@ namespace TaskManagerApp.DB
             var query = DBAdapter.Connection.Table<FavoriteTask>();
             var FavTaskIds = query.Where(task => task.UserName.Equals(userName))
                                                 .Select(task => task.TaskId);
-
             ObservableCollection<long> FavTasksId = new ObservableCollection<long>(FavTaskIds);
             return FavTasksId;
         }

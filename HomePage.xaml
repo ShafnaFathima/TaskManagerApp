@@ -70,7 +70,6 @@
                     </ListViewItem>
                 </ListView>
             </SplitView.Pane>
-
             <SplitView.Content>
                 <Frame Name="HomeFrame"></Frame>
             </SplitView.Content>

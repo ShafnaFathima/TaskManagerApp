@@ -52,7 +52,7 @@
                 <TextBlock 
                    Name="ErrorTxt"
                    HorizontalAlignment="Center"
-                    Margin="0,20,0,20"
+                   Margin="0,20,0,20"
                   Style="{StaticResource ResourceKey=ErrorTxt}"/>
             </StackPanel>
         </Border>

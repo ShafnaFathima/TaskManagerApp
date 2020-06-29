@@ -27,7 +27,7 @@ namespace TaskManagerApp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ViewUserTask : Page ,INotifyPropertyChanged
+    public sealed partial class ViewUserTask : Page, INotifyPropertyChanged
     {
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
@@ -43,12 +43,12 @@ namespace TaskManagerApp
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
         }
-        
+
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UserModel user = (UserModel)SelectUser.SelectedItem; 
+            UserModel user = (UserModel)SelectUser.SelectedItem;
             ObservableCollection<TaskModel> tasks = TaskDB.GetTasks(user.Username);
-            if(tasks.Count!=0)
+            if (tasks.Count != 0)
             {
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedItem = tasks[0];
@@ -61,10 +61,10 @@ namespace TaskManagerApp
             }
             ;
 
-           
+
         }
         public static ObservableCollection<Comment> comments;
-       /// List<Comment> comments = new List<Comment>();
+        /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TasksList.SelectedItem != null)
@@ -81,19 +81,17 @@ namespace TaskManagerApp
                 string Startdate = task.StartDate.Date.ToString(fmt);
                 string EndDate = task.EndDate.Date.ToString(fmt);
                 DateTxt.Text = Startdate + " to " + EndDate;
-                StarBtnDetails.Tag=task.TaskId;
+                StarBtnDetails.Tag = task.TaskId;
                 BoolToColourConverter BoolToColour = new BoolToColourConverter();
                 Binding binding = new Binding();
                 binding.Converter = BoolToColour;
                 binding.Source = StarBtnDetails;
-                binding.Path =new PropertyPath("Tag");
+                binding.Path = new PropertyPath("Tag");
                 StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
-
-                comments = CommentDB.GetComments(task.TaskId);  
-                  CommentsList.ItemsSource = comments;
-                
+                comments = CommentDB.GetComments(task.TaskId);
+                CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
-            } 
+            }
         }
 
         private void StarBtnDetails_Click(object sender, RoutedEventArgs e)
@@ -116,8 +114,8 @@ namespace TaskManagerApp
                 OnPropertyChanged("Added");
             }
         }
-      
-       public event PropertyChangedEventHandler PropertyChanged;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -138,14 +136,6 @@ namespace TaskManagerApp
             comment.Date = DateTime.Now;
             CommentDB.AddComment(comment);
             comments.Add(comment);
-        }
-        public static void RemoveComment(Comment comment)
-        {
-            comments.Remove(comment);
-            ViewUserTask page = new ViewUserTask();
-            page.CommentsList.ItemsSource = comments;
-
-
         }
     }
 }

@@ -53,7 +53,6 @@ namespace TaskManagerApp
             }
         }
         
-
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
         {
             if (dpo is ListViewUserControl page && page.ZTask != null)

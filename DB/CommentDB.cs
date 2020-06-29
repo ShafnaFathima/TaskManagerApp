@@ -10,14 +10,14 @@ namespace TaskManagerApp.DB
 {
     public class CommentDB
     {
-       public static void AddComment(Comment comment)
+        public static void AddComment(Comment comment)
         {
             DBAdapter.Connection.Insert(comment);
         }
 
         public static ObservableCollection<Comment> GetComments(long taskId)
         {
-            ObservableCollection<Comment> comments= new ObservableCollection<Comment>();
+            ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
             var query = DBAdapter.Connection.Table<Comment>();
             foreach (Comment comment in query)
             {
@@ -35,19 +35,18 @@ namespace TaskManagerApp.DB
         }
         public static Comment GetComment(long commentId)
         {
-           
             var query = DBAdapter.Connection.Table<Comment>();
             Comment reqComment = new Comment();
             foreach (Comment comment in query)
             {
                 if (comment.CommentId == commentId)
                 {
-                    reqComment=comment;
+                    reqComment = comment;
                 }
             }
             return reqComment;
         }
-        public static bool IsMyComment(long commentId,string userName)
+        public static bool IsMyComment(long commentId, string userName)
         {
             var query = DBAdapter.Connection.Table<Comment>();
             var userComments = query.Where(user => user.AuthorName.Equals(userName))
@@ -60,7 +59,6 @@ namespace TaskManagerApp.DB
                 }
             }
             return false;
-
         }
     }
 }
