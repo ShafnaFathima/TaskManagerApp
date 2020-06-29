@@ -13,7 +13,7 @@
         <local:BoolToColourConverter x:Key="BoolToColour">
         </local:BoolToColourConverter>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -24,23 +24,19 @@
             <ColumnDefinition Width="245"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2">-->
-            <TextBlock Text="View Tasks"
+        <TextBlock Text="View Tasks"
                    Style="{StaticResource ResourceKey=TitleStyle}"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    Margin="10,10,0,0"/>
-        <!--</Border>-->
         <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2" Grid.Column="1">-->
-            <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Grid.Column="1" >
-
-                <TextBlock Text="Filter By User: "
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" Grid.Column="1" >
+            <TextBlock Text="Filter By User: "
                        FontSize="16"
                        FontWeight="SemiBold"
                        VerticalAlignment="Top"
                        Margin="30,15,10,0"/>
-
-                <ComboBox 
+            <ComboBox 
             Name="SelectUser"
             PlaceholderText="   User"
             Foreground="DarkBlue"
@@ -52,10 +48,9 @@
             VerticalAlignment="Top"
             Margin="0,10,0,0"
             SelectionChanged="SelectUser_SelectionChanged"/>
-            </StackPanel>
+        </StackPanel>
         <!--</Border>-->
         <!--taskslistview-->
-        
         <TextBlock Name="TaskEmptyTxt"
                    FontSize="16"
                    Grid.Row="1"
@@ -75,122 +70,118 @@
         <!--details view-->
         <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Grid.Row="1" Grid.Column="1">
             <Grid Grid.Row="1" Grid.Column="1" Width="600" Height="175" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,35,0,0" BorderBrush="Gray" BorderThickness="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Button Name="StarBtnDetails"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="StarBtnDetails"
                         Click="StarBtnDetails_Click"
                          FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
                         Content="&#xE734;" 
                          Style="{StaticResource TextBlockButtonStyle}"/>
-                <TextBlock Name="TitleTxt"
+                    <TextBlock Name="TitleTxt"
                        FontSize="16"
                        FontWeight="Bold"
                        HorizontalAlignment="Left"
                        Margin="10,10,0,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
                            FontSize="16"
                            Text="&#xE77B;"
                            Margin="10,10,10,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                <TextBlock Name="AssignedByTxt"
+                    <TextBlock Name="AssignedByTxt"
                            FontSize="14"
                            Margin="10,10,0,0"
                            />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
                            FontSize="16"
                            Text="&#xE8D0;"
                            Margin="10,10,10,0"
                             Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                <TextBlock Name="PriorityTxt"
+                    <TextBlock Name="PriorityTxt"
                            FontSize="14"
                            Margin="10,10,0,0"
                            />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
                            FontSize="16"
                            Text="&#xE787;"
                            Margin="10,10,10,0"
                             Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                <TextBlock Name="DateTxt"
+                    <TextBlock Name="DateTxt"
                            FontSize="14"
                            Margin="10,10,0,0"
                            />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="4">
-                <TextBlock FontFamily="Segoe MDL2 Assets"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
                            FontSize="16"
                            Text="&#xE8EC;"
                            Margin="10,10,10,0"
                             Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                <TextBlock Name="TaskIdTxt"
+                    <TextBlock Name="TaskIdTxt"
                            FontSize="14"
                            Margin="10,10,0,0"
                            />
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
                            FontSize="16"
                            Text="&#xE8BD;"
                            Margin="10,10,0,0"
                                 Foreground="CornflowerBlue"
                                FontWeight="SemiBold"/>
-                    <TextBlock Text="Description"
+                        <TextBlock Text="Description"
                                Margin="10,8,0,0"/>
-                </StackPanel>
-                <TextBlock Name="DescriptionTxt"
+                    </StackPanel>
+                    <TextBlock Name="DescriptionTxt"
                            TextWrapping="Wrap"
                            FontStyle="Italic"
                            FontSize="14"
                            Margin="10,10,10,0"/>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
 
         </Border>
         <!--comments section code-->
         <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Grid.Row="2" Grid.Column="1">
             <RelativePanel Grid.Row="2" Grid.Column="1" Width="640" HorizontalAlignment="Left">
-            <TextBlock Text="Comments"
+                <TextBlock Text="Comments"
                        RelativePanel.AlignLeftWithPanel="True"
                        Name="CommentTitle"
                        FontSize="16"
                        FontWeight="Bold"
                        Margin="30,7,0,5"/>
-            
-            <ListView Name="CommentsList"
+                <ListView Name="CommentsList"
                       RelativePanel.Below="CommentTitle"
                       RelativePanel.Above="EnterComment"
-                      Margin="20,0,0,0"
-                     
+                      Margin="20,0,0,0"      
                      >
-                <ListView.ItemTemplate>
-                    <DataTemplate >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
                             <local:CommentListView ZComment="{Binding}"/>
                         </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-                      
-                  
-            <TextBox Name="EnterComment"
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBox Name="EnterComment"
                      PlaceholderForeground="Gray"
                      PlaceholderText="Write your comment here!"
                      RelativePanel.AlignBottomWithPanel="True"
@@ -199,7 +190,7 @@
                      Width="575"
                      Margin="30,2,0,20"
                      />
-            <Button Name="AddButton"
+                <Button Name="AddButton"
                     Click="AddButton_Click"     
                     FontFamily="Segoe MDL2 Assets"
                     Background="LightBlue"
@@ -211,8 +202,7 @@
                     Height="32"
                     BorderBrush="CornflowerBlue"
                     BorderThickness="2"/>
-        </RelativePanel>
+            </RelativePanel>
         </Border>
-
     </Grid>
 </Page>
