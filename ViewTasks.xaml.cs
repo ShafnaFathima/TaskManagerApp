@@ -53,15 +53,36 @@ namespace TaskManagerApp
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedItem = tasks[0];
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
+                StarBtnDetails.Visibility = Visibility.Visible;
+                Pic.Visibility = Visibility.Visible;
+                PrioritySymbol.Visibility = Visibility.Visible;
+                Calendar.Visibility = Visibility.Visible;
+                TaskIdsymbol.Visibility = Visibility.Visible;
+                Description.Visibility = Visibility.Visible;
+                CommentTitle.Visibility = Visibility.Visible;
+                Border.Visibility = Visibility.Visible;
+                EnterComment.Visibility = Visibility.Visible;
+                AddButton.Visibility = Visibility.Visible;
+                CommentsList.Visibility = Visibility.Visible;
+                TasksList.Visibility = Visibility.Visible;
             }
             else
             {
                 TasksList.Visibility = Visibility.Collapsed;
+                TaskEmptyTxt.Visibility = Visibility.Visible;
                 TaskEmptyTxt.Text = "No Tasks!";
+                StarBtnDetails.Visibility = Visibility.Collapsed;
+                Pic.Visibility = Visibility.Collapsed;
+                PrioritySymbol.Visibility = Visibility.Collapsed;
+                Calendar.Visibility = Visibility.Collapsed;
+                TaskIdsymbol.Visibility = Visibility.Collapsed;
+                Description.Visibility = Visibility.Collapsed;
+                CommentTitle.Visibility = Visibility.Collapsed;
+                Border.Visibility = Visibility.Collapsed;
+                EnterComment.Visibility = Visibility.Collapsed;
+                AddButton.Visibility = Visibility.Collapsed;
+                CommentsList.Visibility = Visibility.Collapsed;
             }
-            ;
-
-
         }
         public static ObservableCollection<Comment> comments;
         /// List<Comment> comments = new List<Comment>();
@@ -136,6 +157,7 @@ namespace TaskManagerApp
             comment.Date = DateTime.Now;
             CommentDB.AddComment(comment);
             comments.Add(comment);
+            EnterComment.Text = "";
         }
     }
 }

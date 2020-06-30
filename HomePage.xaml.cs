@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 
@@ -46,16 +46,16 @@ namespace TaskManagerApp
         {
             if (AddTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(AddTaskPage));
+                HomeFrame.Navigate(typeof(AddTaskPage), null, new SuppressNavigationTransitionInfo());
             }
             if (ViewFavTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(ViewMyTaskPage));
+                HomeFrame.Navigate(typeof(ViewMyTaskPage), null, new SuppressNavigationTransitionInfo());
 
             }
             if (ViewTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(ViewUserTask));
+                HomeFrame.Navigate(typeof(ViewUserTask), null, new SuppressNavigationTransitionInfo());
 
             }
             else if (Logout.IsSelected)

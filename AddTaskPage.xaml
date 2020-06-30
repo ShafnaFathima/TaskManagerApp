@@ -50,7 +50,7 @@
                  Style="{StaticResource ResourceKey=ComboBoxStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="Start On:"
+                <TextBlock Text="Priority:"
                             FontSize="16"
                            Margin="10,10,10,30"/>
                 <ComboBox  

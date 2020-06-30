@@ -27,11 +27,11 @@ namespace TaskManagerApp
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AddTaskPage : Page
-    {      
+    {
+        List<UserModel> Users = UserDB.GetUserList();
         public AddTaskPage()
         {
             this.InitializeComponent();
-            List<UserModel> Users = UserDB.GetUserList();
             int index = Users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
             AssignedToUser.ItemsSource = Users;
             AssignedToUser.DisplayMemberPath = "Username";
@@ -47,7 +47,7 @@ namespace TaskManagerApp
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(TaskName.Text) || (AssignedToUser.SelectedIndex == -1)||(Priority.SelectedIndex==-1)
-                ||string.IsNullOrEmpty(DescriptionTxt.Text)||(StartDate.Date==null)||(EndDate.Date==null))
+                ||(StartDate.Date==null)||(EndDate.Date==null))
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }
@@ -70,6 +70,18 @@ namespace TaskManagerApp
                 task.TaskId = DateTime.Now.Ticks;
                 TaskDB.AddTask(task);
                 ErrorTxt.Text = "Successfully Added!";
+                int index = Users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
+                AssignedToUser.ItemsSource = Users;
+                AssignedToUser.DisplayMemberPath = "Username";
+                AssignedToUser.SelectedValuePath = "Username";
+                AssignedToUser.SelectedIndex = index;
+                var enumval = Enum.GetValues(typeof(PriorityTypes)).Cast<PriorityTypes>();
+                Priority.ItemsSource = enumval.ToList();
+                Priority.SelectedIndex = 1;
+                StartDate.Date = DateTime.Today;
+                EndDate.Date = DateTime.Today;
+                TaskName.Text = "";
+                DescriptionTxt.Text = "";
             }
         }
     }
