@@ -38,7 +38,7 @@
                 Click="RemoveComment_Click"
                 Margin="470,0,0,0"
                         Style="{StaticResource TextBlockButtonStyle}"
-                Visibility="{Binding ZComment.CommentId,Converter={StaticResource BoolToVisible},Mode=OneWay,ElementName=CommentsListView}"/>
+               />
             </StackPanel>
             <TextBlock x:Name="AuthorTxt" 
                    Margin="31,0,0,0"
@@ -48,6 +48,56 @@
                        HorizontalAlignment="Left"
                        Width="Auto"
                        Height="Auto"/>
+            <StackPanel Orientation="Horizontal" Margin="22,0,0,0">
+                <Button Name="HeartBtn"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="HeartBtn_Click">
+                    <Button.Content>
+                        <Image Source="Assets/heart.PNG"
+                               Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                <TextBlock Text="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <Button Name="HappyBtn"                
+                        Click="HappyBtn_Click"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}">
+                    <Button.Content>
+                        <Image Source="Assets/happy.PNG"
+                               Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                        
+                <TextBlock Text="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <Button Name="LikeBtn"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="LikeBtn_Click"
+                        >
+                    <Button.Content>
+                        <Image Source="Assets/like.PNG"
+                               Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                <TextBlock Text="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <Button Name="SadBtn"
+                         Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="SadBtn_Click"
+                        >
+                    <Button.Content>
+                        <Image Source="Assets/sad.PNG"
+                               Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                <TextBlock Text="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            </StackPanel>
+                        
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -53,25 +53,51 @@ namespace TaskManagerApp
             var tag = (sender as Button).Tag;
             long commentId = (long)tag;
             Comment comment = CommentDB.GetComment(commentId);
-           // ViewUserTask page = new ViewUserTask();
-            
-
-            foreach(Comment comm in ViewUserTask.comments)
-            {
-                if(comm.CommentId==commentId)
-                {
-                    ViewUserTask.comments.Remove(comm);
-                    break;
-                }
-            }
-
-            //Console.WriteLine(val);
             CommentDB.RemoveComment(commentId);
-           
+            
+               
         }
-        //Binding b = new Binding();
-        //b=BindingMode.TwoWay;
 
+        private void HeartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ZComment.Heart += 1;
+            HeartBtn.IsEnabled = false;
+            HappyBtn.IsEnabled = false;
+            SadBtn.IsEnabled = false;
+            LikeBtn.IsEnabled = false;
+            CommentDB.AddHeart(ZComment.CommentId, ZComment.Heart);
+
+        }
+
+        private void HappyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ZComment.Happy += 1;
+            HeartBtn.IsEnabled = false;
+            HappyBtn.IsEnabled = false;
+            SadBtn.IsEnabled = false;
+            LikeBtn.IsEnabled = false;
+            CommentDB.AddHappy(ZComment.CommentId, ZComment.Happy);
+        }
+
+        private void LikeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ZComment.Like += 1;
+            HeartBtn.IsEnabled = false;
+            HappyBtn.IsEnabled = false;
+            SadBtn.IsEnabled = false;
+            LikeBtn.IsEnabled = false;
+            CommentDB.AddLike(ZComment.CommentId, ZComment.Like);
+        }
+
+        private void SadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ZComment.Sad += 1;
+            HeartBtn.IsEnabled = false;
+            HappyBtn.IsEnabled = false;
+            SadBtn.IsEnabled = false;
+            LikeBtn.IsEnabled = false;
+            CommentDB.AddSad(ZComment.CommentId, ZComment.Sad);
+        }
     }
 
 }

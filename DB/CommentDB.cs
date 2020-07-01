@@ -60,5 +60,34 @@ namespace TaskManagerApp.DB
             }
             return false;
         }
+
+        public static void AddHeart(long commentId,int heartCount)
+        {
+            var query = DBAdapter.Connection;
+            var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
+            comment.Heart = heartCount;
+            query.Update(comment);
+        }
+        public static void AddHappy(long commentId, int happyCount)
+        {
+            var query = DBAdapter.Connection;
+            var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
+            comment.Happy = happyCount;
+            query.Update(comment);
+        }
+        public static void AddSad(long commentId, int sadCount)
+        {
+            var query = DBAdapter.Connection;
+            var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
+            comment.Sad = sadCount;
+            query.Update(comment);
+        }
+        public static void AddLike(long commentId, int likeCount)
+        {
+            var query = DBAdapter.Connection;
+            var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
+            comment.Like = likeCount;
+            query.Update(comment);
+        }
     }
 }

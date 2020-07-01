@@ -39,7 +39,7 @@ namespace TaskManagerApp
 
        // public event PropertyChangedEventHandler PropertyChanged;
       
-     private ViewUserTask view;
+     /*private ViewUserTask view;
         public ViewUserTask View
         {
             get { return view; }
@@ -52,7 +52,7 @@ namespace TaskManagerApp
                 }
             }
         }
-        
+        */
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
         {
             if (dpo is ListViewUserControl page && page.ZTask != null)
@@ -65,20 +65,25 @@ namespace TaskManagerApp
         public ListViewUserControl()
         {
             this.InitializeComponent();         
-          //ViewUserTask view = new ViewUserTask();
-          // view.PropertyChanged += ViewUserTask_PropertyChanged;
-          //  this.DataContext = view;
+          ViewUserTask view = new ViewUserTask();
+            view.PropertyChanged += ViewUserTask_PropertyChanged;
+            StarBtn.DataContext = view;
+            Binding b = new Binding();
+            b.Source=StarBtn;
+            b.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+          
         }     
 
         private void ViewUserTask_PropertyChanged(object sender,PropertyChangedEventArgs e)
-        {
+        {   
+
             string propertyname = e.PropertyName.ToString();
             //throw new NotImplementedException();
-            if(propertyname.Equals("Removed"))
+            if(propertyname.Equals("White"))
             {
                 StarBtn.Background= originalBrush;
             }
-            else if(propertyname.Equals("Added"))
+            else if(propertyname.Equals("Yellow"))
             {
                 StarBtn.Background = newBrush;
             }

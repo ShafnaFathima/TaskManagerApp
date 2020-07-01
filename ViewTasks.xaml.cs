@@ -27,7 +27,7 @@ namespace TaskManagerApp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ViewUserTask : Page, INotifyPropertyChanged
+    public  sealed partial class ViewUserTask : Page, INotifyPropertyChanged
     {
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
@@ -43,15 +43,14 @@ namespace TaskManagerApp
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
         }
-
+        public  ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserModel user = (UserModel)SelectUser.SelectedItem;
             ObservableCollection<TaskModel> tasks = TaskDB.GetTasks(user.Username);
             if (tasks.Count != 0)
             {
-                TasksList.ItemsSource = tasks;
-                TasksList.SelectedItem = tasks[0];
+                //comments = null;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
                 StarBtnDetails.Visibility = Visibility.Visible;
                 Pic.Visibility = Visibility.Visible;
@@ -65,6 +64,12 @@ namespace TaskManagerApp
                 AddButton.Visibility = Visibility.Visible;
                 CommentsList.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Visible;
+                TasksList.ItemsSource = tasks;
+                TasksList.SelectedItem = tasks[0];
+                /* TaskModel task = (TaskModel)TasksList.SelectedItem;
+                  long taskId = task.TaskId;
+                  comments = CommentDB.GetComments(taskId);
+                  CommentsList.ItemsSource = comments;*/
             }
             else
             {
@@ -84,12 +89,12 @@ namespace TaskManagerApp
                 CommentsList.Visibility = Visibility.Collapsed;
             }
         }
-        public static ObservableCollection<Comment> comments;
+        
         /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TasksList.SelectedItem != null)
-            {
+            {   
                 TaskModel task = (TaskModel)TasksList.SelectedItem;
 
                 TitleTxt.Text = task.TaskName;
@@ -109,13 +114,27 @@ namespace TaskManagerApp
                 binding.Source = StarBtnDetails;
                 binding.Path = new PropertyPath("Tag");
                 StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
-                comments = CommentDB.GetComments(task.TaskId);
-                CommentsList.ItemsSource = comments;
+               
+                this.comments = CommentDB.GetComments(task.TaskId);
+                CommentsList.ItemsSource = this.comments;
                 AddButton.Tag = task.TaskId;
             }
         }
+        private string _colour;
+        public string Colour
+        {
+            get
+            {
+                return _colour;
+            }
+            set
+            {
+                _colour = value;
+                OnPropertyChanged("Colour");
+            }
+        }
 
-        private void StarBtnDetails_Click(object sender, RoutedEventArgs e)
+        public void StarBtnDetails_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
@@ -126,13 +145,13 @@ namespace TaskManagerApp
             {
                 StarBtnDetails.Background = originalBrush;
                 UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Removed");
+                Colour="White";
             }
             else
             {
                 StarBtnDetails.Background = newBrush;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Added");
+                Colour = "Yellow";
             }
         }
 
@@ -147,17 +166,33 @@ namespace TaskManagerApp
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as Button).Tag;
-            long taskId = (long)tag;
-            Comment comment = new Comment();
-            comment.CommentToTaskId = taskId;
-            comment.AuthorName = App.CurrentUser;
-            comment.Content = EnterComment.Text;
-            comment.CommentId = DateTime.Now.Ticks;
-            comment.Date = DateTime.Now;
-            CommentDB.AddComment(comment);
-            comments.Add(comment);
-            EnterComment.Text = "";
+            if (string.IsNullOrEmpty(EnterComment.Text))
+            {
+                EnterComment.PlaceholderText = "Empty comment!";
+                EnterComment.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                EnterComment.PlaceholderForeground = new SolidColorBrush(Colors.Gray);
+                EnterComment.PlaceholderText="Write your comment here!";
+                var tag = (sender as Button).Tag;
+                long taskId = (long)tag;
+                Comment comment = new Comment();
+                comment.CommentToTaskId = taskId;
+                comment.AuthorName = App.CurrentUser;
+                comment.Content = EnterComment.Text;
+                comment.CommentId = DateTime.Now.Ticks;
+                comment.Date = DateTime.Now;
+                comment.Happy = 0;
+                comment.Sad = 0;
+                comment.Like = 0;
+                comment.Heart = 0;
+                CommentDB.AddComment(comment);
+
+                this.comments.Add(comment);
+                //CommentsList.ItemsSource = comments;
+                EnterComment.Text = "";
+            }
         }
     }
 }
