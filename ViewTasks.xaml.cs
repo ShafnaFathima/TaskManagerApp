@@ -147,17 +147,27 @@ namespace TaskManagerApp
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as Button).Tag;
-            long taskId = (long)tag;
-            Comment comment = new Comment();
-            comment.CommentToTaskId = taskId;
-            comment.AuthorName = App.CurrentUser;
-            comment.Content = EnterComment.Text;
-            comment.CommentId = DateTime.Now.Ticks;
-            comment.Date = DateTime.Now;
-            CommentDB.AddComment(comment);
-            comments.Add(comment);
-            EnterComment.Text = "";
+            if (string.IsNullOrEmpty(EnterComment.Text))
+            {
+                EnterComment.PlaceholderText = "Empty comment!";
+                EnterComment.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                EnterComment.PlaceholderForeground = new SolidColorBrush(Colors.Gray);
+                EnterComment.PlaceholderText = "Write your comment here!";
+                var tag = (sender as Button).Tag;
+                long taskId = (long)tag;
+                Comment comment = new Comment();
+                comment.CommentToTaskId = taskId;
+                comment.AuthorName = App.CurrentUser;
+                comment.Content = EnterComment.Text;
+                comment.CommentId = DateTime.Now.Ticks;
+                comment.Date = DateTime.Now;
+                CommentDB.AddComment(comment);
+                comments.Add(comment);
+                EnterComment.Text = "";
+            }
         }
     }
 }
