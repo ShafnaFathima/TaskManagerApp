@@ -51,7 +51,7 @@ namespace TaskManagerApp
             if (tasks.Count != 0)
             {
                 TasksList.ItemsSource = tasks;
-                TasksList.SelectedItem = tasks[0];
+                TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
                 StarBtnDetails.Visibility = Visibility.Visible;
                 Pic.Visibility = Visibility.Visible;
@@ -88,10 +88,9 @@ namespace TaskManagerApp
         /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TasksList.SelectedItem != null)
+             TaskModel task = (TaskModel)TasksList.SelectedItem;
+            if (task != null)
             {
-                TaskModel task = (TaskModel)TasksList.SelectedItem;
-
                 TitleTxt.Text = task.TaskName;
                 DescriptionTxt.Text = task.Description;
                 TaskIdTxt.Text = task.TaskId.ToString();
@@ -166,6 +165,7 @@ namespace TaskManagerApp
                 comment.Date = DateTime.Now;
                 CommentDB.AddComment(comment);
                 comments.Add(comment);
+                CommentsList.ItemsSource = comments;
                 EnterComment.Text = "";
             }
         }

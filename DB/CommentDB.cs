@@ -88,5 +88,25 @@ namespace TaskManagerApp.DB
             comment.Like = likeCount;
             query.Update(comment);
         }
+        public static void AddReaction(long commentId,string userName)
+        {
+            Reaction reaction = new Reaction() { CommentId = commentId, UserName = userName };
+            DBAdapter.Connection.Insert(reaction);
+        }
+        public static bool IsReacted(long commentId, string userName)
+        {
+            var query = DBAdapter.Connection.Table<Reaction>();
+            var userComments = query.Where(user => user.UserName.Equals(userName))
+                                                .Select(user => user.CommentId);
+            foreach (long userCommentId in userComments)
+            {
+                if (userCommentId == commentId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

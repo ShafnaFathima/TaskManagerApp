@@ -77,7 +77,7 @@ namespace TaskManagerApp
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddHeart(ZComment.CommentId, ZComment.Heart);
-
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
         }
 
         private void HappyBtn_Click(object sender, RoutedEventArgs e)
@@ -88,6 +88,7 @@ namespace TaskManagerApp
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddHappy(ZComment.CommentId, ZComment.Happy);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
         }
 
         private void LikeBtn_Click(object sender, RoutedEventArgs e)
@@ -98,6 +99,7 @@ namespace TaskManagerApp
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddLike(ZComment.CommentId, ZComment.Like);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
         }
 
         private void SadBtn_Click(object sender, RoutedEventArgs e)
@@ -108,6 +110,7 @@ namespace TaskManagerApp
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddSad(ZComment.CommentId, ZComment.Sad);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
         }
 
     }

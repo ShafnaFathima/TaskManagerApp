@@ -11,7 +11,7 @@
     Name="CommentsListView">
     <UserControl.Resources>
         <local:BoolToVisibilityConverter x:Key="BoolToVisible"/>
-
+        <local:BoolToEnableConverter x:Key="BoolToEnable"/>
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" BorderBrush="Gray" BorderThickness="0,0,0,1" Width="750">
@@ -53,7 +53,8 @@
                         Height="25"
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
-                        Click="HeartBtn_Click">
+                        Click="HeartBtn_Click"
+                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}">
                     <Button.Content>
                         <Image Source="Assets/heart.PNG"
                                Stretch="Fill"/>
@@ -64,7 +65,8 @@
                         Click="HappyBtn_Click"
                         Height="25"
                         Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}">
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}">
                     <Button.Content>
                         <Image Source="Assets/happy.PNG"
                                Stretch="Fill"/>
@@ -77,6 +79,7 @@
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="LikeBtn_Click"
+                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}"
                         >
                     <Button.Content>
                         <Image Source="Assets/like.PNG"
@@ -89,6 +92,7 @@
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="SadBtn_Click"
+                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}"
                         >
                     <Button.Content>
                         <Image Source="Assets/sad.PNG"
