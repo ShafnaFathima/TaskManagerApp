@@ -164,7 +164,8 @@ namespace TaskManagerApp
                 comment.CommentId = DateTime.Now.Ticks;
                 comment.Date = DateTime.Now;
                 CommentDB.AddComment(comment);
-                comments.Add(comment);
+              //  comments.Add(comment);
+                comments = CommentDB.GetComments(taskId);
                 CommentsList.ItemsSource = comments;
                 EnterComment.Text = "";
             }
