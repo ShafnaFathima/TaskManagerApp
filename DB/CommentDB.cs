@@ -88,10 +88,10 @@ namespace TaskManagerApp.DB
             comment.Like = likeCount;
             query.Update(comment);
         }
-        public static void AddReaction(long commentId,string userName)
+        public static void AddReaction(long commentId,string userName,string reaction)
         {
-            Reaction reaction = new Reaction() { CommentId = commentId, UserName = userName };
-            DBAdapter.Connection.Insert(reaction);
+            Reaction newReaction = new Reaction() { CommentId = commentId, UserName = userName,ReactionType=reaction };
+            DBAdapter.Connection.Insert(newReaction);
         }
         public static bool IsReacted(long commentId, string userName)
         {

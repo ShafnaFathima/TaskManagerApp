@@ -72,23 +72,23 @@ namespace TaskManagerApp
         private void HeartBtn_Click(object sender, RoutedEventArgs e)
         {
             ZComment.Heart += 1;
-            HeartBtn.IsEnabled = false;
+          //  HeartBtn.IsEnabled = false;
             HappyBtn.IsEnabled = false;
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddHeart(ZComment.CommentId, ZComment.Heart);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"heart");
         }
 
         private void HappyBtn_Click(object sender, RoutedEventArgs e)
         {
             ZComment.Happy += 1;
             HeartBtn.IsEnabled = false;
-            HappyBtn.IsEnabled = false;
+          //  HappyBtn.IsEnabled = false;
             SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddHappy(ZComment.CommentId, ZComment.Happy);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"happy");
         }
 
         private void LikeBtn_Click(object sender, RoutedEventArgs e)
@@ -97,9 +97,9 @@ namespace TaskManagerApp
             HeartBtn.IsEnabled = false;
             HappyBtn.IsEnabled = false;
             SadBtn.IsEnabled = false;
-            LikeBtn.IsEnabled = false;
+          //  LikeBtn.IsEnabled = false;
             CommentDB.AddLike(ZComment.CommentId, ZComment.Like);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"like");
         }
 
         private void SadBtn_Click(object sender, RoutedEventArgs e)
@@ -107,10 +107,10 @@ namespace TaskManagerApp
             ZComment.Sad += 1;
             HeartBtn.IsEnabled = false;
             HappyBtn.IsEnabled = false;
-            SadBtn.IsEnabled = false;
+           // SadBtn.IsEnabled = false;
             LikeBtn.IsEnabled = false;
             CommentDB.AddSad(ZComment.CommentId, ZComment.Sad);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser);
+            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"sad");
         }
 
     }

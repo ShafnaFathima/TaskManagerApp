@@ -27,11 +27,26 @@ namespace TaskManagerApp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ViewUserTask : Page, INotifyPropertyChanged
+    public sealed partial class ViewUserTask : Page,INotifyPropertyChanged
     {
         SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
         SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
-
+        private ListViewUserControl _list;
+        public ListViewUserControl list
+        {
+            get
+            {
+                return _list;
+            }
+            set
+            {
+                if(_list!=value)
+                {
+                    _list = value;
+                    OnPropertyChanged("list");
+                }
+            }
+        }
         public ViewUserTask()
         {
             this.InitializeComponent();
@@ -42,6 +57,8 @@ namespace TaskManagerApp
             SelectUser.ItemsSource = users;
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
+            list= new ListViewUserControl();
+           // list.StatusChanged += list_FavChanged;
         }
 
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,7 +88,7 @@ namespace TaskManagerApp
                 TasksList.Visibility = Visibility.Collapsed;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
                 TaskEmptyTxt.Text = "No Tasks!";
-               // StarBtnDetails.Visibility = Visibility.Collapsed;
+               // StarBtnDetail.Visibility = Visibility.Collapsed;
                 Pic.Visibility = Visibility.Collapsed;
                 PrioritySymbol.Visibility = Visibility.Collapsed;
                 Calendar.Visibility = Visibility.Collapsed;
@@ -86,6 +103,14 @@ namespace TaskManagerApp
         }
         public static ObservableCollection<Comment> comments;
         public static FavoriteTask fav;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected  void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -110,20 +135,9 @@ namespace TaskManagerApp
                 fav = UserDB.GetFavorite(task.TaskId, App.CurrentUser);
                 StarBtnDetails.DataContext = fav;
                 comments = CommentDB.GetComments(task.TaskId);
-               // Btn.ItemsSource = fav;
+             
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
-            }
-        }
-
-       
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -165,6 +179,21 @@ namespace TaskManagerApp
             {
                 fav.IsFavourite = true;
                 UserDB.AddFavouriteTaskIds(fav.TaskId, App.CurrentUser.ToString());
+            }
+        }
+        public  void list_FavChanged(long taskId,bool isFav  )
+        {          
+            //var favobj = e.FavTask;
+            if(taskId==fav.TaskId)
+            {
+                if(isFav==true)
+                {
+                    fav.IsFavourite = true;
+                }
+                else if(isFav==false)
+                {
+                    fav.IsFavourite = false;
+                }
             }
         }
     }

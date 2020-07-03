@@ -51,32 +51,7 @@ namespace TaskManagerApp
 
 
             }
-
         }
-       /* public FavoriteTask ZFav
-        {
-            get { return (FavoriteTask)GetValue(TaskProperty1); }
-            set
-            {
-                SetValue(TaskProperty, value);
-
-            }
-        }
-
-        // Using a DependencyProperty as the backing store for Task.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TaskProperty1 =
-            DependencyProperty.Register("ZFav", typeof(FavoriteTask), typeof(ListViewUserControl), new PropertyMetadata(null, new PropertyChangedCallback(TaskChanged1)));
-
-
-        private static void TaskChanged1(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
-        {
-            if (dpo is ListViewUserControl page && page.ZFav != null)
-            {
-
-
-            }
-
-        }*/
         public ListViewUserControl()
         {
             this.InitializeComponent();
@@ -95,11 +70,21 @@ namespace TaskManagerApp
            this.StarBtn.DataContext = favorite;
         }
 
+        //  public Event Action<string,bool> FavouriteClick;
+        public event Action<long, bool> StatusChanged;
+
+      /* public class ProcessEventArgs : EventArgs
+        {
+            public bool IsFav { get; set; }
+            public FavoriteTask FavTask { get; set; }
+        }*/
+
         private void StarBtn_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
             bool IsAlreadyFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
+           // var task = new ProcessEventArgs();
             if (!IsAlreadyFav)
             {
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser);
@@ -108,14 +93,20 @@ namespace TaskManagerApp
             {
                 this.favorite.IsFavourite = false;
                 UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
+                
+                OnClick(taskId, false);
             }
             else
             {
                 this.favorite.IsFavourite = true;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
+                OnClick(taskId, true);
+               
             }
-
-
+        }
+        protected  void OnClick(long taskId,bool isFav)
+        {
+            StatusChanged?.Invoke(taskId,isFav);
         }
     }
 }

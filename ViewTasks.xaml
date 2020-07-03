@@ -18,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="245"/>
@@ -63,14 +63,15 @@
                   Margin="0,25,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:ListViewUserControl ZTask="{Binding}" />
+                    <local:ListViewUserControl ZTask="{Binding}" 
+                                               StatusChanged="list_FavChanged"/>
                     
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <!--details view-->
         <Border BorderBrush="Gray" BorderThickness="1,0,0,0" Grid.Row="1" Grid.Column="1" Name="Border">
-            <Grid Grid.Row="1" Grid.Column="1" Width="600" Height="175" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,35,0,0" BorderBrush="Gray" BorderThickness="1">
+            <Grid Grid.Row="1" Grid.Column="1" Width="600" Height="155" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,35,0,0" BorderBrush="Gray" BorderThickness="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -176,7 +177,7 @@
                        Name="CommentTitle"
                        FontSize="16"
                        FontWeight="Bold"
-                       Margin="30,7,0,5"/>
+                       Margin="30,7,0,8"/>
                 <ListView Name="CommentsList"
                       RelativePanel.Below="CommentTitle"
                       RelativePanel.Above="EnterComment"
@@ -184,7 +185,8 @@
                      >
                     <ListView.ItemTemplate>
                         <DataTemplate >
-                            <local:CommentListView ZComment="{Binding}"/>
+                            <local:CommentListView ZComment="{Binding}"
+                                      />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -194,21 +196,22 @@
                      RelativePanel.AlignBottomWithPanel="True"
                      AcceptsReturn="True" 
                      TextWrapping="Wrap"
-                     Width="575"
-                     Margin="30,2,0,20"
+                     Width="563"
+                     Margin="30,8,0,20"
                      />
                 <Button Name="AddButton"
                     Click="AddButton_Click"     
-                    FontFamily="Segoe MDL2 Assets"
+                    Content="Add"
                     Background="LightBlue"
-                    Foreground="CornflowerBlue"
-                    Content="&#xE90A;"
+                    Foreground="CornflowerBlue"               
                     RelativePanel.RightOf="EnterComment"
                     RelativePanel.AlignBottomWith="EnterComment"
-                    Margin="0,2,0,20"
+                    Margin="0,8,0,20"
                     Height="32"
                     BorderBrush="CornflowerBlue"
                     BorderThickness="2"/>
+                    <!--FontFamily="Segoe MDL2 Assets"-->
+                <!--Content="&#xE90A;"-->
             </RelativePanel>
         </Border>
     </Grid>

@@ -10,5 +10,6 @@ namespace TaskManagerApp.Model
     {
         public long CommentId { get; set; }
         public string UserName{ get; set; }
+        public string ReactionType { get; set; }
     }
 }
