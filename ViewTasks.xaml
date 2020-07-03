@@ -63,7 +63,8 @@
                   Margin="0,25,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:ListViewUserControl ZTask="{Binding}"/>
+                    <local:ListViewUserControl ZTask="{Binding}" />
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -83,10 +84,12 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal">
                     <Button Name="StarBtnDetails"
-                         Click="StarBtnDetails_Click"
-                         FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
-                         Content="&#xE734;" 
-                         Style="{StaticResource TextBlockButtonStyle}"/>
+                      FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
+                      Content="&#xE734;" 
+                      Style="{StaticResource TextBlockButtonStyle}"
+                   Background="{Binding DataContext.IsFavourite,Converter={StaticResource BoolToColour},Mode=OneWay,UpdateSourceTrigger=PropertyChanged,ElementName=StarBtnDetails}"
+                     Click="StarBtn_Click"
+                   />
                     <TextBlock Name="TitleTxt"
                        FontSize="16"
                        FontWeight="Bold"

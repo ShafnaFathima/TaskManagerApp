@@ -43,9 +43,12 @@
                 RelativePanel.Below="TaskSymbol"
                 Margin="5,5,0,0"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Background="{Binding TaskId, Converter={StaticResource BoolToColour},Mode=OneWay}"/>
-        <!--Background="{Binding Path=view, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>-->
-        <!--Background="{Binding UpdateSourceTrigger=PropertyChanged,Path=Background}"/>-->
+                Background="{Binding IsFavourite,
+            Converter={StaticResource BoolToColour},
+            Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged,Source={Binding StarButton}}"
+                />
+        
         <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
                     FontStyle="Italic"
                     HorizontalAlignment="Stretch"

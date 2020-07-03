@@ -53,7 +53,7 @@ namespace TaskManagerApp
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
-                StarBtnDetails.Visibility = Visibility.Visible;
+               // StarBtnDetails.Visibility = Visibility.Visible;
                 Pic.Visibility = Visibility.Visible;
                 PrioritySymbol.Visibility = Visibility.Visible;
                 Calendar.Visibility = Visibility.Visible;
@@ -71,7 +71,7 @@ namespace TaskManagerApp
                 TasksList.Visibility = Visibility.Collapsed;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
                 TaskEmptyTxt.Text = "No Tasks!";
-                StarBtnDetails.Visibility = Visibility.Collapsed;
+               // StarBtnDetails.Visibility = Visibility.Collapsed;
                 Pic.Visibility = Visibility.Collapsed;
                 PrioritySymbol.Visibility = Visibility.Collapsed;
                 Calendar.Visibility = Visibility.Collapsed;
@@ -85,6 +85,7 @@ namespace TaskManagerApp
             }
         }
         public static ObservableCollection<Comment> comments;
+        public static FavoriteTask fav;
         /// List<Comment> comments = new List<Comment>();
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -101,39 +102,21 @@ namespace TaskManagerApp
                 string Startdate = task.StartDate.Date.ToString(fmt);
                 string EndDate = task.EndDate.Date.ToString(fmt);
                 DateTxt.Text = Startdate + " to " + EndDate;
-                StarBtnDetails.Tag = task.TaskId;
-                BoolToColourConverter BoolToColour = new BoolToColourConverter();
-                Binding binding = new Binding();
-                binding.Converter = BoolToColour;
-                binding.Source = StarBtnDetails;
-                binding.Path = new PropertyPath("Tag");
-                StarBtnDetails.SetBinding(Button.BackgroundProperty, binding);
+                bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
+                if(!IsAlreadyFav)
+                {
+                    UserDB.AddFavouriteTaskIds(task.TaskId, App.CurrentUser);
+                }
+                fav = UserDB.GetFavorite(task.TaskId, App.CurrentUser);
+                StarBtnDetails.DataContext = fav;
                 comments = CommentDB.GetComments(task.TaskId);
+               // Btn.ItemsSource = fav;
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             }
         }
 
-        private void StarBtnDetails_Click(object sender, RoutedEventArgs e)
-        {
-            var tag = (sender as Button).Tag;
-            long taskId = (long)tag;
-
-            bool isFavourite = UserDB.IsFavouriteTask(taskId, App.CurrentUser.ToString());
-
-            if (isFavourite)
-            {
-                StarBtnDetails.Background = originalBrush;
-                UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Removed");
-            }
-            else
-            {
-                StarBtnDetails.Background = newBrush;
-                UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnPropertyChanged("Added");
-            }
-        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -164,10 +147,24 @@ namespace TaskManagerApp
                 comment.CommentId = DateTime.Now.Ticks;
                 comment.Date = DateTime.Now;
                 CommentDB.AddComment(comment);
-              //  comments.Add(comment);
-                comments = CommentDB.GetComments(taskId);
+               comments.Add(comment);
+               //comments = CommentDB.GetComments(taskId);
                 CommentsList.ItemsSource = comments;
                 EnterComment.Text = "";
+            }
+        }
+
+        private void StarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(fav.IsFavourite==true)
+            {
+                fav.IsFavourite = false;
+                UserDB.RemoveFavouriteTaskIds(fav.TaskId, App.CurrentUser.ToString());
+            }
+            else
+            {
+                fav.IsFavourite = true;
+                UserDB.AddFavouriteTaskIds(fav.TaskId, App.CurrentUser.ToString());
             }
         }
     }

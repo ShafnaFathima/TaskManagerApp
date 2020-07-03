@@ -29,30 +29,21 @@ namespace TaskManagerApp
 
         public TaskModel ZTask
         {
-            get { return (TaskModel)GetValue(TaskProperty); }
-            set { SetValue(TaskProperty, value); }
+            get {
+                this.OnLoaded((TaskModel)GetValue(TaskProperty));
+                return (TaskModel)GetValue(TaskProperty);
+                
+            }
+            set { SetValue(TaskProperty, value);  
+
+            }
         }
 
         // Using a DependencyProperty as the backing store for Task.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("ZTask", typeof(TaskModel), typeof(ListViewUserControl), new PropertyMetadata(null, new PropertyChangedCallback(TaskChanged)));
 
-       // public event PropertyChangedEventHandler PropertyChanged;
       
-     /*private ViewUserTask view;
-        public ViewUserTask View
-        {
-            get { return view; }
-            private set
-            {
-                view = value;
-                if(view!=null)
-                {
-                    view.PropertyChanged += ViewUserTask_PropertyChanged;
-                }
-            }
-        }
-        */
         private static void TaskChanged(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
         {
             if (dpo is ListViewUserControl page && page.ZTask != null)
@@ -62,50 +53,69 @@ namespace TaskManagerApp
             }
 
         }
+       /* public FavoriteTask ZFav
+        {
+            get { return (FavoriteTask)GetValue(TaskProperty1); }
+            set
+            {
+                SetValue(TaskProperty, value);
+
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for Task.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TaskProperty1 =
+            DependencyProperty.Register("ZFav", typeof(FavoriteTask), typeof(ListViewUserControl), new PropertyMetadata(null, new PropertyChangedCallback(TaskChanged1)));
+
+
+        private static void TaskChanged1(DependencyObject dpo, DependencyPropertyChangedEventArgs args)
+        {
+            if (dpo is ListViewUserControl page && page.ZFav != null)
+            {
+
+
+            }
+
+        }*/
         public ListViewUserControl()
         {
-            this.InitializeComponent();         
-          ViewUserTask view = new ViewUserTask();
-            view.PropertyChanged += ViewUserTask_PropertyChanged;
-            StarBtn.DataContext = view;
-            Binding b = new Binding();
-            b.Source=StarBtn;
-            b.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-          
-        }     
+            this.InitializeComponent();
+            
 
-        private void ViewUserTask_PropertyChanged(object sender,PropertyChangedEventArgs e)
-        {   
-
-            string propertyname = e.PropertyName.ToString();
-            //throw new NotImplementedException();
-            if(propertyname.Equals("White"))
+        }
+        FavoriteTask favorite;
+        public void OnLoaded(TaskModel ZTask)
+        {
+            bool IsAlreadyFav = UserDB.IsFavouriteTask(ZTask.TaskId, App.CurrentUser);
+            if (!IsAlreadyFav)
             {
-                StarBtn.Background= originalBrush;
+                UserDB.AddFavouriteTaskIds(ZTask.TaskId, App.CurrentUser);
             }
-            else if(propertyname.Equals("Yellow"))
-            {
-                StarBtn.Background = newBrush;
-            }
+            favorite = UserDB.GetFavorite(ZTask.TaskId, App.CurrentUser);
+           this.StarBtn.DataContext = favorite;
         }
 
         private void StarBtn_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
-
-            bool isFavourite = UserDB.IsFavouriteTask(taskId, App.CurrentUser.ToString());
-
-            if (isFavourite)
+            bool IsAlreadyFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
+            if (!IsAlreadyFav)
             {
-                StarBtn.Background = originalBrush;
+                UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser);
+            }
+            if (this.favorite.IsFavourite == true)
+            {
+                this.favorite.IsFavourite = false;
                 UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
             }
             else
             {
-                StarBtn.Background = newBrush;
+                this.favorite.IsFavourite = true;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
             }
+
+
         }
     }
 }
