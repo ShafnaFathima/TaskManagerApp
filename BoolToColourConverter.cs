@@ -19,14 +19,14 @@ namespace TaskManagerApp
             //bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
             
             bool isFav = bool.Parse(value.ToString());
-            if ( isFav== false)
+            if ( isFav.Equals(false))
             {
-                return new SolidColorBrush(Colors.White);
+                return "\uE734";
             }
             else
             {
+                return "\uE735";
 
-                return new SolidColorBrush(Colors.Yellow);
             }
         }
 

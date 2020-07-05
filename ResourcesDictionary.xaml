@@ -8,9 +8,9 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="BorderBrush" Value="DimGray"/>
-        <Setter Property="Height" Value="45"/>
-        <Setter Property="Width" Value="200"/>
-        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="FontSize" Value="15"/>
     </Style>
     <ControlTemplate x:Key="TextBoxCenterAlignTemplate" TargetType="TextBox">
         <Grid>
@@ -154,9 +154,9 @@
         </Grid>
     </ControlTemplate>
     <Style TargetType="TextBox" x:Key="TextBoxStyle">
-        <Setter Property="FontSize" Value="17"/>
-        <Setter Property="Height" Value="45"/>
-        <Setter Property="Width" Value="200"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="180"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="BorderBrush" Value="DarkBlue"/>
         <Setter Property="PlaceholderForeground" Value="CornflowerBlue"/>
@@ -164,7 +164,7 @@
     </Style>
     <Style TargetType="TextBlock" x:Key="ErrorTxt">
         <Setter Property="Foreground" Value="Red"/>
-        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Margin" Value="0,20,0,0"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="TitleStyle">
@@ -176,14 +176,14 @@
         <Setter Property="Foreground" Value="DarkBlue"/>
         <Setter Property="BorderBrush" Value="DarkBlue"/>
         <Setter Property="PlaceholderForeground" Value="CornflowerBlue"/>
-        <Setter Property="Width" Value="250"/>
-        <Setter Property="Height" Value="45"/>
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="FontSize" Value="14"/>
     </Style>
     <Style TargetType="CalendarDatePicker" x:Key="DatePickerStyle">
         <Setter Property="BorderBrush" Value="DarkBlue"/>
-        <Setter Property="Width" Value="250"/>
-        <Setter Property="Height" Value="45"/>
+        <Setter Property="Width" Value="230"/>
+        <Setter Property="Height" Value="35"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="DetailTitle">

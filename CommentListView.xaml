@@ -14,92 +14,123 @@
         <local:BoolToEnableConverter x:Key="BoolToEnable"/>
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Vertical" BorderBrush="Gray" BorderThickness="0,0,0,1" Width="750">
-            <StackPanel Orientation="Horizontal"  Margin="0,2,0,0" >
-                <Border BorderBrush="CornflowerBlue" Background="LightBlue" BorderThickness="2">
+        <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470">
+            <RelativePanel   Margin="0,2,0,0" Width="490">
+                <Border BorderBrush="CornflowerBlue" Background="LightBlue" BorderThickness="2" 
+                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Name="Pic">
                     <TextBlock FontFamily="Segoe MDL2 Assets"
                                            Text="&#xE77B;"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Top"
                                            Foreground="CornflowerBlue"
-                                           Height="20"
+                                           Height="18"
                                            Width="20"  
-                                           HorizontalTextAlignment="Center" />
+                                           HorizontalTextAlignment="Center"                                           
+                               />
                 </Border>
                 <TextBlock Text= "{Binding ZComment.AuthorName,ElementName=CommentsListView,Mode=OneWay}"
-                                           FontWeight="Bold"
-                                           Margin="5,2,0,0"/>
+                                           FontWeight="SemiBold"
+                                           Margin="5,2,0,0"
+                                            RelativePanel.AlignTopWithPanel="True"
+                                             RelativePanel.RightOf="Pic"
+                                            FontSize="13"/>
                 <Button x:Name="RemoveComment"
                 Tag="{Binding ZComment.CommentId,Mode=OneWay,ElementName=CommentsListView}"
                 Content="Remove"
                 Foreground="Gray"
                 Background="White"
-                FontSize="12"
+                FontSize="10"
                 Click="RemoveComment_Click"
-                Margin="470,0,0,0"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                Visibility="{Binding ZComment.CommentId,Converter={StaticResource BoolToVisible},Mode=OneWay,ElementName=CommentsListView}"/>
-            </StackPanel>
+                Margin="0,2,0,0"
+                 Style="{StaticResource TextBlockButtonStyle}"
+                 Visibility="{Binding ZComment.CommentId ,Converter={StaticResource BoolToVisible}, Mode=OneWay, ElementName=CommentsListView}"
+                  RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        />
+            </RelativePanel>
             <TextBlock x:Name="AuthorTxt" 
                    Margin="31,0,0,0"
-            Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"
+                       FontSize="13"
+                    Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"
                        TextWrapping="Wrap"
-                       MaxWidth="615"
+                       MaxWidth="400"
                        HorizontalAlignment="Left"
                        Width="Auto"
                        Height="Auto"/>
-            <StackPanel Orientation="Horizontal" Margin="22,0,0,0">
-                <Button Name="HeartBtn"
-                        Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Click="HeartBtn_Click"
-                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}">
-                    <Button.Content>
-                        <Image Source="Assets/heart.PNG"
-                               Stretch="Fill"/>
-                    </Button.Content>
-                </Button>
-                <TextBlock Text="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                <Button Name="HappyBtn"                
-                        Click="HappyBtn_Click"
-                        Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}">
-                    <Button.Content>
-                        <Image Source="Assets/happy.PNG"
-                               Stretch="Fill"/>
-                    </Button.Content>
-                </Button>
-
-                <TextBlock Text="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+            <!--reaction section starts-->
+            <StackPanel Orientation="Horizontal" Margin="22,0,0,0" Name="OuterReation" >
                 <Button Name="LikeBtn"
                         Height="25"
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="LikeBtn_Click"
-                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}"
+                        IsEnabled="{Binding ZComment.CommentId,
+                    Converter={StaticResource BoolToEnable},
+                     ConverterParameter=LikeBtn,
+                    Mode=OneWay,
+                    ElementName=CommentsListView}"
+                    PointerEntered="InnerReactions_PointerEntered"
+                       
                         >
                     <Button.Content>
                         <Image Source="Assets/like.PNG"
                                Stretch="Fill"/>
                     </Button.Content>
                 </Button>
-                <TextBlock Text="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                <Button Name="SadBtn"
+                <StackPanel Orientation="Horizontal" Name="InnerReactions" Opacity="0" PointerEntered="InnerReactions_PointerEntered" PointerExited="InnerReactions_PointerExited">
+                    <TextBlock Text="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                    <Button Name="HeartBtn"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="HeartBtn_Click"
+                        IsEnabled="{Binding ZComment.CommentId,
+                    Converter={StaticResource BoolToEnable},
+                    ConverterParameter=HeartBtn,
+                    Mode=OneWay,
+                    ElementName=CommentsListView}">
+                        <Button.Content>
+                            <Image Source="Assets/heart.PNG"
+                               Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock Text="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                    <Button Name="HappyBtn"                
+                        Click="HappyBtn_Click"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        IsEnabled="{Binding ZComment.CommentId,
+                    Converter={StaticResource BoolToEnable},
+                     ConverterParameter=HappyBtn,
+                    Mode=OneWay,
+                    ElementName=CommentsListView}">
+                        <Button.Content>
+                            <Image Source="Assets/happy.PNG"
+                               Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+
+                    <TextBlock Text="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+
+                    <Button Name="SadBtn"
                          Height="25"
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="SadBtn_Click"
-                        IsEnabled="{Binding ZComment.CommentId,Converter={StaticResource BoolToEnable},Mode=OneWay,ElementName=CommentsListView}"
+                        IsEnabled="{Binding ZComment.CommentId,
+                    Converter={StaticResource BoolToEnable},
+                     ConverterParameter=SadBtn,
+                    Mode=OneWay,
+                    ElementName=CommentsListView}" 
                         >
-                    <Button.Content>
-                        <Image Source="Assets/sad.PNG"
+                        <Button.Content>
+                            <Image Source="Assets/sad.PNG"
                                Stretch="Fill"/>
-                    </Button.Content>
-                </Button>
-                <TextBlock Text="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock Text="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

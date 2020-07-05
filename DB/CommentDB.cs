@@ -60,28 +60,28 @@ namespace TaskManagerApp.DB
             }
             return false;
         }
-        public static void AddHeart(long commentId, int heartCount)
+        public static void UpdateHeart(long commentId, int heartCount)
         {
             var query = DBAdapter.Connection;
             var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
             comment.Heart = heartCount;
             query.Update(comment);
         }
-        public static void AddHappy(long commentId, int happyCount)
+        public static void UpdateHappy(long commentId, int happyCount)
         {
             var query = DBAdapter.Connection;
             var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
             comment.Happy = happyCount;
             query.Update(comment);
         }
-        public static void AddSad(long commentId, int sadCount)
+        public static void UpdateSad(long commentId, int sadCount)
         {
             var query = DBAdapter.Connection;
             var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
             comment.Sad = sadCount;
             query.Update(comment);
         }
-        public static void AddLike(long commentId, int likeCount)
+        public static void UpdateLike(long commentId, int likeCount)
         {
             var query = DBAdapter.Connection;
             var comment = query.Table<Comment>().Where(excomment => excomment.CommentId == commentId).SingleOrDefault();
@@ -90,8 +90,18 @@ namespace TaskManagerApp.DB
         }
         public static void AddReaction(long commentId,string userName,string reaction)
         {
-            Reaction newReaction = new Reaction() { CommentId = commentId, UserName = userName,ReactionType=reaction };
-            DBAdapter.Connection.Insert(newReaction);
+            if (!IsReacted(commentId, userName))
+            {
+                Reaction newReaction = new Reaction() { CommentId = commentId, UserName = userName, ReactionType = reaction };
+                DBAdapter.Connection.Insert(newReaction);
+            }
+            else
+            {
+                var query = DBAdapter.Connection;
+                var myReaction = query.Table<Reaction>().Where(exreaction => exreaction.CommentId == commentId && exreaction.UserName.Equals(userName)).SingleOrDefault();
+                myReaction.ReactionType = reaction;
+                query.Update(myReaction);
+            }
         }
         public static bool IsReacted(long commentId, string userName)
         {
@@ -106,6 +116,14 @@ namespace TaskManagerApp.DB
                 }
             }
             return false;
+        }
+        public static string GetReaction(long commentId, string userName)
+        {
+            var query = DBAdapter.Connection.Table<Reaction>();
+            Reaction myReaction =(Reaction) query.Where(react => react.UserName.Equals(userName) && react.CommentId==commentId)
+                                                .Select(react =>react).SingleOrDefault();
+            return myReaction.ReactionType;
+           
         }
 
     }

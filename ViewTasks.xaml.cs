@@ -70,35 +70,18 @@ namespace TaskManagerApp
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
-               // StarBtnDetails.Visibility = Visibility.Visible;
-                Pic.Visibility = Visibility.Visible;
-                PrioritySymbol.Visibility = Visibility.Visible;
-                Calendar.Visibility = Visibility.Visible;
-                TaskIdsymbol.Visibility = Visibility.Visible;
-                Description.Visibility = Visibility.Visible;
-                CommentTitle.Visibility = Visibility.Visible;
-                Border.Visibility = Visibility.Visible;
-                EnterComment.Visibility = Visibility.Visible;
-                AddButton.Visibility = Visibility.Visible;
-                CommentsList.Visibility = Visibility.Visible;
+                TopicPanel.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Visible;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
             }
             else
             {
-                TasksList.Visibility = Visibility.Collapsed;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
-                TaskEmptyTxt.Text = "No Tasks!";
-               // StarBtnDetail.Visibility = Visibility.Collapsed;
-                Pic.Visibility = Visibility.Collapsed;
-                PrioritySymbol.Visibility = Visibility.Collapsed;
-                Calendar.Visibility = Visibility.Collapsed;
-                TaskIdsymbol.Visibility = Visibility.Collapsed;
-                Description.Visibility = Visibility.Collapsed;
-                CommentTitle.Visibility = Visibility.Collapsed;
-                Border.Visibility = Visibility.Collapsed;
-                EnterComment.Visibility = Visibility.Collapsed;
-                AddButton.Visibility = Visibility.Collapsed;
-                CommentsList.Visibility = Visibility.Collapsed;
+                TopicPanel.Visibility = Visibility.Collapsed;
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailsGrid.Visibility = Visibility.Collapsed;
+                Discussion.Visibility = Visibility.Collapsed;
             }
         }
         public static ObservableCollection<Comment> comments;
@@ -119,14 +102,15 @@ namespace TaskManagerApp
             {
                 TitleTxt.Text = task.TaskName;
                 DescriptionTxt.Text = task.Description;
-                TaskIdTxt.Text = task.TaskId.ToString();
+                //TaskIdTxt.Text = task.TaskId.ToString();
                 string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
                 PriorityTxt.Text = priority;
-                AssignedByTxt.Text = task.AssignedByUser;
+                AssignedTo.Text = task.AssignedToUser;
                 string fmt = "d";
-                string Startdate = task.StartDate.Date.ToString(fmt);
+                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on "+ task.StartDate.Date.ToString(fmt); ;
+               
                 string EndDate = task.EndDate.Date.ToString(fmt);
-                DateTxt.Text = Startdate + " to " + EndDate;
+                DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
                 if(!IsAlreadyFav)
                 {

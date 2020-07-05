@@ -14,6 +14,7 @@ namespace TaskManagerApp
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             // throw new NotImplementedException();
+            string btnName = parameter.ToString();
             long commentId = long.Parse(value.ToString());
             bool isReacted = CommentDB.IsReacted(commentId, App.CurrentUser);
             if (isReacted == false)
@@ -22,8 +23,32 @@ namespace TaskManagerApp
             }
             else
             {
+                string currentReaction = CommentDB.GetReaction(commentId, App.CurrentUser);
+                {
+                    if (string.IsNullOrEmpty(currentReaction))
+                    {
+                        return true;
+                    }
+                    else if (btnName.Equals("HappyBtn") && currentReaction.Equals("happy"))
+                    {
+                        return true;
+                    }
+                    else if (btnName.Equals("HeartBtn") && currentReaction.Equals("heart"))
+                    {
+                        return true;
+                    }
+                    else if (btnName.Equals("SadBtn") && currentReaction.Equals("sad"))
+                    {
+                        return true;
+                    }
+                    else if (btnName.Equals("LikeBtn") && currentReaction.Equals("like"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
 
-                return false;
+
             }
 
         }

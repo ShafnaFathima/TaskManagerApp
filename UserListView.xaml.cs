@@ -30,8 +30,11 @@ namespace TaskManagerApp
         public TaskModel ZTask
         {
             get {
-                this.OnLoaded((TaskModel)GetValue(TaskProperty));
-                return (TaskModel)GetValue(TaskProperty);
+                if ((TaskModel)GetValue(TaskProperty) != null)
+                {
+                    this.OnLoaded((TaskModel)GetValue(TaskProperty));
+                }
+                    return (TaskModel)GetValue(TaskProperty);
                 
             }
             set { SetValue(TaskProperty, value);  

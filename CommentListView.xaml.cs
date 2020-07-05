@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.Model;
 using TaskManagerApp.DB;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -71,48 +72,179 @@ namespace TaskManagerApp
         }
         private void HeartBtn_Click(object sender, RoutedEventArgs e)
         {
-            ZComment.Heart += 1;
-          //  HeartBtn.IsEnabled = false;
-            HappyBtn.IsEnabled = false;
-            SadBtn.IsEnabled = false;
-            LikeBtn.IsEnabled = false;
-            CommentDB.AddHeart(ZComment.CommentId, ZComment.Heart);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"heart");
+            bool isReacted = CommentDB.IsReacted(ZComment.CommentId, App.CurrentUser);
+            if (isReacted == false)
+            {
+                ZComment.Heart += 1;
+                HeartBtn.IsEnabled = true;
+                SadBtn.IsEnabled = false;
+                LikeBtn.IsEnabled = false;
+                HappyBtn.IsEnabled = false;
+                CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
+                CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
+            }
+
+            else if (isReacted)
+            {
+                string currentReaction = CommentDB.GetReaction(ZComment.CommentId, App.CurrentUser);
+                if (string.IsNullOrEmpty(currentReaction))
+                {
+                    ZComment.Heart+= 1;
+                    HeartBtn.IsEnabled = true;
+                    SadBtn.IsEnabled = false;
+                    LikeBtn.IsEnabled = false;
+                    HappyBtn.IsEnabled = false;
+                    CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
+                }
+
+                else if (currentReaction.Equals("heart"))
+                {
+                    ZComment.Heart -= 1;
+                    HeartBtn.IsEnabled = true;
+                    HappyBtn.IsEnabled = true;
+                    SadBtn.IsEnabled = true;
+                    LikeBtn.IsEnabled = true;
+                    CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
+                }
+            }
+
         }
 
         private void HappyBtn_Click(object sender, RoutedEventArgs e)
         {
-            ZComment.Happy += 1;
-            HeartBtn.IsEnabled = false;
-          //  HappyBtn.IsEnabled = false;
-            SadBtn.IsEnabled = false;
-            LikeBtn.IsEnabled = false;
-            CommentDB.AddHappy(ZComment.CommentId, ZComment.Happy);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"happy");
+            
+            bool isReacted = CommentDB.IsReacted(ZComment.CommentId, App.CurrentUser);
+            if (isReacted == false)
+            {
+                ZComment.Happy += 1;
+                HeartBtn.IsEnabled = false;
+                SadBtn.IsEnabled = false;
+                LikeBtn.IsEnabled = false;
+                HappyBtn.IsEnabled = true;
+                CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
+                CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
+            }
+
+            else if (isReacted)
+            {
+                string currentReaction = CommentDB.GetReaction(ZComment.CommentId, App.CurrentUser);
+                if (string.IsNullOrEmpty(currentReaction))
+                {
+                    ZComment.Happy += 1;
+                    HeartBtn.IsEnabled = false;
+                    SadBtn.IsEnabled = false;
+                    LikeBtn.IsEnabled = false;
+                    HappyBtn.IsEnabled = true;
+                    CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
+                }
+
+                else if (currentReaction.Equals("happy"))
+                {
+                    ZComment.Happy -= 1;
+                    HeartBtn.IsEnabled = true;
+                    HappyBtn.IsEnabled = true;
+                    SadBtn.IsEnabled = true;
+                    LikeBtn.IsEnabled = true;
+                    CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
+                }
+            }
         }
 
         private void LikeBtn_Click(object sender, RoutedEventArgs e)
         {
-            ZComment.Like += 1;
-            HeartBtn.IsEnabled = false;
-            HappyBtn.IsEnabled = false;
-            SadBtn.IsEnabled = false;
-          //  LikeBtn.IsEnabled = false;
-            CommentDB.AddLike(ZComment.CommentId, ZComment.Like);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"like");
+            bool isReacted = CommentDB.IsReacted(ZComment.CommentId, App.CurrentUser);
+            if (isReacted == false)
+            {
+                ZComment.Like += 1;
+                HeartBtn.IsEnabled = false;
+                SadBtn.IsEnabled = false;
+                LikeBtn.IsEnabled = true;
+                HappyBtn.IsEnabled = false;
+                CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
+                CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
+            }
+
+            else if (isReacted)
+            {
+                string currentReaction = CommentDB.GetReaction(ZComment.CommentId, App.CurrentUser);
+                if (string.IsNullOrEmpty(currentReaction))
+                {
+                    ZComment.Like += 1;
+                    HeartBtn.IsEnabled = false;
+                    SadBtn.IsEnabled = false;
+                    LikeBtn.IsEnabled = true;
+                    HappyBtn.IsEnabled = false;
+                    CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
+                }
+
+                else if (currentReaction.Equals("like"))
+                {
+                    ZComment.Like-= 1;
+                    HeartBtn.IsEnabled = true;
+                    HappyBtn.IsEnabled = true;
+                    SadBtn.IsEnabled = true;
+                    LikeBtn.IsEnabled = true;
+                    CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
+                }
+            }
         }
 
         private void SadBtn_Click(object sender, RoutedEventArgs e)
         {
-            ZComment.Sad += 1;
-            HeartBtn.IsEnabled = false;
-            HappyBtn.IsEnabled = false;
-           // SadBtn.IsEnabled = false;
-            LikeBtn.IsEnabled = false;
-            CommentDB.AddSad(ZComment.CommentId, ZComment.Sad);
-            CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser,"sad");
+            bool isReacted = CommentDB.IsReacted(ZComment.CommentId, App.CurrentUser);
+            if (isReacted == false)
+            {
+                ZComment.Sad += 1;
+                HeartBtn.IsEnabled = false;
+                SadBtn.IsEnabled = true;
+                LikeBtn.IsEnabled = false;
+                HappyBtn.IsEnabled = false;
+                CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
+                CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
+            }
+
+            else if (isReacted)
+            {
+                string currentReaction = CommentDB.GetReaction(ZComment.CommentId, App.CurrentUser);
+                if (string.IsNullOrEmpty(currentReaction))
+                {
+                    ZComment.Sad += 1;
+                    HeartBtn.IsEnabled = false;
+                    SadBtn.IsEnabled = true;
+                    LikeBtn.IsEnabled = false;
+                    HappyBtn.IsEnabled = false;
+                    CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
+                }
+
+                else if (currentReaction.Equals("sad"))
+                {
+                    ZComment.Sad-= 1;
+                    HeartBtn.IsEnabled = true;
+                    HappyBtn.IsEnabled = true;
+                    SadBtn.IsEnabled = true;
+                    LikeBtn.IsEnabled = true;
+                    CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
+                    CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
+                }
+            }
         }
 
+        private void InnerReactions_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            this.InnerReactions.Opacity = 1;
+        }
+
+        private void InnerReactions_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            this.InnerReactions.Opacity = 0;
+        }
     }
 
 }

@@ -25,6 +25,8 @@ namespace TaskManagerApp
         public SignUpPage()
         {
             this.InitializeComponent();
+            //List<Image> avatars = new List<Image>();
+            
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)

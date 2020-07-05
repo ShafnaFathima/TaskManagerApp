@@ -169,6 +169,10 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\avatar1.PNG" />
+    <Content Include="Assets\avatar2.PNG" />
+    <Content Include="Assets\avatar3.PNG" />
+    <Content Include="Assets\avatar4.PNG" />
     <Content Include="Assets\happy.PNG" />
     <Content Include="Assets\heart.PNG" />
     <Content Include="Assets\like.PNG" />
