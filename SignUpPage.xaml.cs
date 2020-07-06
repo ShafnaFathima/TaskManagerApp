@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.DB;
+using TaskManagerApp.Model;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace TaskManagerApp
@@ -22,11 +23,14 @@ namespace TaskManagerApp
     /// </summary>
     public sealed partial class SignUpPage : Page
     {
+        private List<Icon> Icons = new List<Icon>();
         public SignUpPage()
         {
-            this.InitializeComponent();
-            //List<Image> avatars = new List<Image>();
-            
+            this.InitializeComponent();     
+            Icons.Add(new Icon { IconPath = "Assets/avatar1.PNG" });
+            Icons.Add(new Icon { IconPath = "Assets/avatar2.PNG" });
+            Icons.Add(new Icon { IconPath = "Assets/avatar3.PNG" });
+            Icons.Add(new Icon { IconPath = "Assets/avatar4.PNG" });
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
@@ -47,7 +51,9 @@ namespace TaskManagerApp
                 {
                     if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
                     {
-                        UserDB.AddUser(UsernameTxt.Text);
+                        string avatar = ((Icon)AvatarComboBox.SelectedValue).IconPath;
+                        AvatarComboBox.SelectedIndex = -1;
+                        UserDB.AddUser(UsernameTxt.Text,avatar);
                         var vault = new Windows.Security.Credentials.PasswordVault();
                         vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Text));
                         Frame.Navigate(typeof(LoginPage));

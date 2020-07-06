@@ -24,9 +24,6 @@ namespace TaskManagerApp
 {
     public sealed partial class ListViewUserControl : UserControl //,INotifyPropertyChanged
     {
-        SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
-        SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
-
         public TaskModel ZTask
         {
             get {
@@ -57,8 +54,7 @@ namespace TaskManagerApp
         }
         public ListViewUserControl()
         {
-            this.InitializeComponent();
-            
+            this.InitializeComponent();        
 
         }
         FavoriteTask favorite;
@@ -73,21 +69,13 @@ namespace TaskManagerApp
            this.StarBtn.DataContext = favorite;
         }
 
-        //  public Event Action<string,bool> FavouriteClick;
         public event Action<long, bool> StatusChanged;
-
-      /* public class ProcessEventArgs : EventArgs
-        {
-            public bool IsFav { get; set; }
-            public FavoriteTask FavTask { get; set; }
-        }*/
 
         private void StarBtn_Click(object sender, RoutedEventArgs e)
         {
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
             bool IsAlreadyFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
-           // var task = new ProcessEventArgs();
             if (!IsAlreadyFav)
             {
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser);
@@ -95,16 +83,14 @@ namespace TaskManagerApp
             if (this.favorite.IsFavourite == true)
             {
                 this.favorite.IsFavourite = false;
-                UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                
+                UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());              
                 OnClick(taskId, false);
             }
             else
             {
                 this.favorite.IsFavourite = true;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
-                OnClick(taskId, true);
-               
+                OnClick(taskId, true);             
             }
         }
         protected  void OnClick(long taskId,bool isFav)

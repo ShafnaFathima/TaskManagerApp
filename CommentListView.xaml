@@ -15,25 +15,26 @@
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470">
-            <RelativePanel   Margin="0,2,0,0" Width="490">
-                <Border BorderBrush="CornflowerBlue" Background="LightBlue" BorderThickness="2" 
-                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Name="Pic">
-                    <TextBlock FontFamily="Segoe MDL2 Assets"
-                                           Text="&#xE77B;"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top"
-                                           Foreground="CornflowerBlue"
-                                           Height="18"
-                                           Width="20"  
-                                           HorizontalTextAlignment="Center"                                           
-                               />
-                </Border>
+            <RelativePanel   Margin="0,2,0,0" Width="485" >
+                <Button Name="AvatarPic"   
+                             Style="{StaticResource TextBlockButtonStyle}"
+                             Background="White"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True"
+                             Height="32"
+                             Width="45">
+                    <Button.Content>
+                        <Image Source="{Binding Avatar}"
+                                   Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
                 <TextBlock Text= "{Binding ZComment.AuthorName,ElementName=CommentsListView,Mode=OneWay}"
-                                           FontWeight="SemiBold"
-                                           Margin="5,2,0,0"
-                                            RelativePanel.AlignTopWithPanel="True"
-                                             RelativePanel.RightOf="Pic"
-                                            FontSize="13"/>
+                           FontWeight="SemiBold"
+                           Name="AuthorName"
+                           Margin="0,6,0,0"
+                           RelativePanel.AlignTopWithPanel="True"
+                           RelativePanel.RightOf="AvatarPic"
+                           FontSize="13"/>
                 <Button x:Name="RemoveComment"
                 Tag="{Binding ZComment.CommentId,Mode=OneWay,ElementName=CommentsListView}"
                 Content="Remove"
@@ -41,31 +42,34 @@
                 Background="White"
                 FontSize="10"
                 Click="RemoveComment_Click"
-                Margin="0,2,0,0"
-                 Style="{StaticResource TextBlockButtonStyle}"
-                 Visibility="{Binding ZComment.CommentId ,Converter={StaticResource BoolToVisible}, Mode=OneWay, ElementName=CommentsListView}"
-                  RelativePanel.AlignTopWithPanel="True"
-                        RelativePanel.AlignRightWithPanel="True"
+                Margin="0,5,105,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Visibility="{Binding ZComment.CommentId ,Converter={StaticResource BoolToVisible}, Mode=OneWay, ElementName=CommentsListView}"
+                RelativePanel.AlignTopWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
                         />
-            </RelativePanel>
-            <TextBlock x:Name="AuthorTxt" 
-                   Margin="31,0,0,0"
+                <TextBlock x:Name="AuthorTxt" 
+                       Margin="45,2,0,0"
                        FontSize="13"
-                    Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"
+                       Text="{Binding ZComment.Content,ElementName=CommentsListView,Mode=OneWay}"
                        TextWrapping="Wrap"
-                       MaxWidth="400"
+                       MaxWidth="340"
                        HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
                        Width="Auto"
-                       Height="Auto"/>
+                       Height="Auto"
+                       RelativePanel.Below="AuthorName"
+                       RelativePanel.AlignLeftWithPanel="True"/>
+            </RelativePanel>
             <!--reaction section starts-->
-            <StackPanel Orientation="Horizontal" Margin="22,0,0,0" Name="OuterReation" >
+            <StackPanel Orientation="Horizontal" Margin="34,0,0,0" Name="OuterReation" >
                 <Button Name="LikeBtn"
                         Height="25"
                         Width="35"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="LikeBtn_Click"
                         IsEnabled="{Binding ZComment.CommentId,
-                    Converter={StaticResource BoolToEnable},
+                      Converter={StaticResource BoolToEnable},
                      ConverterParameter=LikeBtn,
                     Mode=OneWay,
                     ElementName=CommentsListView}"
@@ -119,10 +123,10 @@
                         Style="{StaticResource TextBlockButtonStyle}"
                         Click="SadBtn_Click"
                         IsEnabled="{Binding ZComment.CommentId,
-                    Converter={StaticResource BoolToEnable},
-                     ConverterParameter=SadBtn,
-                    Mode=OneWay,
-                    ElementName=CommentsListView}" 
+                        Converter={StaticResource BoolToEnable},
+                        ConverterParameter=SadBtn,
+                        Mode=OneWay,
+                        ElementName=CommentsListView}" 
                         >
                         <Button.Content>
                             <Image Source="Assets/sad.PNG"

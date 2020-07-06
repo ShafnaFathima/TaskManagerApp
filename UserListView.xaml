@@ -27,20 +27,22 @@
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
                   Name="TaskName"
                   HorizontalAlignment="Stretch"
+                  MaxWidth="130"
+                  TextWrapping="Wrap"
                   FontWeight="Black"
                   Margin="10,3,0,0"
                   FontFamily="Calibri"
-                  FontSize="17"
+                  FontSize="15"
                   RelativePanel.RightOf="TaskSymbol"
                    />
-        <Button Name="StarBtn"
+            <Button Name="StarBtn"
                 FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
                 Foreground="Gold"
                 Background="White"
                 Tag="{Binding  ZTask.TaskId,ElementName=TaskListControl,Mode=TwoWay}"
                 Click="StarBtn_Click"
                 RelativePanel.Below="TaskSymbol"
-                Margin="0,5,0,0"
+                Margin="0,0,0,0"
                 Style="{StaticResource TextBlockButtonStyle}"
                 Content="{Binding IsFavourite,
                 Converter={StaticResource BoolToColour},
@@ -48,9 +50,9 @@
                UpdateSourceTrigger=PropertyChanged,
                Source={Binding StarButton}}"
                 />
-
-        <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
+            <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
                     FontStyle="Normal"
+                    FontSize="13"
                     HorizontalAlignment="Stretch"
                     RelativePanel.Below="TaskName"
                     RelativePanel.RightOf="StarBtn"

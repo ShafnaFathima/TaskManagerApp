@@ -16,6 +16,8 @@ using TaskManagerApp.Model;
 using TaskManagerApp.DB;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
+using Windows.System;
+using System.Runtime.CompilerServices;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -24,8 +26,13 @@ namespace TaskManagerApp
     public sealed partial class CommentListView : UserControl
     {
         public Comment ZComment
-        {
-            get { return ((Comment)GetValue(TaskProperty)); }
+        {          
+            get {
+                if ((Comment)GetValue(TaskProperty) != null)
+                {
+                    OnLoaded((Comment)GetValue(TaskProperty));
+                }
+                return ((Comment)GetValue(TaskProperty)); }
             set { SetValue(TaskProperty, value); }
         }
 
@@ -48,6 +55,11 @@ namespace TaskManagerApp
             }
 
         }
+        public  void OnLoaded(Comment comment)
+        {
+            UserModel commentUser = UserDB.GetUser(comment.AuthorName);
+            this.AvatarPic.DataContext = commentUser;
+        }
 
         private void RemoveComment_Click(object sender, RoutedEventArgs e)
         {
@@ -65,10 +77,7 @@ namespace TaskManagerApp
                     break;
                 }
             }
-
-            //Console.WriteLine(val);
-            CommentDB.RemoveComment(commentId);
-           
+            CommentDB.RemoveComment(commentId);         
         }
         private void HeartBtn_Click(object sender, RoutedEventArgs e)
         {

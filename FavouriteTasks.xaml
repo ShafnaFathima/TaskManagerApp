@@ -23,16 +23,18 @@
                    VerticalAlignment="Top"
                    Margin="10,10,0,0"/>
         <TextBlock Name="NoTasks"
-                   FontSize="15"
+                   FontSize="14"
                    Grid.Row="1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="20,10,0,0"/>
+                   Margin="20,10,0,0"
+                   Foreground="Red"/>
         <ListView Name="TasksList"
                   Grid.Row="1"
                   HorizontalAlignment="Stretch"
                   SelectionMode="Single"
-                  SelectionChanged="TasksList_SelectionChanged">
+                  SelectionChanged="TasksList_SelectionChanged"
+                  Margin="0,5,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListViewUserControl ZTask="{Binding}"/>

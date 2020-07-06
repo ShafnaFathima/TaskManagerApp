@@ -43,37 +43,37 @@
                        RelativePanel.AlignLeftWithPanel="True"
                        Margin="10,29,10,5"/>
                 <ComboBox 
-            Name="SelectUser"
-            PlaceholderText="   User"
-            Foreground="DarkBlue"
-            BorderBrush="DarkBlue"
-            PlaceholderForeground="CornflowerBlue"
-            FontSize="13"
-            Height="30"
-            Width="250"
-             RelativePanel.LeftOf="ChooseUser"
-            RelativePanel.Below="ViewTasks"
-            RelativePanel.AlignHorizontalCenterWith="ChooseUser"
-            Margin="0,25,0,5"
-            SelectionChanged="SelectUser_SelectionChanged"/>
+                 Name="SelectUser"
+                 PlaceholderText="   User"
+                 Foreground="DarkBlue"
+                 BorderBrush="DarkBlue"
+                 PlaceholderForeground="CornflowerBlue"
+                 FontSize="13"
+                 Height="30"
+                 Width="250"
+                 RelativePanel.LeftOf="ChooseUser"
+                 RelativePanel.Below="ViewTasks"
+                 RelativePanel.AlignHorizontalCenterWith="ChooseUser"
+                 Margin="0,25,0,5"
+                 SelectionChanged="SelectUser_SelectionChanged"/>
             </StackPanel>
             <TextBlock Name="TaskEmptyTxt"
                        Text="No tasks are assigned to this user!"
-                   FontSize="13"
-                   Margin="10,5,0,0"
-                   Foreground="Red"
+                       FontSize="13"
+                       Margin="10,5,0,0"
+                       Foreground="Red"
                   />
         </StackPanel>
         <!--</Border>-->
         <!--taskslistview-->
-       
+
         <StackPanel  Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Name="TopicPanel">
             <TextBlock Text="TASKS ASSIGNED"
                    FontSize="14"
                    FontWeight="SemiBold"
                    Margin="10,20,0,0"/>
             <TextBlock  
-                Text="TASK DETAILS"
+                   Text="TASK DETAILS"
                    FontSize="14"
                    FontWeight="SemiBold" 
                    Margin="108,20,0,10"/>
@@ -102,7 +102,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-
             <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <TextBlock Name="TitleTxt"
                        FontSize="16"
@@ -130,37 +129,39 @@
                     <StackPanel Orientation="Horizontal"  >
                         <TextBlock Name="Pic"
                            FontFamily="Segoe MDL2 Assets"
-                           FontSize="13"
+                           FontSize="12"
                            Text="&#xE77B;"
                            Margin="0,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
                         <TextBlock Text="ASSIGNED BY"
-                           FontSize="12"
-                           FontWeight="SemiBold"
+                           FontSize="11"
+                           FontWeight="Bold"
                            Margin="2,2,0,0"
                            />
                     </StackPanel>
                     <TextBlock Name="AssignedTo"
-                           Margin="18,1,0,0"/>
+                               Margin="18,1,0,0"
+                               FontSize="13"/>
                 </StackPanel>
                 <StackPanel Name="DatePanel" Margin="15,0,0,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Name="Calendar"
                            FontFamily="Segoe MDL2 Assets"
-                           FontSize="13"
+                           FontSize="12"
                            Text="&#xE787;"
                            Margin="10,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
                         <TextBlock Text="DUE ON"
-                           FontSize="12"
-                           FontWeight="SemiBold"
+                           FontSize="11"
+                           FontWeight="Bold"
                            Margin="2,2,0,0"
                            />
                     </StackPanel>
                     <TextBlock Name="DateTxt"
-                           Margin="28,1,0,0"/>
+                               Margin="28,1,0,0"
+                               FontSize="13"/>
                 </StackPanel>
 
 
@@ -168,19 +169,20 @@
                     <StackPanel Orientation="Horizontal" >
                         <TextBlock
                            FontFamily="Segoe MDL2 Assets"
-                           FontSize="13"
+                           FontSize="12"
                            Text="&#xE8D0;"
                            Margin="10,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
                         <TextBlock Text="PRIORITY"
-                           FontSize="12"
+                           FontSize="11"
                            Margin="2,2,0,0"
-                               FontWeight="SemiBold"
+                               FontWeight="Bold"
                            />
                     </StackPanel>
                     <TextBlock Name="PriorityTxt"
-                           Margin="28,1,0,0"/>
+                           Margin="28,1,0,0"
+                           FontSize="13"/>
                 </StackPanel>
             </StackPanel>
             <!--EndofParentStack-->
@@ -189,17 +191,18 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
                            FontFamily="Segoe MDL2 Assets"
-                           FontSize="13"
+                           FontSize="12"
                            Text="&#xE8BD;"
                            Margin="0,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                    <TextBlock    Text="DESCRIPTION"                           
-                              FontSize="12"
-                              FontWeight="SemiBold"
-                                  Margin="2,2,0,0"/>
+                    <TextBlock Text="DESCRIPTION"                           
+                              FontSize="11"
+                              FontWeight="Bold"
+                              Margin="2,2,0,0"/>
                 </StackPanel>
                 <TextBlock Name="DescriptionTxt"
+                           MaxWidth="276"
                            TextWrapping="Wrap"        
                            FontSize="13"
                            Margin="18,2,0,0"/>
@@ -241,9 +244,9 @@
                     BorderThickness="2"/>
             <ListView Name="CommentsList"
                       RelativePanel.Below="EnterComment"
-                     RelativePanel.AlignBottomWithPanel="True"
+                      RelativePanel.AlignBottomWithPanel="True"
                       Margin="0,5,0,0"  
-                          SelectionMode="None"
+                      SelectionMode="None"
                      >
                 <ListView.ItemTemplate>
                     <DataTemplate >

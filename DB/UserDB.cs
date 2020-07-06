@@ -18,13 +18,20 @@ namespace TaskManagerApp.DB
 
     public class UserDB
     {
-        public static void AddUser(string userName)
+        public static void AddUser(string userName,string avatar)
         {
             UserModel user = new UserModel();
             user.Username = userName;
+            user.Avatar = avatar;
             DBAdapter.Connection.Insert(user);
         }
 
+        public static UserModel GetUser(string userName)
+        {
+            var query = DBAdapter.Connection.Table<UserModel>();
+            var currentUser = query.Where(user => user.Username.Equals(userName)).SingleOrDefault();
+            return (UserModel)currentUser;
+        }
         public static bool CheckValidUser(string userName)
         {
             var users = DBAdapter.Connection.Table<UserModel>();
@@ -90,8 +97,6 @@ namespace TaskManagerApp.DB
             var comment = query.Table<FavoriteTask>().Where(excomment => excomment.TaskId == taskId && excomment.UserName.Equals(userName)).SingleOrDefault();
             comment.IsFavourite = false;
             query.Update(comment);
-            //DBAdapter.Connection.Table<FavoriteTask>().Delete(task => task.UserName.Equals(userName) && task.TaskId == taskId);
-
         }
 
         public static ObservableCollection<long> GetFavTasks(string userName)

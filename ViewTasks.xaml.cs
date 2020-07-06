@@ -58,7 +58,6 @@ namespace TaskManagerApp
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
             list= new ListViewUserControl();
-           // list.StatusChanged += list_FavChanged;
         }
 
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
