@@ -11,7 +11,7 @@
         <local:BoolToColourConverter x:Key="BoolToColour">
         </local:BoolToColourConverter>
     </UserControl.Resources>
-    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1">
+    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="0">
         <RelativePanel  
                     HorizontalAlignment="Stretch"             
                      Width="200"
@@ -22,6 +22,7 @@
                    Foreground="Red"
                    FontSize="17"
                    Margin="5,5,0,0"
+                   HorizontalAlignment="Left"
                    />
         <TextBlock 
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
@@ -38,11 +39,10 @@
             <Button Name="StarBtn"
                 FontFamily="Segoe MDL2 Assets" Grid.Row="1" Grid.Column="1"
                 Foreground="Gold"
-                Background="White"
                 Tag="{Binding  ZTask.TaskId,ElementName=TaskListControl,Mode=TwoWay}"
                 Click="StarBtn_Click"
                 RelativePanel.Below="TaskSymbol"
-                Margin="0,0,0,0"
+                HorizontalAlignment="Left"
                 Style="{StaticResource TextBlockButtonStyle}"
                 Content="{Binding IsFavourite,
                 Converter={StaticResource BoolToColour},

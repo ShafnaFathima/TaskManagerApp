@@ -63,21 +63,7 @@ namespace TaskManagerApp
 
         private void RemoveComment_Click(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as Button).Tag;
-            long commentId = (long)tag;
-            Comment comment = CommentDB.GetComment(commentId);
-           // ViewUserTask page = new ViewUserTask();
-            
-
-            foreach(Comment comm in ViewUserTask.comments)
-            {
-                if(comm.CommentId==commentId)
-                {
-                    ViewUserTask.comments.Remove(comm);
-                    break;
-                }
-            }
-            CommentDB.RemoveComment(commentId);         
+            RemovePopup.IsOpen = true;   
         }
         private void HeartBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -253,6 +239,29 @@ namespace TaskManagerApp
         private void InnerReactions_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             this.InnerReactions.Opacity = 0;
+        }
+
+        private void Yes_Click(object sender, RoutedEventArgs e)
+        {
+            var tag = (sender as Button).Tag;
+            long commentId = (long)tag;
+            Comment comment = CommentDB.GetComment(commentId);
+          
+            foreach (Comment comm in ViewUserTask.comments)
+            {
+                if (comm.CommentId == commentId)
+                {
+                    ViewUserTask.comments.Remove(comm);
+                    break;
+                }
+            }
+            CommentDB.RemoveComment(commentId);
+            RemovePopup.IsOpen = false;
+        }
+
+        private void No_Click(object sender, RoutedEventArgs e)
+        {
+            RemovePopup.IsOpen = false;
         }
     }
 

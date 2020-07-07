@@ -48,6 +48,43 @@
                 RelativePanel.AlignTopWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                         />
+                <Popup x:Name="RemovePopup"                   
+                       Width="200"
+                       IsLightDismissEnabled="True"
+                       RelativePanel.AlignRightWithPanel="True"
+                       Margin="0,0,100,0"
+                       IsOpen="False" 
+                       LightDismissOverlayMode="On"
+                       >
+                    <StackPanel Height="70" Width="130" BorderBrush="CornflowerBlue" BorderThickness="2" Background="LightBlue">
+                        <TextBlock Text="Are you sure?"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   Margin="0,10,0,0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Yes"
+                                    FontSize="11"
+                                    Name="Yes"
+                                     Tag="{Binding ZComment.CommentId,Mode=OneWay,ElementName=CommentsListView}"
+                                  
+                                    BorderBrush="LightGray"
+                                    Style="{StaticResource TextBlockButtonStyle}"
+                                    BorderThickness="1"
+                                    Click="Yes_Click"
+                                    Margin="2,3,0,0"/>
+                            <Button Content="No"
+                                    Name="No"
+                                     FontSize="11"
+                                    Click="No_Click"
+                                
+                                    BorderBrush="LightGray"
+                                     Style="{StaticResource TextBlockButtonStyle}"
+                                    BorderThickness="1"
+                                     Margin="2,3,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </Popup>
                 <TextBlock x:Name="AuthorTxt" 
                        Margin="45,2,0,0"
                        FontSize="13"
@@ -73,8 +110,6 @@
                      ConverterParameter=LikeBtn,
                     Mode=OneWay,
                     ElementName=CommentsListView}"
-                    PointerEntered="InnerReactions_PointerEntered"
-                       
                         >
                     <Button.Content>
                         <Image Source="Assets/like.PNG"

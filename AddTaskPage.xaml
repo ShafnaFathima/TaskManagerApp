@@ -29,7 +29,7 @@
                    Name="Title"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="10,10,0,20"
+                   Margin="10,10,0,10"
                    Style="{StaticResource TitleStyle}" />
             <TextBox Name="TaskName" Grid.Row="1"
                  PlaceholderText="Enter Task Name"

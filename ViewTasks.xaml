@@ -67,23 +67,13 @@
         <!--</Border>-->
         <!--taskslistview-->
 
-        <StackPanel  Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Name="TopicPanel">
-            <TextBlock Text="TASKS ASSIGNED"
-                   FontSize="14"
-                   FontWeight="SemiBold"
-                   Margin="10,20,0,0"/>
-            <TextBlock  
-                   Text="TASK DETAILS"
-                   FontSize="14"
-                   FontWeight="SemiBold" 
-                   Margin="108,20,0,10"/>
-        </StackPanel>
         <ListView Name="TasksList"
                   Grid.Row="1"
                   HorizontalAlignment="Stretch"
+                  VerticalAlignment="Top"
                   SelectionMode="Single"
                   SelectionChanged="TasksList_SelectionChanged"
-                  Margin="10,60,0,0">
+                  Margin="0,25,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListViewUserControl ZTask="{Binding}" 
@@ -93,7 +83,7 @@
         </ListView>
         <!--details view starting-->
 
-        <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,52,0,0" Name="DetailsGrid">
+        <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,18,0,0" Name="DetailsGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -217,7 +207,7 @@
                        Name="CommentTitle"
                        FontSize="14"
                        FontWeight="SemiBold"
-                       Margin="10,7,0,0"/>
+                       Margin="10,18,0,0"/>
             <TextBox Name="EnterComment"
                      PlaceholderForeground="Gray"
                      Height="35"

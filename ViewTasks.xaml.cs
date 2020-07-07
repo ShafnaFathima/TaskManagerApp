@@ -69,7 +69,7 @@ namespace TaskManagerApp
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
-                TopicPanel.Visibility = Visibility.Visible;
+                //TopicPanel.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Visible;
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;
@@ -77,7 +77,7 @@ namespace TaskManagerApp
             else
             {
                 TaskEmptyTxt.Visibility = Visibility.Visible;
-                TopicPanel.Visibility = Visibility.Collapsed;
+              //  TopicPanel.Visibility = Visibility.Collapsed;
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailsGrid.Visibility = Visibility.Collapsed;
                 Discussion.Visibility = Visibility.Collapsed;
@@ -106,8 +106,7 @@ namespace TaskManagerApp
                 PriorityTxt.Text = priority;
                 AssignedTo.Text = task.AssignedToUser;
                 string fmt = "d";
-                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on "+ task.StartDate.Date.ToString(fmt); ;
-               
+                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on "+ task.StartDate.Date.ToString(fmt); ;              
                 string EndDate = task.EndDate.Date.ToString(fmt);
                 DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
@@ -117,8 +116,7 @@ namespace TaskManagerApp
                 }
                 fav = UserDB.GetFavorite(task.TaskId, App.CurrentUser);
                 StarBtnDetails.DataContext = fav;
-                comments = CommentDB.GetComments(task.TaskId);
-             
+                comments = CommentDB.GetComments(task.TaskId); 
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             }
@@ -172,6 +170,7 @@ namespace TaskManagerApp
                 if(isFav==true)
                 {
                     fav.IsFavourite = true;
+
                 }
                 else if(isFav==false)
                 {

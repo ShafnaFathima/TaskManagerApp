@@ -25,8 +25,9 @@
                           Style="{StaticResource ComboBoxStyle}"
                           Width="180"
                           PlaceholderText="Choose an avatar!"
+                          HorizontalAlignment="Center"
                           ItemsSource="{x:Bind Icons}" 
-                           Margin="22,20,0,0">
+                           Margin="0,20,0,0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="data:Icon">
                             <Image Source="{x:Bind IconPath}" Width="30" Height="30" />
