@@ -41,7 +41,7 @@
                        FontWeight="SemiBold"
                        RelativePanel.Below="ViewTasks"
                        RelativePanel.AlignLeftWithPanel="True"
-                       Margin="10,29,10,5"/>
+                       Margin="10,30,10,5"/>
                 <ComboBox 
                  Name="SelectUser"
                  PlaceholderText="   User"

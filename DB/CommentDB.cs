@@ -125,6 +125,20 @@ namespace TaskManagerApp.DB
             return myReaction.ReactionType;
            
         }
+        public static Reaction GetReactionObject(long commentId, string userName)
+        {
+            if (!IsReacted(commentId, userName))
+            {
+                Reaction newReaction = new Reaction() { CommentId = commentId, UserName = userName, ReactionType = "" };
+                DBAdapter.Connection.Insert(newReaction);
+            }
+            var query = DBAdapter.Connection.Table<Reaction>();
+            Reaction myReaction = (Reaction)query.Where(react => react.UserName.Equals(userName) && react.CommentId == commentId)
+                                                .Select(react => react).SingleOrDefault();
+            return myReaction;
+
+        }
+
 
     }
 }
