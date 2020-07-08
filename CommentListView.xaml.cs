@@ -75,6 +75,7 @@ namespace TaskManagerApp
             if (isReacted == false)
             {
                 ZComment.Heart += 1;
+                ZComment.Total += 1;
                 CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
                 this.myReaction.ReactionType = "heart";
@@ -86,21 +87,25 @@ namespace TaskManagerApp
                if(currentReaction.Equals("like"))
                 {
                     ZComment.Like -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 }
                 if (currentReaction.Equals("happy"))
                 {
                     ZComment.Happy -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                 }
                 if (currentReaction.Equals("sad"))
                 {
                     ZComment.Sad -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                 }
                 if (string.IsNullOrEmpty(currentReaction)||!(currentReaction.Equals("heart")))
                 {
                     ZComment.Heart+= 1;
+                    ZComment.Total += 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
                     this.myReaction.ReactionType = "heart";
@@ -116,6 +121,7 @@ namespace TaskManagerApp
             if (isReacted == false)
             {
                 ZComment.Happy += 1;
+                ZComment.Total += 1;
                 CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
                 this.myReaction.ReactionType = "happy";
@@ -127,21 +133,25 @@ namespace TaskManagerApp
                 if (currentReaction.Equals("like"))
                 {
                     ZComment.Like -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 }
                 if (currentReaction.Equals("heart"))
                 {
                     ZComment.Heart -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                 }
                 if (currentReaction.Equals("sad"))
                 {
                     ZComment.Sad -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                 }
                 if (string.IsNullOrEmpty(currentReaction)||!(currentReaction.Equals("happy")))
                 {
                     ZComment.Happy += 1;
+                    ZComment.Total += 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
                     this.myReaction.ReactionType = "happy";
@@ -155,6 +165,7 @@ namespace TaskManagerApp
             if (isReacted == false)
             {
                 ZComment.Like += 1;
+                ZComment.Total += 1;
                 CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
                 this.myReaction.ReactionType = "like";
@@ -166,21 +177,25 @@ namespace TaskManagerApp
                 if (currentReaction.Equals("happy"))
                 {
                     ZComment.Happy -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                 }
                 if (currentReaction.Equals("heart"))
                 {
                     ZComment.Heart -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                 }
                 if (currentReaction.Equals("sad"))
                 {
                     ZComment.Sad -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                 }
                 if (string.IsNullOrEmpty(currentReaction) || !(currentReaction.Equals("like")))
                 {
                     ZComment.Like += 1;
+                    ZComment.Total += 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
                     this.myReaction.ReactionType = "like";
@@ -194,6 +209,7 @@ namespace TaskManagerApp
             if (isReacted == false)
             {
                 ZComment.Sad += 1;
+                ZComment.Total += 1;
                 CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
                 this.myReaction.ReactionType = "sad";
@@ -205,21 +221,25 @@ namespace TaskManagerApp
                 if (currentReaction.Equals("like"))
                 {
                     ZComment.Like -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 }
                 if (currentReaction.Equals("heart"))
                 {
                     ZComment.Heart -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                 }
                 if (currentReaction.Equals("happy"))
                 {
                     ZComment.Happy -= 1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                 }
                 if (string.IsNullOrEmpty(currentReaction) || !(currentReaction.Equals("sad")))
                 {
                     ZComment.Sad += 1;
+                    ZComment.Total += 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
                     this.myReaction.ReactionType = "sad";
@@ -264,6 +284,7 @@ namespace TaskManagerApp
                 if(oldReaction.Equals("heart"))
                 {
                     ZComment.Heart -=1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
                     this.myReaction.ReactionType = "";
@@ -271,6 +292,7 @@ namespace TaskManagerApp
                 if (oldReaction.Equals("happy"))
                 {
                     ZComment.Happy -=1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
                     this.myReaction.ReactionType = "";
@@ -278,6 +300,7 @@ namespace TaskManagerApp
                 if (oldReaction.Equals("sad"))
                 {
                     ZComment.Sad -=1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
                     this.myReaction.ReactionType = "";
@@ -285,6 +308,7 @@ namespace TaskManagerApp
                 if (oldReaction.Equals("like"))
                 {
                     ZComment.Like -=1;
+                    ZComment.Total -= 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
                     this.myReaction.ReactionType = "";

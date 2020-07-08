@@ -179,64 +179,74 @@
             </RelativePanel>
             <!--reaction section starts-->
             <StackPanel >
-                <StackPanel Orientation="Horizontal" RelativePanel.AlignTopWithPanel="True" Margin="45,3,0,0"
+                <StackPanel Orientation="Horizontal" RelativePanel.AlignTopWithPanel="True" Margin="50,3,0,0"
                             RelativePanel.Above="CurrentReactionBtn">
-                    <StackPanel Orientation="Horizontal" Name="Likepanel" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Width="43" Height="18" Margin="0,0,2,0" 
-                                Visibility="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}">
-                        <Button Height="20"
-                            Width="30"
+                    <Button Height="12"
+                            Width="15"
+                            Padding="0" BorderThickness="0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                          Visibility="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
                         IsEnabled="False"
-                        Style="{StaticResource TextBlockButtonStyle}">
-                            <Button.Content>
-                                <Image Source="Assets/like.PNG"
-                               Stretch="Fill"/>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="10" Margin="0,1,4,0"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Name="Heartpanel" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Width="43" Height="18"  Margin="0,0,2,0"
-                                Visibility="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}">
-                        <Button Height="20"
-                        Width="30"
+                        >
+                        <Button.Content>
+                            <Image Source="Assets/like.PNG"
+                               Stretch="UniformToFill"  />
+                        </Button.Content>
+                    </Button>
+                    
+                    <Button Height="12"
+                        Width="15"
+                            Margin="0,0,0,0"
                         IsEnabled="False"
-                        Style="{StaticResource TextBlockButtonStyle}">
-                            <Button.Content>
-                                <Image Source="Assets/heart.PNG"
-                               Stretch="Fill"/>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="10"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Name="Happypanel" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Width="43" Height="18"  Margin="0,0,2,0"
-                                Visibility="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}">
-                        <Button Height="20"
-                        Width="30"
-                        IsEnabled="False"
-                        Style="{StaticResource TextBlockButtonStyle}">
-                            <Button.Content>
-                                <Image Source="Assets/happy.PNG"
-                               Stretch="Fill"/>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="10"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Name="Sadpanel" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Width="43" Height="18"  Margin="0,0,2,0"
-                                Visibility="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}">
-                        <Button Height="20"
-                        Width="30"
-                        IsEnabled="False"
-                        Style="{StaticResource TextBlockButtonStyle}">
-                            <Button.Content>
-                                <Image Source="Assets/sad.PNG"
-                               Stretch="Fill"/>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="10"/>
-                    </StackPanel>
-                </StackPanel>
-                
+                            Padding="0" BorderThickness="0"
+                           HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                                 Visibility="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
+                        >
+                        <Button.Content>
+                            <Image Source="Assets/heart.PNG"
+                               Stretch="UniformToFill"/>
+                        </Button.Content>
+                    </Button>
                    
-               
+
+                    <Button Height="12"
+                        Width="15"
+                        IsEnabled="False"
+                            Padding="0" BorderThickness="0"
+                              HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                              Margin="0,0,0,0"
+                                Visibility="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
+                     >
+                        <Button.Content>
+                            <Image Source="Assets/happy.PNG"
+                               Stretch="UniformToFill"
+                                   />
+                        </Button.Content>
+                    </Button>
+                    
+
+                    <Button Height="12"
+                        Width="15"
+                        IsEnabled="False"
+                              HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                              Margin="0,1,0,0"
+                            Padding="0" BorderThickness="0"
+                                Visibility="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
+                       >
+                        <Button.Content>
+                            <Image Source="Assets/sad.PNG"
+                               Stretch="UniformToFill"/>
+                        </Button.Content>
+                    </Button>
+                  
+                    <TextBlock Text="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Margin="5,0,0,0"
+                               Visibility="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible}}"
+                               Foreground="CornflowerBlue"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

@@ -70,7 +70,23 @@ namespace TaskManagerApp.Model
                 OnPropertyChanged("Happy");
             }
         }
-
+        private int _total;
+        public int Total
+        {
+            get
+            {
+                return _total;
+            }
+            set
+            {
+                _total = _happy + _heart + _sad + _like;
+                OnPropertyChanged("Total");
+                OnPropertyChanged("Happy");
+                OnPropertyChanged("Sad");
+                OnPropertyChanged("Like");
+                OnPropertyChanged("Heart");
+            }
+        }
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
