@@ -99,6 +99,83 @@
                        Height="Auto"
                        RelativePanel.Below="AuthorName"
                        RelativePanel.AlignLeftWithPanel="True"/>
+
+                <Popup x:Name="ReactionsPopup"
+                   IsLightDismissEnabled="True"
+                   IsOpen="False"
+             
+                       RelativePanel.Above="CurrentReactionBtn"
+                        RelativePanel.AlignLeftWith="CurrentReactionBtn"
+                           Margin="40,0,0,20"
+                   >
+                    <StackPanel  Orientation="Horizontal" Background="AntiqueWhite" BorderBrush="LightGray" BorderThickness="1" CornerRadius="25" Height="25">
+                        <Button Name="LikeBtn"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="LikeBtn_Click"
+                      >
+                            <Button.Content>
+                                <Image Source="Assets/like.PNG"
+                               Stretch="Fill"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Name="HeartBtn"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="HeartBtn_Click"
+                       >
+                            <Button.Content>
+                                <Image Source="Assets/heart.PNG"
+                               Stretch="Fill"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Name="HappyBtn"                
+                        Click="HappyBtn_Click"
+                        Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                      >
+                            <Button.Content>
+                                <Image Source="Assets/happy.PNG"
+                               Stretch="Fill"/>
+                            </Button.Content>
+                        </Button>
+
+
+                        <Button Name="SadBtn"
+                         Height="25"
+                        Width="35"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Click="SadBtn_Click"
+                        >
+                            <Button.Content>
+                                <Image Source="Assets/sad.PNG"
+                               Stretch="Fill"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Popup>
+                <Button Name="CurrentReactionBtn"
+                    PointerEntered="CurrentReactionBtn_PointerEntered"
+                    Click="CurrentReactionBtn_Click"  
+                    Tag="{Binding DataContext.ReactionType,ElementName=CurrentReactionBtn,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                    Height="25"
+                    Width="45"
+                    IsTabStop="False"
+                    ClickMode="Press"
+                    Background="White"
+                    BorderBrush="LightGray"
+                    BorderThickness="0"
+                    Margin="35,3,0,0"   
+                      RelativePanel.Below="AuthorTxt"
+                        RelativePanel.AlignBottomWithPanel="True"
+                    >
+                    <Button.Content>
+                        <Image Source="{Binding DataContext.ReactionType,ElementName=CurrentReactionBtn,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ImageConverter}}"/>
+                    </Button.Content>
+                </Button>
             </RelativePanel>
             <!--reaction section starts-->
             <StackPanel >
@@ -157,81 +234,9 @@
                         <TextBlock Text="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="10"/>
                     </StackPanel>
                 </StackPanel>
-                <RelativePanel>
-                    <Popup x:Name="ReactionsPopup"
-                   IsLightDismissEnabled="True"
-                   IsOpen="False"
-                   RelativePanel.RightOf="CurrentReactionBtn"
-                       RelativePanel.AlignRightWith="CurrentReactionBtn"
-                           Margin="0,5,0,0"
-                   >
-                        <StackPanel  Orientation="Horizontal" Background="AntiqueWhite" BorderBrush="LightGray" BorderThickness="1" CornerRadius="25" Height="25">
-                            <Button Name="LikeBtn"
-                        Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Click="LikeBtn_Click"
-                      >
-                                <Button.Content>
-                                    <Image Source="Assets/like.PNG"
-                               Stretch="Fill"/>
-                                </Button.Content>
-                            </Button>
-                            <Button Name="HeartBtn"
-                        Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Click="HeartBtn_Click"
-                       >
-                                <Button.Content>
-                                    <Image Source="Assets/heart.PNG"
-                               Stretch="Fill"/>
-                                </Button.Content>
-                            </Button>
-                            <Button Name="HappyBtn"                
-                        Click="HappyBtn_Click"
-                        Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                      >
-                                <Button.Content>
-                                    <Image Source="Assets/happy.PNG"
-                               Stretch="Fill"/>
-                                </Button.Content>
-                            </Button>
-
-
-                            <Button Name="SadBtn"
-                         Height="25"
-                        Width="35"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Click="SadBtn_Click"
-                        >
-                                <Button.Content>
-                                    <Image Source="Assets/sad.PNG"
-                               Stretch="Fill"/>
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                    </Popup>
-                    <Button Name="CurrentReactionBtn"
-                    PointerEntered="CurrentReactionBtn_PointerEntered"
-                    Click="CurrentReactionBtn_Click"  
-                    Tag="{Binding DataContext.ReactionType,ElementName=CurrentReactionBtn,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                    Height="25"
-                    Width="45"
-                    IsTabStop="False"
-                    ClickMode="Press"
-                    Background="White"
-                    BorderBrush="LightGray"
-                    BorderThickness="0"
-                    Margin="35,3,0,0"              
-                    >
-                        <Button.Content>
-                            <Image Source="{Binding DataContext.ReactionType,ElementName=CurrentReactionBtn,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ImageConverter}}"/>
-                        </Button.Content>
-                    </Button>
-                </RelativePanel>
+                
+                   
+               
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

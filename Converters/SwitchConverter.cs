@@ -27,10 +27,14 @@ namespace TaskManagerApp.Converters
             {
                 img.UriSource = new Uri("ms-appx:///Assets/sad.PNG", UriKind.Absolute);
             }
-            else
+            else if(reaction.Equals("like"))
             {
 
                 img.UriSource = new Uri("ms-appx:///Assets/like.PNG", UriKind.Absolute);
+            }
+            else
+            {
+                img.UriSource = new Uri("ms-appx:///Assets/likeunfill.PNG", UriKind.Absolute);
             }
 
             return img;
