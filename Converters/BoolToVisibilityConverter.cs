@@ -5,28 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using TaskManagerApp.DB;
-using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.Xaml;
 
-namespace TaskManagerApp
-{   
-   
-    public class BoolToColourConverter:IValueConverter
+namespace TaskManagerApp.Converters
+{
+    public class BoolToVisibilityConverter:IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //long taskId = long.Parse(value.ToString());
-            //bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
-            
-            bool isFav = bool.Parse(value.ToString());
-            if ( isFav.Equals(false))
+            long commentId = long.Parse(value.ToString());
+            bool isMyComment = CommentDB.IsMyComment(commentId, App.CurrentUser);
+            if (isMyComment == false)
             {
-                return "\uE734";
+                return Visibility.Collapsed;
             }
             else
             {
-                return "\uE735";
 
+                return Visibility.Visible ;
             }
         }
 

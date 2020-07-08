@@ -122,9 +122,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BoolToColourConverter.cs" />
-    <Compile Include="BoolToEnableConverter.cs" />
-    <Compile Include="BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToColourConverter.cs" />
+    <Compile Include="Converters\BoolToEnableConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="BtnControl.xaml.cs">
       <DependentUpon>BtnControl.xaml</DependentUpon>
     </Compile>
@@ -140,8 +140,8 @@
     </Compile>
     <Compile Include="Model\Icon.cs" />
     <Compile Include="Model\Reaction.cs" />
-    <Compile Include="ReactionVisibilityConverter.cs" />
-    <Compile Include="SwitchConverter.cs" />
+    <Compile Include="Converters\ReactionVisibilityConverter.cs" />
+    <Compile Include="Converters\SwitchConverter.cs" />
     <Compile Include="UserListView.xaml.cs">
       <DependentUpon>UserListView.xaml</DependentUpon>
     </Compile>

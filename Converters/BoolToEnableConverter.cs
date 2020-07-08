@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Data;
 using TaskManagerApp.DB;
 using Windows.UI.Xaml;
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Converters
 {
     public class BoolToEnableConverter:IValueConverter
     {

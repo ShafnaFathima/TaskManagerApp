@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Data;
-using TaskManagerApp.DB;
-using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Converters
 {
-    public class BoolToVisibilityConverter:IValueConverter
+    public class ReactionVisibilityConverter:IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            long commentId = long.Parse(value.ToString());
-            bool isMyComment = CommentDB.IsMyComment(commentId, App.CurrentUser);
-            if (isMyComment == false)
+            int reactionCount = int.Parse(value.ToString());
+            if(reactionCount==0)
             {
                 return Visibility.Collapsed;
             }
             else
             {
-
-                return Visibility.Visible ;
+                return Visibility.Visible;
             }
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Converters
 {
 
     public class SwitchConverter : IValueConverter
