@@ -26,7 +26,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay"/>
-                        <Setter Target="MySplitView.IsPaneOpen" Value="True"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">

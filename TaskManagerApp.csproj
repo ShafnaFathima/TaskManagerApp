@@ -125,9 +125,6 @@
     <Compile Include="Converters\BoolToColourConverter.cs" />
     <Compile Include="Converters\BoolToEnableConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="BtnControl.xaml.cs">
-      <DependentUpon>BtnControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CommentListView.xaml.cs">
       <DependentUpon>CommentListView.xaml</DependentUpon>
     </Compile>
@@ -199,10 +196,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BtnControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CommentListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,6 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LoginPages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

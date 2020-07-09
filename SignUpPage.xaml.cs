@@ -35,7 +35,7 @@ namespace TaskManagerApp
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Text) == true))
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Text) == true) ||(AvatarComboBox.SelectedIndex==-1))
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }

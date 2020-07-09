@@ -23,8 +23,6 @@ namespace TaskManagerApp
     /// </summary>
     public sealed partial class HomePage : Page
     {
-
-
         public HomePage()
         {
             this.InitializeComponent();
@@ -47,16 +45,17 @@ namespace TaskManagerApp
             if (AddTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(AddTaskPage), null, new SuppressNavigationTransitionInfo());
+                MySplitView.IsPaneOpen = false;
             }
             if (ViewFavTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewMyTaskPage), null, new SuppressNavigationTransitionInfo());
-
+                MySplitView.IsPaneOpen = false;
             }
             if (ViewTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewUserTask), null, new SuppressNavigationTransitionInfo());
-
+                MySplitView.IsPaneOpen = false;
             }
             else if (Logout.IsSelected)
             {

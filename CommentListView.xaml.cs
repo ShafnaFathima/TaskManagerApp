@@ -111,7 +111,7 @@ namespace TaskManagerApp
                     this.myReaction.ReactionType = "heart";
                 }
             }
-
+            ReactionsPopup.IsOpen = false;
         }
 
         private void HappyBtn_Click(object sender, RoutedEventArgs e)
@@ -157,6 +157,7 @@ namespace TaskManagerApp
                     this.myReaction.ReactionType = "happy";
                 }
             }
+            ReactionsPopup.IsOpen = false;
         }
 
         private void LikeBtn_Click(object sender, RoutedEventArgs e)
@@ -201,6 +202,7 @@ namespace TaskManagerApp
                     this.myReaction.ReactionType = "like";
                 }
             }
+            ReactionsPopup.IsOpen = false;
         }
 
         private void SadBtn_Click(object sender, RoutedEventArgs e)
@@ -245,6 +247,7 @@ namespace TaskManagerApp
                     this.myReaction.ReactionType = "sad";
                 }
             }
+            ReactionsPopup.IsOpen = false;
         }
 
 
@@ -314,6 +317,21 @@ namespace TaskManagerApp
                     this.myReaction.ReactionType = "";
                 }
             }
+            else
+            {
+                ZComment.Like += 1;
+                ZComment.Total += 1;
+                CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
+                CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
+                this.myReaction.ReactionType = "like";
+            }
+        }
+
+        private void TextBlock_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            ReactedPeople.IsOpen = true;
+            List<string> ReactedUsers = CommentDB.GetReactedUsers(ZComment.CommentId);
+            ReactedPeopleList.ItemsSource = ReactedUsers;
         }
     }
 

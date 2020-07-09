@@ -29,8 +29,6 @@ namespace TaskManagerApp
     /// </summary>
     public sealed partial class ViewUserTask : Page,INotifyPropertyChanged
     {
-        SolidColorBrush originalBrush = new SolidColorBrush(Colors.White);
-        SolidColorBrush newBrush = new SolidColorBrush(Colors.Yellow);
         private ListViewUserControl _list;
         public ListViewUserControl list
         {
@@ -100,7 +98,15 @@ namespace TaskManagerApp
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                DescriptionTxt.Text = task.Description;
+                if (string.IsNullOrEmpty(task.Description))
+                {
+                    DescriptionPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    DescriptionPanel.Visibility = Visibility.Visible;
+                    DescriptionTxt.Text = task.Description;
+                }
                 //TaskIdTxt.Text = task.TaskId.ToString();
                 string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
                 PriorityTxt.Text = priority;
