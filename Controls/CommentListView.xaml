@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="TaskManagerApp.CommentListView"
+    x:Class="TaskManagerApp.Controls.CommentListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TaskManagerApp"
@@ -115,7 +115,7 @@
                         Click="LikeBtn_Click"
                       >
                             <Button.Content>
-                                <Image Source="Assets/like.PNG"
+                                <Image Source="/Assets/like.PNG"
                                Stretch="Fill"/>
                             </Button.Content>
                         </Button>
@@ -126,7 +126,7 @@
                         Click="HeartBtn_Click"
                        >
                             <Button.Content>
-                                <Image Source="Assets/heart.PNG"
+                                <Image Source="/Assets/heart.PNG"
                                Stretch="Fill"/>
                             </Button.Content>
                         </Button>
@@ -137,7 +137,7 @@
                         Style="{StaticResource TextBlockButtonStyle}"
                       >
                             <Button.Content>
-                                <Image Source="Assets/happy.PNG"
+                                <Image Source="/Assets/happy.PNG"
                                Stretch="Fill"/>
                             </Button.Content>
                         </Button>
@@ -148,7 +148,7 @@
                         Click="SadBtn_Click"
                         >
                             <Button.Content>
-                                <Image Source="Assets/sad.PNG"
+                                <Image Source="/Assets/sad.PNG"
                                Stretch="Fill"/>
                             </Button.Content>
                         </Button>

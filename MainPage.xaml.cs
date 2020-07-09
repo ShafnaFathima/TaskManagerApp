@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.Model;
 using System.Runtime.CompilerServices;
 using TaskManagerApp.DB;
+using TaskManagerApp.LoginPages;
+using TaskManagerApp.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

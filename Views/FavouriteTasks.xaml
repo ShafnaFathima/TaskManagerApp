@@ -1,11 +1,10 @@
 ﻿<Page
-    x:Class="TaskManagerApp.ViewUserTask"
+    x:Class="TaskManagerApp.Views.ViewMyTaskPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TaskManagerApp"
+    xmlns:local="using:TaskManagerApp.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:TaskManagerApp.Model"
     xmlns:converters="using:TaskManagerApp.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,56 +13,29 @@
         <converters:BoolToColourConverter x:Key="BoolToColour">
         </converters:BoolToColourConverter>
     </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Name="ViewTasks"
-                    Text="View Tasks"
+        <TextBlock Text="Favourite Tasks"
                    Style="{StaticResource ResourceKey=TitleStyle}"
-                   VerticalAlignment="Top"
                    HorizontalAlignment="Left"
-                   RelativePanel.AlignLeftWithPanel="True"
+                   VerticalAlignment="Top"
                    Margin="10,10,0,0"/>
-            <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2" Grid.Column="1">-->
-            <TextBlock Name="TaskEmptyTxt"
-                       Text="No tasks are assigned to this user!"
-                       FontSize="13"
-                       Margin="10,5,0,0"
-                       Foreground="Red"
-                  />
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="30,0,0,0">
-            <TextBlock Name="ChooseUser"
-                Text="FILTER BY USER: "
-                       FontSize="14"
-                       FontWeight="SemiBold"
-                       Margin="0,15,10,5"/>
-            <ComboBox 
-                 Name="SelectUser"
-                 PlaceholderText="   User"
-                 Foreground="DarkBlue"
-                 BorderBrush="DarkBlue"
-                 PlaceholderForeground="CornflowerBlue"
-                 FontSize="13"
-                 Height="28"
-                 Width="200"
-                 Margin="0,13,0,5"
-                 SelectionChanged="SelectUser_SelectionChanged"/>
-        </StackPanel>
-        <!--</Border>-->
-        <!--taskslistview-->
-
+        <TextBlock Name="NoTasks"
+                   Text="No favourite tasks!"
+                   FontSize="14"
+                   Grid.Row="1"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10,10,0,0"
+                   Foreground="Red"/>
         <ListView Name="TasksList"
                   Grid.Row="1"
                   HorizontalAlignment="Stretch"
@@ -73,13 +45,11 @@
                   Margin="0,25,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:ListViewUserControl ZTask="{Binding}" 
-                                               StatusChanged="list_FavChanged"/>
+                    <local:ListViewUserControl ZTask="{Binding}"
+                                                StatusChanged="list_FavChanged"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--details view starting-->
-
         <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,18,0,0" Name="DetailsGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -174,7 +144,7 @@
             </StackPanel>
             <!--EndofParentStack-->
 
-            <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" Name="DescriptionPanel">
+            <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
                            FontFamily="Segoe MDL2 Assets"
@@ -198,7 +168,7 @@
         </Grid>
         <!--End of details view-->
         <!--comments section code-->
-        <RelativePanel Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" Margin="15,15,20,0" Width="400" Height="450" Name="Discussion">
+        <RelativePanel Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" Margin="20,13,20,0" Width="400" Height="450" Name="Discussion">
             <TextBlock Text="DISCUSSIONS"
                        RelativePanel.AlignLeftWithPanel="True"
                        Name="CommentTitle"
@@ -237,11 +207,12 @@
                      >
                 <ListView.ItemTemplate>
                     <DataTemplate >
-                        <local:CommentListView ZComment="{Binding}"
-                                      />
+                        <local:CommentListView ZComment="{Binding}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <!--FontFamily="Segoe MDL2 Assets"-->
+            <!--Content="&#xE90A;"-->
         </RelativePanel>
     </Grid>
 </Page>

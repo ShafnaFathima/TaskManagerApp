@@ -14,9 +14,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.DB;
 using TaskManagerApp.Model;
+using TaskManagerApp;
+using TaskManagerApp.LoginPages;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace TaskManagerApp
+namespace TaskManagerApp.LoginPages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -27,10 +29,10 @@ namespace TaskManagerApp
         public SignUpPage()
         {
             this.InitializeComponent();     
-            Icons.Add(new Icon { IconPath = "Assets/avatar1.PNG" });
-            Icons.Add(new Icon { IconPath = "Assets/avatar2.PNG" });
-            Icons.Add(new Icon { IconPath = "Assets/avatar3.PNG" });
-            Icons.Add(new Icon { IconPath = "Assets/avatar4.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar1.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar2.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar3.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar4.PNG" });
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)

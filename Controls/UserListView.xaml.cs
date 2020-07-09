@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Controls
 {
     public sealed partial class ListViewUserControl : UserControl //,INotifyPropertyChanged
     {

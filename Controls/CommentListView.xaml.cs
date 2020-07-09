@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.Model;
 using TaskManagerApp.DB;
+using TaskManagerApp.Views;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
 using Windows.System;
@@ -21,7 +22,7 @@ using System.Runtime.CompilerServices;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Controls
 {
     public sealed partial class CommentListView : UserControl
     {
