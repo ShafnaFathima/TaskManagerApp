@@ -77,6 +77,14 @@
                                                StatusChanged="list_FavChanged"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListView">
+                    <Setter Target="Padding" Value="0"/>
+                    <Setter Target="Margin" Value="-10,0,-10,0"/>
+                    <Setter Target="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Target="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
         <!--details view starting-->
 

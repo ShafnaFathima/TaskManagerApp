@@ -30,7 +30,7 @@
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600"/>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MySplitView.DisplayMode" Value="CompactInline"/>

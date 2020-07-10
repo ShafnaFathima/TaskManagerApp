@@ -12,9 +12,10 @@
         <converters:BoolToColourConverter x:Key="BoolToColour">
         </converters:BoolToColourConverter>
     </UserControl.Resources>
-    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="0">
+    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="-20,0,-20,0">
         <RelativePanel  
-                    HorizontalAlignment="Stretch"             
+                    HorizontalAlignment="Stretch"  
+            Margin="10,0,0,0"
                      Width="200"
                      >
         <TextBlock Name="TaskSymbol"

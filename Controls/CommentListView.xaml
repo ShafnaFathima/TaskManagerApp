@@ -16,7 +16,7 @@
         <converters:ReactionVisibilityConverter x:Key="ReactionVisible"/>
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470">
+        <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470" Padding="10,0,10,0">
             <RelativePanel   Margin="0,2,0,0" Width="485" >
                 <Button Name="AvatarPic"   
                              Style="{StaticResource TextBlockButtonStyle}"
@@ -173,20 +173,19 @@
                         <Image Source="{Binding DataContext.ReactionType,ElementName=CurrentReactionBtn,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ImageConverter}}"/>
                     </Button.Content>
                 </Button>
-                <TextBlock      Name="CountText"
-                               Text="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Margin="0,0,0,5"
-                               Visibility="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible}}"
-                               Foreground="CornflowerBlue"
-                                FontWeight="SemiBold"
-                               RelativePanel.RightOf="CurrentReactionBtn"
-                               RelativePanel.AlignBottomWithPanel="True"
-                               PointerEntered="TextBlock_PointerEntered"
-                          />
+
+
                 <Popup x:Name="ReactedPeople"          
-        
+                      
+                  VerticalAlignment="Bottom"
+                  RelativePanel.RightOf="CurrentReactionBtn"
+                  RelativePanel.AlignBottomWithPanel="True"
+                   VerticalOffset="0"
+                   Margin="0,0,0,0"
                     IsLightDismissEnabled="True"
+                         
                        >
-                    <ListView x:Name="ReactedPeopleList" Background="Black" SelectionMode="None"  Width="60" CornerRadius="5">
+                    <ListView x:Name="ReactedPeopleList" Background="Black" SelectionMode="None"  Width="60" CornerRadius="5" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,0,0">
                         <ListView.ItemContainerStyle >
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Padding" Value="4,0,0,0"/>
@@ -195,12 +194,22 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate >
-                        <DataTemplate>
-                            <TextBlock  Text="{Binding}" FontSize="11" Foreground="White" Height="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="SemiBold"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding}" FontSize="11" Foreground="White" Height="15" HorizontalAlignment="Stretch"  FontWeight="SemiBold"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Popup>
+                <TextBlock      Name="CountText" 
+                                    RelativePanel.RightOf="CurrentReactionBtn"
+                                    RelativePanel.AlignBottomWithPanel="True"
+                               Text="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Margin="0,0,0,5"
+                               Visibility="{Binding ZComment.Total,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible}}"
+                               Foreground="CornflowerBlue"
+                                FontWeight="SemiBold"
+                               PointerEntered="TextBlock_PointerEntered"
+                          />
+
             </RelativePanel>
             <!--reaction display section starts-->
             <!--<StackPanel >
