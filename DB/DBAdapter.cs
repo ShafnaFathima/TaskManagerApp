@@ -16,7 +16,7 @@ namespace TaskManagerApp.DB
         public static SQLite.Net.SQLiteConnection Connection;
         public static void InitializeConnection()
         {
-            DBpath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "newdb8.sqlite");
+            DBpath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "newdb13.sqlite");
             Connection = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), DBpath);
             Connection.CreateTable<UserModel>();
             Connection.CreateTable<TaskModel>();

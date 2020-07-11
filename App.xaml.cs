@@ -36,7 +36,7 @@ namespace TaskManagerApp
 
         internal static string CurrentUser;
         public static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-        Object value = App.localSettings.Values["IsFirstLaunch"];
+        Object value = App.localSettings.Values["IsFirstTimeLaunch"];
     
         public App()
         {
@@ -52,22 +52,22 @@ namespace TaskManagerApp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {       
-            if(localSettings.Values["IsFirstLaunch"] ==null||(bool)value==true)
+            if(localSettings.Values["IsFirstTimeLaunch"] ==null||(bool)value==true)
             {
                 
-                    localSettings.Values["IsFirstLaunch"] = false;
+                    localSettings.Values["IsFirstTimeLaunch"] = false;
                     var vault = new Windows.Security.Credentials.PasswordVault();
                     vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", "Sabi", "123"));
                     vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", "Sabitha", "123"));
                     UserDB.AddUser("Sabi", "/Assets/avatar1.PNG");
                     UserDB.AddUser("Sabitha", "/Assets/avatar4.PNG");
-                    TaskDB.AddTask(new Model.TaskModel() { TaskName = "Cliq Login Page", TaskId = 12233344441, 
+                    TaskDB.AddTask(new Model.TaskModel() { TaskName = "Cliq Login Page", TaskId = 1223334444112, 
                         AssignedByUser = "Sabi", AssignedToUser = "Sabi", Priority = 1, StartDate = (DateTimeOffset)DateTime.Today,
                         EndDate = (DateTimeOffset)DateTime.Today, Description = "lopoioiui wtyetyuiyruiewo" });
                     TaskDB.AddTask(new Model.TaskModel()
                     {
                         TaskName = "Cliq SignIn Page",
-                        TaskId = 9876543211,
+                        TaskId = 987654321112,
                         AssignedByUser = "Sabitha",
                         AssignedToUser = "Sabi",
                         Priority = 2,
@@ -78,7 +78,7 @@ namespace TaskManagerApp
                     TaskDB.AddTask(new Model.TaskModel()
                     {
                         TaskName = "Content Writing",
-                        TaskId = 1234567891,
+                        TaskId = 123456789112,
                         AssignedByUser = "Sabitha",
                         AssignedToUser = "Sabitha",
                         Priority = 1,
@@ -86,11 +86,11 @@ namespace TaskManagerApp
                         EndDate = (DateTimeOffset)DateTime.Today,
                         Description = "lopoioiui wtyetyuiyruiewo yuwiyeueiytiu"
                     });
-                    CommentDB.AddComment(new Model.Comment() { AuthorName = "sabi", CommentToTaskId = 1234567891, Content = " If you cannot find a way to fit supporting evidence in just one or two sentences, use a different example altogether. There are certain topics that require a lot of room for explanation, so be careful not to choose a topic for your essay that will require too much evidence to support.",
-                                        CommentId=999886601,Date=DateTime.Now,Heart=0,Happy=0,Sad=0,Like=0 });
-                    CommentDB.AddComment(new Model.Comment() { AuthorName = "sabitha", CommentToTaskId = 1234567891, Content = "Okay Done!", CommentId = 999886611, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
-                    CommentDB.AddComment(new Model.Comment() { AuthorName = "sabi", CommentToTaskId = 9876543211, Content = " Only by examining how you reflect on your qualities can college admissions officers gain an understanding", CommentId = 999886621, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
-                    CommentDB.AddComment(new Model.Comment() { AuthorName = "sabitha", CommentToTaskId = 12233344441, Content = " Present, support, and introspect.", CommentId = 999886631, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });            
+                    CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabi", CommentToTaskId = 123456789112, Content = " If you cannot find a way to fit supporting evidence in just one or two sentences, use a different example altogether. There are certain topics that require a lot of room for explanation, so be careful not to choose a topic for your essay that will require too much evidence to support.",
+                                        CommentId=99988660111,Date=DateTime.Now,Heart=0,Happy=0,Sad=0,Like=0 });
+                    CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabitha", CommentToTaskId = 123456789112, Content = "Okay Done!", CommentId = 99988661111, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+                    CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabi", CommentToTaskId = 987654321112, Content = " Only by examining how you reflect on your qualities can college admissions officers gain an understanding", CommentId = 9998866211, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+                    CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabitha", CommentToTaskId = 1223334444112, Content = " Present, support, and introspect.", CommentId = 9998866311, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });            
                 
             }
           

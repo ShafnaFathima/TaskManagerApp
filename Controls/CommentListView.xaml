@@ -16,7 +16,7 @@
         <converters:ReactionVisibilityConverter x:Key="ReactionVisible"/>
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470" Padding="10,0,10,0">
+        <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470" >
             <RelativePanel   Margin="0,2,0,0" Width="485" >
                 <Button Name="AvatarPic"   
                              Style="{StaticResource TextBlockButtonStyle}"
@@ -175,17 +175,16 @@
                 </Button>
 
 
-                <Popup x:Name="ReactedPeople"          
-                      
+                <Popup x:Name="ReactedPeople"             
                   VerticalAlignment="Bottom"
                   RelativePanel.RightOf="CurrentReactionBtn"
                   RelativePanel.AlignBottomWithPanel="True"
                    VerticalOffset="0"
                    Margin="0,0,0,0"
-                    IsLightDismissEnabled="True"
-                         
+                    IsLightDismissEnabled="True"           
                        >
-                    <ListView x:Name="ReactedPeopleList" Background="Black" SelectionMode="None"  Width="60" CornerRadius="5" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,0,0">
+                    <ListView x:Name="ReactedPeopleList" Background="Black" SelectionMode="None"  Width="60" CornerRadius="5" VerticalAlignment="Bottom"
+                              VerticalContentAlignment="Bottom" Margin="0,0,0,0">
                         <ListView.ItemContainerStyle >
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Padding" Value="4,0,0,0"/>
