@@ -28,6 +28,8 @@
                         <Setter Target="DescriptionTxt.Width" Value="300"/>
                         <Setter Target="AddBtn.(Grid.Row)" Value="7"/>
                         <Setter Target="AddBtn.(Grid.Column)" Value="0"/>
+                        <Setter Target="ErrorTxt.(Grid.Row)" Value="8"/>
+                        <Setter Target="ErrorTxt.(Grid.Column)" Value="0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
@@ -47,12 +49,15 @@
                         <Setter Target="DescriptionTxt.(Grid.Column)" Value="0"/>
                         <Setter Target="AddBtn.(Grid.Row)" Value="5"/>
                         <Setter Target="AddBtn.(Grid.Column)" Value="0"/>
+                        <Setter Target="ErrorTxt.(Grid.Row)" Value="5"/>
+                        <Setter Target="ErrorTxt.(Grid.Column)" Value="1"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid >
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -156,9 +161,11 @@
                 Margin="10,15,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"/>
-            <TextBlock Name="ErrorTxt" Grid.Row="5" Grid.Column="1"
-        Style="{StaticResource ResourceKey=ErrorTxt}"
-                   VerticalAlignment="Center"/>
+            <TextBlock Name="ErrorTxt" 
+                    Style="{StaticResource ResourceKey=ErrorTxt}"
+                   VerticalAlignment="Center"
+                    
+                       Margin="80,10,0,10"/>
         </Grid>
     </ScrollViewer>
 </Page>

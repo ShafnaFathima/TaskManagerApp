@@ -17,7 +17,7 @@
     </UserControl.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" BorderBrush="LightGray" BorderThickness="0,0,0,1" Width="470" >
-            <RelativePanel   Margin="0,2,0,0" Width="485" >
+            <RelativePanel   Margin="0,2,0,0" Width="485" Name="ReactionsPanel">
                 <Button Name="AvatarPic"   
                              Style="{StaticResource TextBlockButtonStyle}"
                              Background="White"
@@ -190,6 +190,7 @@
                                 <Setter Property="Padding" Value="4,0,0,0"/>
                                 <Setter Property="Margin" Value="0,-10,0,-10"/>
                                 <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Height" Value="18"/>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate >

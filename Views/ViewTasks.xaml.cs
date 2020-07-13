@@ -30,6 +30,7 @@ namespace TaskManagerApp.Views
     /// </summary>
     public sealed partial class ViewUserTask : Page,INotifyPropertyChanged
     {
+        public static ObservableCollection<TaskModel> tasks;
         private ListViewUserControl _list;
         public ListViewUserControl list
         {
@@ -62,19 +63,29 @@ namespace TaskManagerApp.Views
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserModel user = (UserModel)SelectUser.SelectedItem;
-            ObservableCollection<TaskModel> tasks = TaskDB.GetTasks(user.Username);
+            ViewUserTask.tasks = TaskDB.GetTasks(user.Username);
             if (tasks.Count != 0)
             {
                 TasksList.ItemsSource = tasks;
                 TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
-                //TopicPanel.Visibility = Visibility.Visible;
-                TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                double Acutalwidth = this.ActualWidth;
+                if (ActualWidth < 700)
+                {
+                    TasksList.Visibility = Visibility.Visible;
+                    DetailsGrid.Visibility = Visibility.Collapsed;
+                    Discussion.Visibility = Visibility.Collapsed;
+                }
+                if (ActualWidth >= 700)
+                {
+                    TasksList.Visibility = Visibility.Visible;
+                    DetailsGrid.Visibility = Visibility.Visible;
+                    Discussion.Visibility = Visibility.Visible;
+                }
             }
             else
             {
+                TasksList.ItemsSource = tasks;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
               //  TopicPanel.Visibility = Visibility.Collapsed;
                 TasksList.Visibility = Visibility.Collapsed;
@@ -126,6 +137,19 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId); 
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if (ActualWidth < 700)
+            {
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            if (ActualWidth >= 700)
+            {
+                TasksList.Visibility = Visibility.Visible;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
             }
         }
 
@@ -183,6 +207,82 @@ namespace TaskManagerApp.Views
                 {
                     fav.IsFavourite = false;
                 }
+            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TasksList.Visibility = Visibility.Visible;
+            DetailsGrid.Visibility = Visibility.Collapsed;
+            Discussion.Visibility = Visibility.Collapsed;
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ViewUserTask.tasks.Count != 0)
+            {
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if (ActualWidth >= 700)
+            {
+                if (ViewUserTask.tasks.Count != 0)
+                {
+                    TasksList.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    TasksList.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            TaskModel task = (TaskModel)TasksList.SelectedItem;
+            if (task != null)
+            {
+                TitleTxt.Text = task.TaskName;
+                if (string.IsNullOrEmpty(task.Description))
+                {
+                    DescriptionPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    DescriptionPanel.Visibility = Visibility.Visible;
+                    DescriptionTxt.Text = task.Description;
+                }
+                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
+                PriorityTxt.Text = priority;
+                AssignedTo.Text = task.AssignedToUser;
+                string fmt = "d";
+                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on " + task.StartDate.Date.ToString(fmt); ;
+                string EndDate = task.EndDate.Date.ToString(fmt);
+                DateTxt.Text = EndDate;
+                bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
+                if (!IsAlreadyFav)
+                {
+                    UserDB.AddFavouriteTaskIds(task.TaskId, App.CurrentUser);
+                }
+                fav = UserDB.GetFavorite(task.TaskId, App.CurrentUser);
+                StarBtnDetails.DataContext = fav;
+                comments = CommentDB.GetComments(task.TaskId);
+                CommentsList.ItemsSource = comments;
+                AddButton.Tag = task.TaskId;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if (ActualWidth < 700)
+            {
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            if (ActualWidth >= 700)
+            {
+                TasksList.Visibility = Visibility.Visible;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
             }
         }
     }

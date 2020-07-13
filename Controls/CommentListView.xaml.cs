@@ -330,6 +330,15 @@ namespace TaskManagerApp.Controls
 
         private void TextBlock_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
+            //Windows.UI.Input.PointerPoint point = e.GetCurrentPoint(CountText);
+            //var x = point.Position.X.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            //var y = point.Position.Y.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            //var transform = this.CountText.TransformToVisual(this.ReactionsPanel);
+            //var y= transform.TransformPoint(new Point()).Y + CountText.ActualHeight;
+
+           // ReactedPeople.HorizontalOffset = Convert.ToDouble(x);
+            int no = Convert.ToInt32(CountText.Text);
+            ReactedPeople.VerticalOffset = -25-(18.2)*no;
             ReactedPeople.IsOpen = true;
             List<string> ReactedUsers = CommentDB.GetReactedUsers(ZComment.CommentId);
             ReactedPeopleList.ItemsSource = ReactedUsers;

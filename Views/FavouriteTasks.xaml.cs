@@ -40,7 +40,7 @@ namespace TaskManagerApp.Views
 
         public void OnLoaded()
         {
-            if (tasks.Count != 0)
+            if (ViewMyTaskPage.tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
                 TasksList.ItemsSource = tasks;
@@ -65,8 +65,15 @@ namespace TaskManagerApp.Views
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                DescriptionTxt.Text = task.Description;
-                //TaskIdTxt.Text = task.TaskId.ToString();
+                if (string.IsNullOrEmpty(task.Description))
+                {
+                    DescriptionPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    DescriptionPanel.Visibility = Visibility.Visible;
+                    DescriptionTxt.Text = task.Description;
+                }
                 string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
                 PriorityTxt.Text = priority;
                 AssignedTo.Text = task.AssignedToUser;
@@ -84,6 +91,19 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId);
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if(ActualWidth<700)
+            {
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            if (ActualWidth >= 700)
+            {
+                TasksList.Visibility = Visibility.Visible;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
             }
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -149,6 +169,70 @@ namespace TaskManagerApp.Views
                         }
                     }
                 }
+            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {   
+           
+            TasksList.Visibility = Visibility.Visible;
+            DetailsGrid.Visibility = Visibility.Collapsed;
+            Discussion.Visibility = Visibility.Collapsed;
+           // TasksList.SelectedIndex = -1;
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (ViewMyTaskPage.tasks.Count != 0)
+            {
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if(ActualWidth>=700)
+            {
+                TasksList.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            TaskModel task = TasksList.SelectedItem as TaskModel;
+            if (task != null)
+            {
+                TitleTxt.Text = task.TaskName;
+                DescriptionTxt.Text = task.Description;
+                //TaskIdTxt.Text = task.TaskId.ToString();
+                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
+                PriorityTxt.Text = priority;
+                AssignedTo.Text = task.AssignedToUser;
+                string fmt = "d";
+                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on " + task.StartDate.Date.ToString(fmt); ;
+                string EndDate = task.EndDate.Date.ToString(fmt);
+                DateTxt.Text = EndDate;
+                bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
+                if (!IsAlreadyFav)
+                {
+                    UserDB.AddFavouriteTaskIds(task.TaskId, App.CurrentUser);
+                }
+                fav = UserDB.GetFavorite(task.TaskId, App.CurrentUser);
+                StarBtnDetails.DataContext = fav;
+                comments = CommentDB.GetComments(task.TaskId);
+                CommentsList.ItemsSource = comments;
+                AddButton.Tag = task.TaskId;
+            }
+            double Acutalwidth = this.ActualWidth;
+            if (ActualWidth < 700)
+            {
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
+            }
+            if (ActualWidth >= 700)
+            {
+                TasksList.Visibility = Visibility.Visible;
+                DetailsGrid.Visibility = Visibility.Visible;
+                Discussion.Visibility = Visibility.Visible;
             }
         }
     }

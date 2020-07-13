@@ -28,7 +28,6 @@ namespace TaskManagerApp.Views
         {
             this.InitializeComponent();
             HomeFrame.Navigate(typeof(AddTaskPage));
-
         }
 
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
