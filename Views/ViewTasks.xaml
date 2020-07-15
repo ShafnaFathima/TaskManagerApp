@@ -80,15 +80,14 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-           
-                <TextBlock Name="ViewTasks"
+
+            <TextBlock Name="ViewTasks"
                     Text="View Tasks"
                    Grid.Row="0" Grid.Column="0"
                    Style="{StaticResource ResourceKey=TitleStyle}"
@@ -96,15 +95,12 @@
                    HorizontalAlignment="Left"
                    RelativePanel.AlignLeftWithPanel="True"
                    Margin="10,10,0,0"/>
-                <!--<Border BorderBrush="Gray" BorderThickness="0,0,0,2" Grid.Column="1">-->
             <TextBlock Name="TaskEmptyTxt"
                        Text="No tasks are assigned to this user!"
                        Grid.ColumnSpan="2"
                        FontSize="13"
                        Margin="10,5,0,0"
-                       Foreground="Red"
-                  />
-
+                       Foreground="Red"/>
             <StackPanel Orientation="Horizontal"  Name="ComboboxPanel">
                 <TextBlock Name="ChooseUser"
                 Text="FILTER BY USER: "
@@ -235,8 +231,6 @@
                                Margin="28,1,0,0"
                                FontSize="13"/>
                     </StackPanel>
-
-
                     <StackPanel Name="PriorityPanel" Margin="15,0,0,0">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock
@@ -258,7 +252,6 @@
                     </StackPanel>
                 </StackPanel>
                 <!--EndofParentStack-->
-
                 <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" Name="DescriptionPanel">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
@@ -321,7 +314,7 @@
                       SelectionMode="None"
                      >
                     <ListView.ItemTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <local:CommentListView ZComment="{Binding}"
                                       />
                         </DataTemplate>

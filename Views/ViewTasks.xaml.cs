@@ -30,7 +30,7 @@ namespace TaskManagerApp.Views
     /// </summary>
     public sealed partial class ViewUserTask : Page,INotifyPropertyChanged
     {
-        public static ObservableCollection<TaskModel> tasks;
+        private static ObservableCollection<TaskModel> _tasks;
         private ListViewUserControl _list;
         public ListViewUserControl list
         {
@@ -63,10 +63,10 @@ namespace TaskManagerApp.Views
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserModel user = (UserModel)SelectUser.SelectedItem;
-            ViewUserTask.tasks = TaskDB.GetTasks(user.Username);
-            if (tasks.Count != 0)
+            ViewUserTask._tasks = TaskDB.GetTasks(user.Username);
+            if (_tasks.Count != 0)
             {
-                TasksList.ItemsSource = tasks;
+                TasksList.ItemsSource = _tasks;
                 TasksList.SelectedIndex = 0;
                 TaskEmptyTxt.Visibility = Visibility.Collapsed;
                 double Acutalwidth = this.ActualWidth;
@@ -85,9 +85,8 @@ namespace TaskManagerApp.Views
             }
             else
             {
-                TasksList.ItemsSource = tasks;
+                TasksList.ItemsSource = _tasks;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
-              //  TopicPanel.Visibility = Visibility.Collapsed;
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailsGrid.Visibility = Visibility.Collapsed;
                 Discussion.Visibility = Visibility.Collapsed;
@@ -119,7 +118,6 @@ namespace TaskManagerApp.Views
                     DescriptionPanel.Visibility = Visibility.Visible;
                     DescriptionTxt.Text = task.Description;
                 }
-                //TaskIdTxt.Text = task.TaskId.ToString();
                 string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
                 PriorityTxt.Text = priority;
                 AssignedTo.Text = task.AssignedToUser;
@@ -138,14 +136,13 @@ namespace TaskManagerApp.Views
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             }
-            double Acutalwidth = this.ActualWidth;
-            if (ActualWidth < 700)
+            if (this.ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;
             }
-            if (ActualWidth >= 700)
+            if (this.ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
                 DetailsGrid.Visibility = Visibility.Visible;
@@ -219,7 +216,7 @@ namespace TaskManagerApp.Views
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (ViewUserTask.tasks.Count != 0)
+            if (ViewUserTask._tasks.Count != 0)
             {
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;
@@ -227,7 +224,7 @@ namespace TaskManagerApp.Views
             double Acutalwidth = this.ActualWidth;
             if (ActualWidth >= 700)
             {
-                if (ViewUserTask.tasks.Count != 0)
+                if (ViewUserTask._tasks.Count != 0)
                 {
                     TasksList.Visibility = Visibility.Visible;
                 }
@@ -288,7 +285,9 @@ namespace TaskManagerApp.Views
 
         private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)
         {
-
+            ViewUserTask._tasks.Remove((TaskModel)args.SwipeControl.DataContext);
+            TaskModel swipedTask = (TaskModel)args.SwipeControl.DataContext;
+            TaskDB.RemoveTask(swipedTask.TaskId);
         }
     }
 }

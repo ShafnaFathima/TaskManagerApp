@@ -62,7 +62,6 @@ namespace TaskManagerApp.Views
                 App.localSettings.Values["UserLoggedIn"] = null;
                 Frame.Navigate(typeof(LoginPage));
             }
-
         }
     }
 }

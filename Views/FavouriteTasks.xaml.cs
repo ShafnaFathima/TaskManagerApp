@@ -221,19 +221,25 @@ namespace TaskManagerApp.Views
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             }
-            double Acutalwidth = this.ActualWidth;
-            if (ActualWidth < 700)
+
+            if (this.ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;
             }
-            if (ActualWidth >= 700)
+            if (this.ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;
             }
+        }
+        private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)
+        {
+            ViewMyTaskPage._tasks.Remove((TaskModel)args.SwipeControl.DataContext);
+            TaskModel swipedTask = (TaskModel)args.SwipeControl.DataContext;
+            TaskDB.RemoveTask(swipedTask.TaskId);
         }
     }
 }

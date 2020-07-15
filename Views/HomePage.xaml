@@ -43,7 +43,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <RelativePanel Background="CornflowerBlue">
             <Button Name="HamburgerButton" 
                     RelativePanel.AlignLeftWithPanel="True"
@@ -54,7 +53,6 @@
                     Background="CornflowerBlue"
                     Margin="2,0,0,0"/>
         </RelativePanel>
-
         <SplitView Grid.Row="1" 
                    Name="MySplitView"
                    OpenPaneLength="210" 

@@ -14,6 +14,11 @@
     <Page.Resources>
         <converters:BoolToColourConverter x:Key="BoolToColour">
         </converters:BoolToColourConverter>
+        <SymbolIconSource x:Key="DeleteIcon" Symbol="Delete"/>
+        <SwipeItems x:Key="ExecuteDelete" Mode="Execute">
+            <SwipeItem Text="Delete" IconSource="{StaticResource DeleteIcon}"
+                   Background="Red" Invoked="Delete_Invoked"/>
+        </SwipeItems>
     </Page.Resources>
     <ScrollViewer>
         <VisualStateManager.VisualStateGroups>
@@ -91,8 +96,11 @@
                 SelectionChanged="TasksList_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <local:ListViewUserControl ZTask="{Binding}"
+                        <SwipeControl x:Name="ListViewSwipeContainer"
+                                      RightItems="{StaticResource ExecuteDelete}">
+                            <local:ListViewUserControl ZTask="{Binding}"
                                                 StatusChanged="list_FavChanged"/>
+                        </SwipeControl>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -175,8 +183,6 @@
                                Margin="28,1,0,0"
                                FontSize="13"/>
                     </StackPanel>
-
-
                     <StackPanel Name="PriorityPanel" Margin="15,0,0,0">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock
@@ -261,7 +267,7 @@
                       SelectionMode="None"
                      >
                     <ListView.ItemTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <local:CommentListView ZComment="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
