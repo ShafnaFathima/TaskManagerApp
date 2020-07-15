@@ -27,12 +27,14 @@
                         <Setter Target="TasksList.(Grid.Row)" Value="1"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Collapsed"/>
+                        <Setter Target="TasksList.(Grid.ColumnSpan)" Value="3"/>
                         <Setter Target="DetailsGrid.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailsGrid.(Grid.Column)" Value="0"/>
-                        <Setter Target="DetailsGrid.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="DetailsGrid.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="DetailsGrid.Margin" Value="30,0,0,0"/>
                         <Setter Target="Discussion.(Grid.Row)" Value="2"/>
                         <Setter Target="Discussion.(Grid.Column)" Value="0"/>
-                        <Setter Target="Discussion.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="Discussion.(Grid.ColumnSpan)" Value="3"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
@@ -46,6 +48,7 @@
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="DetailsGrid.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailsGrid.(Grid.Column)" Value="1"/>
+                        <Setter Target="DetailsGrid.Margin" Value="30,18,0,0"/>
                         <Setter Target="Discussion.(Grid.Row)" Value="1"/>
                         <Setter Target="Discussion.(Grid.Column)" Value="2"/>
                     </VisualState.Setters>
@@ -79,11 +82,10 @@
                    Margin="10,10,0,0"
                    Foreground="Red"/>
             <ListView Name="TasksList"
-              
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
-                   Margin="0,25,0,0"
+                  Margin="0,25,0,0"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
                 SelectionChanged="TasksList_SelectionChanged">
@@ -94,23 +96,25 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,18,0,0" Name="DetailsGrid">
+            <Grid   HorizontalAlignment="Left" VerticalAlignment="Top"  Name="DetailsGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button FontFamily="Segoe MDL2 Assets"
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Button FontFamily="Segoe MDL2 Assets"
                         Content="&#xE72B;"
                         Grid.Row="0"
                         Foreground="Black"
                         Background="White"
                         Name="BackBtn"
                         Click="BackBtn_Click"
+                        HorizontalContentAlignment="Left"
+                        Margin="-27,10,-2,0"
+                        Style="{StaticResource TextBlockButtonStyle}"
                         />
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Name="TitleTxt"
                        FontSize="16"
                        FontWeight="Bold"
@@ -123,16 +127,16 @@
                       Style="{StaticResource TextBlockButtonStyle}"
                       Content="{Binding DataContext.IsFavourite,Converter={StaticResource BoolToColour},Mode=OneWay,UpdateSourceTrigger=PropertyChanged,ElementName=StarBtnDetails}"
                       Click="StarBtn_Click"
-                        Margin="5,10,0,0"
+                      Margin="5,10,0,0"
                    />
                 </StackPanel>
                 <TextBlock Name="Assigned"
                        Margin="0,0,0,20"
                        FontSize="12"
                        FontWeight="SemiLight"
-                       Grid.Row="2"
+                       Grid.Row="1"
                        />
-                <StackPanel Name="ParentStackPanel" Grid.Row="3" Orientation="Horizontal">
+                <StackPanel Name="ParentStackPanel" Grid.Row="2" Orientation="Horizontal">
                     <StackPanel Name="AssignedPanel" >
                         <StackPanel Orientation="Horizontal"  >
                             <TextBlock Name="Pic"
@@ -195,7 +199,7 @@
                 </StackPanel>
                 <!--EndofParentStack-->
 
-                <StackPanel Orientation="Vertical" Grid.Row="4" Margin="0,15,0,0" Name=" DescriptionPanel">
+                <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" Name=" DescriptionPanel">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                            FontFamily="Segoe MDL2 Assets"
@@ -215,11 +219,10 @@
                            FontSize="13"
                            Margin="18,2,0,0"/>
                 </StackPanel>
-
             </Grid>
             <!--End of details view-->
             <!--comments section code-->
-            <RelativePanel  HorizontalAlignment="Left" Margin="20,13,20,0" Width="400" Height="450" Name="Discussion">
+            <RelativePanel  HorizontalAlignment="Left" Margin="20,13,20,20" Width="400" Height="450" Name="Discussion">
                 <TextBlock Text="DISCUSSIONS"
                        RelativePanel.AlignLeftWithPanel="True"
                       

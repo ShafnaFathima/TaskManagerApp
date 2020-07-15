@@ -28,22 +28,22 @@ namespace TaskManagerApp.Views
     /// </summary>
     public sealed partial class ViewMyTaskPage : Page
     {
-        public static ObservableCollection<TaskModel> tasks;
-        ObservableCollection<long> favTaskIds;
+        private static ObservableCollection<TaskModel> _tasks;
+        ObservableCollection<long> _favTaskIds;
         public ViewMyTaskPage()
         {
             this.InitializeComponent();
-            favTaskIds= UserDB.GetFavTasks(App.CurrentUser.ToString());
-            tasks = tasks=TaskDB.GetTasksFromId(favTaskIds);
+            _favTaskIds= UserDB.GetFavTasks(App.CurrentUser.ToString());
+            _tasks = _tasks=TaskDB.GetTasksFromId(_favTaskIds);
             this.OnLoaded();
         }
 
         public void OnLoaded()
         {
-            if (ViewMyTaskPage.tasks.Count != 0)
+            if (ViewMyTaskPage._tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
-                TasksList.ItemsSource = tasks;
+                TasksList.ItemsSource = _tasks;
                 TasksList.SelectedIndex = 0;
                 TasksList.Visibility = Visibility.Visible;
                 DetailsGrid.Visibility = Visibility.Visible;
@@ -158,12 +158,12 @@ namespace TaskManagerApp.Views
                 else if (isFav == false)
                 {
                     fav.IsFavourite = false;
-                    foreach(TaskModel favtask in ViewMyTaskPage.tasks)
+                    foreach(TaskModel favtask in ViewMyTaskPage._tasks)
                     {
                         if(favtask.TaskId==taskId)
                         {
-                            ViewMyTaskPage.tasks.Remove(favtask);
-                            this.TasksList.ItemsSource = tasks;
+                            ViewMyTaskPage._tasks.Remove(favtask);
+                            this.TasksList.ItemsSource = _tasks;
                             this.OnLoaded();
                             break;
                         }
@@ -183,7 +183,7 @@ namespace TaskManagerApp.Views
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (ViewMyTaskPage.tasks.Count != 0)
+            if (ViewMyTaskPage._tasks.Count != 0)
             {
                 DetailsGrid.Visibility = Visibility.Visible;
                 Discussion.Visibility = Visibility.Visible;

@@ -138,18 +138,18 @@ namespace TaskManagerApp.DB
             return myReaction;
 
         }
-        public static List<string> GetReactedUsers(long commentId)
+        public static List<Reaction> GetReactedUsers(long commentId)
         {
-            List<string> Usernames = new List<string>();
+            List<Reaction> userReactions = new List<Reaction>();
             var query = DBAdapter.Connection.Table<Reaction>();
             foreach (Reaction reaction in query)
             {
                 if (reaction.CommentId == commentId &&(!string.IsNullOrEmpty(reaction.ReactionType)))
                 {
-                    Usernames.Add(reaction.UserName);
+                    userReactions.Add(reaction);
                 }
             }
-            return Usernames;
+            return userReactions;
         }
 
     }

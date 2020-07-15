@@ -37,7 +37,7 @@ namespace TaskManagerApp.LoginPages
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Text) == true) ||(AvatarComboBox.SelectedIndex==-1))
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Password) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Password) == true) ||(AvatarComboBox.SelectedIndex==-1))
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }
@@ -51,13 +51,13 @@ namespace TaskManagerApp.LoginPages
                 }
                 else
                 {
-                    if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
+                    if (PasswordTxt.Password.Equals(ConfirmPasswordTxt.Password))
                     {
                         string avatar = ((Icon)AvatarComboBox.SelectedValue).IconPath;
                         AvatarComboBox.SelectedIndex = -1;
                         UserDB.AddUser(UsernameTxt.Text,avatar);
                         var vault = new Windows.Security.Credentials.PasswordVault();
-                        vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Text));
+                        vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Password));
                         Frame.Navigate(typeof(LoginPage));
                     }
                     else

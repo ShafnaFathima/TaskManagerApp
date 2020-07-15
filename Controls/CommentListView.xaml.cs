@@ -57,13 +57,13 @@ namespace TaskManagerApp.Controls
 
         }
 
-        Reaction myReaction;
+        Reaction _myReaction;
         public  void OnLoaded(Comment comment)
         {
             UserModel commentUser = UserDB.GetUser(comment.AuthorName);
             this.AvatarPic.DataContext = commentUser;
-            myReaction = CommentDB.GetReactionObject(comment.CommentId, App.CurrentUser);
-            this.CurrentReactionBtn.DataContext = myReaction;
+            _myReaction = CommentDB.GetReactionObject(comment.CommentId, App.CurrentUser);
+            this.CurrentReactionBtn.DataContext = _myReaction;
         }
 
         private void RemoveComment_Click(object sender, RoutedEventArgs e)
@@ -79,7 +79,7 @@ namespace TaskManagerApp.Controls
                 ZComment.Total += 1;
                 CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
-                this.myReaction.ReactionType = "heart";
+                this._myReaction.ReactionType = "heart";
             }
 
             else if (isReacted)
@@ -109,7 +109,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total += 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "heart");
-                    this.myReaction.ReactionType = "heart";
+                    this._myReaction.ReactionType = "heart";
                 }
             }
             ReactionsPopup.IsOpen = false;
@@ -125,7 +125,7 @@ namespace TaskManagerApp.Controls
                 ZComment.Total += 1;
                 CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
-                this.myReaction.ReactionType = "happy";
+                this._myReaction.ReactionType = "happy";
             }
 
             else if (isReacted)
@@ -155,7 +155,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total += 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "happy");
-                    this.myReaction.ReactionType = "happy";
+                    this._myReaction.ReactionType = "happy";
                 }
             }
             ReactionsPopup.IsOpen = false;
@@ -170,7 +170,7 @@ namespace TaskManagerApp.Controls
                 ZComment.Total += 1;
                 CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
-                this.myReaction.ReactionType = "like";
+                this._myReaction.ReactionType = "like";
             }
 
             else if (isReacted)
@@ -200,7 +200,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total += 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
-                    this.myReaction.ReactionType = "like";
+                    this._myReaction.ReactionType = "like";
                 }
             }
             ReactionsPopup.IsOpen = false;
@@ -215,7 +215,7 @@ namespace TaskManagerApp.Controls
                 ZComment.Total += 1;
                 CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
-                this.myReaction.ReactionType = "sad";
+                this._myReaction.ReactionType = "sad";
             }
 
             else if (isReacted)
@@ -245,12 +245,11 @@ namespace TaskManagerApp.Controls
                     ZComment.Total += 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "sad");
-                    this.myReaction.ReactionType = "sad";
+                    this._myReaction.ReactionType = "sad";
                 }
             }
             ReactionsPopup.IsOpen = false;
         }
-
 
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
@@ -291,7 +290,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total -= 1;
                     CommentDB.UpdateHeart(ZComment.CommentId, ZComment.Heart);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
-                    this.myReaction.ReactionType = "";
+                    this._myReaction.ReactionType = "";
                 }
                 if (oldReaction.Equals("happy"))
                 {
@@ -299,7 +298,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total -= 1;
                     CommentDB.UpdateHappy(ZComment.CommentId, ZComment.Happy);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
-                    this.myReaction.ReactionType = "";
+                    this._myReaction.ReactionType = "";
                 }
                 if (oldReaction.Equals("sad"))
                 {
@@ -307,7 +306,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total -= 1;
                     CommentDB.UpdateSad(ZComment.CommentId, ZComment.Sad);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
-                    this.myReaction.ReactionType = "";
+                    this._myReaction.ReactionType = "";
                 }
                 if (oldReaction.Equals("like"))
                 {
@@ -315,7 +314,7 @@ namespace TaskManagerApp.Controls
                     ZComment.Total -= 1;
                     CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                     CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "");
-                    this.myReaction.ReactionType = "";
+                    this._myReaction.ReactionType = "";
                 }
             }
             else
@@ -324,7 +323,7 @@ namespace TaskManagerApp.Controls
                 ZComment.Total += 1;
                 CommentDB.UpdateLike(ZComment.CommentId, ZComment.Like);
                 CommentDB.AddReaction(ZComment.CommentId, App.CurrentUser, "like");
-                this.myReaction.ReactionType = "like";
+                this._myReaction.ReactionType = "like";
             }
         }
 
@@ -338,10 +337,11 @@ namespace TaskManagerApp.Controls
 
            // ReactedPeople.HorizontalOffset = Convert.ToDouble(x);
             int no = Convert.ToInt32(CountText.Text);
-            ReactedPeople.VerticalOffset = -25-(18.2)*no;
+            ReactedPeople.VerticalOffset = -25-(18.35)*no;
             ReactedPeople.IsOpen = true;
-            List<string> ReactedUsers = CommentDB.GetReactedUsers(ZComment.CommentId);
+            List<Reaction> ReactedUsers = CommentDB.GetReactedUsers(ZComment.CommentId);
             ReactedPeopleList.ItemsSource = ReactedUsers;
+            //ReactedPeopleList.DataContext = ReactedUsers;
         }
     }
 

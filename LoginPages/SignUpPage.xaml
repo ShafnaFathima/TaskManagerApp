@@ -11,7 +11,7 @@
     <StackPanel>
         <TextBlock Text="Sign Up to TaskManagement"
                    Style="{StaticResource TitleStyle}"
-                   Margin="0,100,0,10" />
+                   Margin="40,100,0,10" />
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="550,30,500,50">
             <StackPanel VerticalAlignment="Center">
                 <TextBox
@@ -34,20 +34,21 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox 
+                <PasswordBox
                  Name="PasswordTxt"
-                 Template="{StaticResource TextBoxCenterAlignTemplate}" 
-                 Style="{StaticResource ResourceKey=TextBoxStyle}"
+                 Style="{StaticResource ResourceKey=PasswordBoxStyle}"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
+                 HorizontalContentAlignment="Center"
                  Margin="0,20,0,0"/>
-                <TextBox 
+                <PasswordBox
                  Name="ConfirmPasswordTxt"
-                 Template="{StaticResource TextBoxCenterAlignTemplate}" 
-                 Style="{StaticResource ResourceKey=TextBoxStyle}"
+                 Style="{StaticResource ResourceKey=PasswordBoxStyle}"
                  Margin="0,20,0,0"
                  PlaceholderText="Re-enter your password"
-                 HorizontalAlignment="Center"/>
+                    Foreground="CornflowerBlue"
+                 HorizontalAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
                 <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"

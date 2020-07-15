@@ -22,7 +22,7 @@ using System.ComponentModel;
 
 namespace TaskManagerApp.Controls
 {
-    public sealed partial class ListViewUserControl : UserControl //,INotifyPropertyChanged
+    public sealed partial class ListViewUserControl : UserControl 
     {
         public TaskModel ZTask
         {
@@ -57,16 +57,16 @@ namespace TaskManagerApp.Controls
             this.InitializeComponent();        
 
         }
-        FavoriteTask favorite;
+        FavoriteTask _favorite;
         public void OnLoaded(TaskModel ZTask)
         {
-            bool IsAlreadyFav = UserDB.IsFavouriteTask(ZTask.TaskId, App.CurrentUser);
-            if (!IsAlreadyFav)
+            bool isAlreadyFav = UserDB.IsFavouriteTask(ZTask.TaskId, App.CurrentUser);
+            if (!isAlreadyFav)
             {
                 UserDB.AddFavouriteTaskIds(ZTask.TaskId, App.CurrentUser);
             }
-            favorite = UserDB.GetFavorite(ZTask.TaskId, App.CurrentUser);
-           this.StarBtn.DataContext = favorite;
+            _favorite = UserDB.GetFavorite(ZTask.TaskId, App.CurrentUser);
+           this.StarBtn.DataContext = _favorite;
         }
 
         public event Action<long, bool> StatusChanged;
@@ -75,20 +75,20 @@ namespace TaskManagerApp.Controls
         {
             var tag = (sender as Button).Tag;
             long taskId = (long)tag;
-            bool IsAlreadyFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
-            if (!IsAlreadyFav)
+            bool isAlreadyFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
+            if (!isAlreadyFav)
             {
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser);
             }
-            if (this.favorite.IsFavourite == true)
+            if (this._favorite.IsFavourite == true)
             {
-                this.favorite.IsFavourite = false;
+                this._favorite.IsFavourite = false;
                 UserDB.RemoveFavouriteTaskIds(taskId, App.CurrentUser.ToString());              
                 OnClick(taskId, false);
             }
             else
             {
-                this.favorite.IsFavourite = true;
+                this._favorite.IsFavourite = true;
                 UserDB.AddFavouriteTaskIds(taskId, App.CurrentUser.ToString());
                 OnClick(taskId, true);             
             }
@@ -97,5 +97,6 @@ namespace TaskManagerApp.Controls
         {
             StatusChanged?.Invoke(taskId,isFav);
         }
+
     }
 }

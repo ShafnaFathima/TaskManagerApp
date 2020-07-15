@@ -285,5 +285,10 @@ namespace TaskManagerApp.Views
                 Discussion.Visibility = Visibility.Visible;
             }
         }
+
+        private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)
+        {
+
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace TaskManagerApp.DB
             DBAdapter.Connection.Insert(task);
         }
 
+        public static void RemoveTask(long taskId)
+        {
+            DBAdapter.Connection.Table<TaskModel>().Delete(task => task.TaskId == taskId);
+        }
         public static ObservableCollection<TaskModel> GetTasks(string userName)
         {
             ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();

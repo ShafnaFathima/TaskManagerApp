@@ -20,12 +20,12 @@
                  HorizontalAlignment="Center"
                  Margin="0,50,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-                <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}"
+                <PasswordBox 
                  Name="PasswordTxt"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
                  Margin="0,20,0,0"
-                 Style="{StaticResource TextBoxStyle}"/>
+                 Style="{StaticResource PasswordBoxStyle}"/>
                 <Button
                 Name="LoginBtn"
                 Content="Login"

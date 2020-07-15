@@ -13,12 +13,32 @@
         </converters:BoolToColourConverter>
     </UserControl.Resources>
     <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="-20,0,-20,0">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HamburgerStateGroup">
+                <VisualState x:Name="SmallWindow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TaskListPanel.Width" Value="600"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LargeWindow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TaskListPanel.Width" Value="200"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <RelativePanel  
-                    HorizontalAlignment="Stretch"  
+            HorizontalAlignment="Stretch"  
             Margin="10,0,0,0"
-                     Width="200"
-                     >
-        <TextBlock Name="TaskSymbol"
+            Name="TaskListPanel"     
+            >
+            <TextBlock Name="TaskSymbol"
                    FontFamily="Segoe MDL2 Assets"
                    Text="&#xE8C9;"
                    Foreground="Red"
@@ -26,7 +46,7 @@
                    Margin="5,5,0,0"
                    HorizontalAlignment="Left"
                    />
-        <TextBlock 
+            <TextBlock 
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
                   Name="TaskName"
                   HorizontalAlignment="Stretch"
@@ -49,10 +69,10 @@
                 Content="{Binding IsFavourite,
                 Converter={StaticResource BoolToColour},
                 Mode=OneWay,
-               UpdateSourceTrigger=PropertyChanged,
-               Source={Binding StarButton}}"
-                />
-            <TextBlock  Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
+                UpdateSourceTrigger=PropertyChanged,
+                Source={Binding StarButton}}">
+            </Button>
+            <TextBlock Text="{Binding  ZTask.AssignedByUser,ElementName=TaskListControl,Mode=OneWay}"
                     FontStyle="Normal"
                     FontSize="13"
                     HorizontalAlignment="Stretch"
@@ -60,6 +80,6 @@
                     RelativePanel.RightOf="StarBtn"
                     Margin="3,5,0,0"
                     />
-    </RelativePanel>
+        </RelativePanel>
     </Border>
 </UserControl>

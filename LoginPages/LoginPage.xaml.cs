@@ -37,7 +37,7 @@ namespace TaskManagerApp.LoginPages
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true))
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Password) == true))
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }
@@ -48,7 +48,7 @@ namespace TaskManagerApp.LoginPages
                 {
                     var vault = new Windows.Security.Credentials.PasswordVault();
                     var credential = vault.Retrieve("TaskManagerApp", UsernameTxt.Text);
-                    if (credential.Password.Equals(PasswordTxt.Text))
+                    if (credential.Password.Equals(PasswordTxt.Password))
                     {
                         App.CurrentUser = UsernameTxt.Text;
                         App.localSettings.Values["UserLoggedIn"] = App.CurrentUser;
