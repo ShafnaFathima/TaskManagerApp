@@ -8,23 +8,25 @@ using TaskManagerApp.DB;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Converters
 {   
    
     public class BoolToColourConverter:IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            long taskId = long.Parse(value.ToString());
-            bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
-            if (IsFav == false)
+            //long taskId = long.Parse(value.ToString());
+            //bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
+            
+            bool isFav = bool.Parse(value.ToString());
+            if ( isFav.Equals(false))
             {
-                return new SolidColorBrush(Colors.White);
+                return "\uE734";
             }
             else
             {
+                return "\uE735";
 
-                return new SolidColorBrush(Colors.Yellow);
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="TaskManagerApp.HomePage"
+    x:Class="TaskManagerApp.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TaskManagerApp"
@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <Style x:Key="NameStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Margin" Value="20,0,0,0"/>
@@ -18,6 +18,27 @@
     </Page.Resources>
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="HamburgerStateGroup">
+                <VisualState x:Name="SmallWindow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LargeWindow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.DisplayMode" Value="CompactInline"/>
+                        <Setter Target="MySplitView.IsPaneOpen" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -27,7 +48,7 @@
             <Button Name="HamburgerButton" 
                     RelativePanel.AlignLeftWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
-                    FontSize="26" 
+                    FontSize="20" 
                     Content="&#xE700;" 
                     Click="HamburgerButton_Click"
                     Background="CornflowerBlue"
@@ -36,40 +57,40 @@
 
         <SplitView Grid.Row="1" 
                    Name="MySplitView"
-                   DisplayMode="Inline" 
-                   OpenPaneLength="250" 
-                   CompactPaneLength="56">
+                   OpenPaneLength="210" 
+                   CompactPaneLength="45"
+                   IsPaneOpen="True"
+                   >
             <SplitView.Pane>
                 <ListView SelectionMode="Single" 
                          SelectionChanged="ListBox_SelectionChanged"
                          Background="CornflowerBlue">
-                    <ListViewItem Name="AddTask" Margin="0,5,0,5">
+                    <ListViewItem Name="AddTask" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal" >
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE710;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE710;" />
                             <TextBlock Style="{StaticResource NameStyle}">Add a Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="ViewFavTask" Margin="0,5,0,5">
+                    <ListViewItem Name="ViewFavTask" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE728;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE728;" />
                             <TextBlock  Style="{StaticResource NameStyle}">Favourite Tasks</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="ViewTask" Margin="0,5,0,5">
+                    <ListViewItem Name="ViewTask" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE779;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE779;" />
                             <TextBlock  Style="{StaticResource NameStyle}">View User Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="Logout" Margin="0,5,0,5">
+                    <ListViewItem Name="Logout" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="26" Text="&#xE7E8;" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE7E8;" />
                             <TextBlock  Style="{StaticResource NameStyle}">Logout</TextBlock>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </SplitView.Pane>
-
             <SplitView.Content>
                 <Frame Name="HomeFrame"></Frame>
             </SplitView.Content>

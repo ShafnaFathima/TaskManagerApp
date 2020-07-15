@@ -13,23 +13,31 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TaskManagerApp.DB;
+using TaskManagerApp.Model;
+using TaskManagerApp;
+using TaskManagerApp.LoginPages;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace TaskManagerApp
+namespace TaskManagerApp.LoginPages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class SignUpPage : Page
     {
+        private List<Icon> Icons = new List<Icon>();
         public SignUpPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();     
+            Icons.Add(new Icon { IconPath = "/Assets/avatar1.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar2.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar3.PNG" });
+            Icons.Add(new Icon { IconPath = "/Assets/avatar4.PNG" });
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Text) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Text) == true))
+            if ((string.IsNullOrEmpty(UsernameTxt.Text) == true) || (string.IsNullOrEmpty(PasswordTxt.Password) == true) || (string.IsNullOrEmpty(ConfirmPasswordTxt.Password) == true) ||(AvatarComboBox.SelectedIndex==-1))
             {
                 ErrorTxt.Text = "Enter all the fields!";
             }
@@ -43,11 +51,13 @@ namespace TaskManagerApp
                 }
                 else
                 {
-                    if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
+                    if (PasswordTxt.Password.Equals(ConfirmPasswordTxt.Password))
                     {
-                        UserDB.AddUser(UsernameTxt.Text);
+                        string avatar = ((Icon)AvatarComboBox.SelectedValue).IconPath;
+                        AvatarComboBox.SelectedIndex = -1;
+                        UserDB.AddUser(UsernameTxt.Text,avatar);
                         var vault = new Windows.Security.Credentials.PasswordVault();
-                        vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Text));
+                        vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", UsernameTxt.Text, PasswordTxt.Password));
                         Frame.Navigate(typeof(LoginPage));
                     }
                     else

@@ -1,32 +1,31 @@
-﻿using SQLite.Net.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite.Net.Attributes;
 
 namespace TaskManagerApp.Model
-{   
-    [Table("FavoriteTasks")]
-    public class FavoriteTask:INotifyPropertyChanged
-    {   [PrimaryKey,AutoIncrement]    
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public long TaskId { get; set; }
-        private bool _isFavourite;
-        public bool IsFavourite
+{
+    public class Reaction:INotifyPropertyChanged
+    {
+        private string _reactionType;
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public long CommentId { get; set; }
+        public string UserName{ get; set; }
+        public string ReactionType
         {
             get
             {
-                return _isFavourite;
+                return _reactionType;
             }
             set
             {
-                _isFavourite = value;
-                OnPropertyChanged("IsFavourite");
+                _reactionType = value;
+                OnPropertyChanged("ReactionType");
             }
-
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

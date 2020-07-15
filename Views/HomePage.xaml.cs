@@ -10,26 +10,24 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+using TaskManagerApp.LoginPages;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace TaskManagerApp
+namespace TaskManagerApp.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HomePage : Page
     {
-
-
         public HomePage()
         {
             this.InitializeComponent();
             HomeFrame.Navigate(typeof(AddTaskPage));
-
         }
 
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
@@ -46,17 +44,18 @@ namespace TaskManagerApp
         {
             if (AddTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(AddTaskPage));
+                HomeFrame.Navigate(typeof(AddTaskPage), null, new SuppressNavigationTransitionInfo());
+                MySplitView.IsPaneOpen = false;
             }
             if (ViewFavTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(ViewMyTaskPage));
-
+                HomeFrame.Navigate(typeof(ViewMyTaskPage), null, new SuppressNavigationTransitionInfo());
+                MySplitView.IsPaneOpen = false;
             }
             if (ViewTask.IsSelected)
             {
-                HomeFrame.Navigate(typeof(ViewUserTask));
-
+                HomeFrame.Navigate(typeof(ViewUserTask), null, new SuppressNavigationTransitionInfo());
+                MySplitView.IsPaneOpen = false;
             }
             else if (Logout.IsSelected)
             {

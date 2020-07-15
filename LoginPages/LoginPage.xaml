@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="TaskManagerApp.LoginPage"
+    x:Class="TaskManagerApp.LoginPages.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TaskManagerApp"
@@ -12,20 +12,20 @@
         <TextBlock Text="Login to TaskManagement"
                    Style="{StaticResource TitleStyle}"
                    Margin="0,150,0,20"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="550,30,500,0" >
-            <StackPanel Width="Auto" Height="350" >
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="525,30,525,0" >
+            <StackPanel Width="Auto" Height="320" >
                 <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}" 
                  Name="UsernameTxt"
                  PlaceholderText="Enter your username"
                  HorizontalAlignment="Center"
                  Margin="0,50,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-                <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}"
+                <PasswordBox 
                  Name="PasswordTxt"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
                  Margin="0,20,0,0"
-                 Style="{StaticResource TextBoxStyle}"/>
+                 Style="{StaticResource PasswordBoxStyle}"/>
                 <Button
                 Name="LoginBtn"
                 Content="Login"

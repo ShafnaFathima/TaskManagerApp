@@ -20,6 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using TaskManagerApp.DB;
 using Windows.Storage;
 using System.ServiceModel.Channels;
+using TaskManagerApp.Model;
 
 namespace TaskManagerApp
 {
@@ -35,6 +36,7 @@ namespace TaskManagerApp
 
         internal static string CurrentUser;
         public static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        Object value = App.localSettings.Values["IsAppFirstTimeLaunch"];
 
         public App()
         {
@@ -50,6 +52,99 @@ namespace TaskManagerApp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            if (localSettings.Values["IsAppFirstTimeLaunch"] == null || (bool)value == true)
+            {
+
+                localSettings.Values["IsAppFirstTimeLaunch"] = false;
+                var vault = new Windows.Security.Credentials.PasswordVault();
+                vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", "Sabi", "123"));
+                vault.Add(new Windows.Security.Credentials.PasswordCredential("TaskManagerApp", "Sabitha", "123"));
+                UserDB.AddUser("Sabi", "/Assets/avatar1.PNG");
+                UserDB.AddUser("Sabitha", "/Assets/avatar4.PNG");
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Cliq Login Page",
+                    TaskId = 1223334444112,
+                    AssignedByUser = "Sabi",
+                    AssignedToUser = "Sabi",
+                    Priority = 1,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                    Description = "lopoioiui wtyetyuiyruiewo"
+                });
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Cliq SignIn Page",
+                    TaskId = 987654321112,
+                    AssignedByUser = "Sabitha",
+                    AssignedToUser = "Sabi",
+                    Priority = 2,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                    Description = "Associated with an existing code-behind file using a qualifier that's part of the file or folder name"
+                });
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Content Writing",
+                    TaskId = 123456789112,
+                    AssignedByUser = "Sabitha",
+                    AssignedToUser = "Sabitha",
+                    Priority = 1,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                    Description = "lopoioiui wtyetyuiyruiewo yuwiyeueiytiu"
+                });
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Cliq List Tasks",
+                    TaskId = 123456789113,
+                    AssignedByUser = "Sabitha",
+                    AssignedToUser = "Sabi",
+                    Priority = 2,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                    Description = "name the XAML view MainPage.DeviceFamily-Tablet.xaml. To create a view for PC devices, name the view MainPage.DeviceFamily-Desktop.xaml"
+                });
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Fix Bugs in List Tasks",
+                    TaskId = 123456789115,
+                    AssignedByUser = "Shafna",
+                    AssignedToUser = "Sabitha",
+                    Priority = 0,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                });
+                TaskDB.AddTask(new Model.TaskModel()
+                {
+                    TaskName = "Fix Bugs in List Tasks",
+                    TaskId = 123456789116,
+                    AssignedByUser = "Shafna",
+                    AssignedToUser = "Sabi",
+                    Priority = 2,
+                    StartDate = (DateTimeOffset)DateTime.Today,
+                    EndDate = (DateTimeOffset)DateTime.Today,
+                    Description = "Load task module"
+                });
+                CommentDB.AddComment(new Model.Comment()
+                {
+                    AuthorName = "Sabi",
+                    CommentToTaskId = 123456789112,
+                    Content = " If you cannot find a way to fit supporting evidence in just one or two sentences, use a different example altogether. There are certain topics that require a lot of room for explanation, so be careful not to choose a topic for your essay that will require too much evidence to support.",
+                    CommentId = 99988660111,
+                    Date = DateTime.Now,
+                    Heart = 0,
+                    Happy = 0,
+                    Sad = 0,
+                    Like = 0
+                });
+                CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabitha", CommentToTaskId = 123456789112, Content = "Okay Done!", CommentId = 99988661111, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+                CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabi", CommentToTaskId = 987654321112, Content = " Only by examining how you reflect on your qualities can college admissions officers gain an understanding", CommentId = 9998866211, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+                CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabitha", CommentToTaskId = 1223334444112, Content = " Present, support, and introspect.", CommentId = 9998866311, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+                CommentDB.AddComment(new Model.Comment() { AuthorName = "Sabitha", CommentToTaskId = 123456789116, Content = " Make sure a folder or the project, and not the solution, is selected in Solution Explorer.", CommentId = 999886631121, Date = DateTime.Now, Heart = 0, Happy = 0, Sad = 0, Like = 0 });
+
+            }
+
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -78,6 +173,7 @@ namespace TaskManagerApp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
+
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
