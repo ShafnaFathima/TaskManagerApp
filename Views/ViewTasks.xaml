@@ -130,7 +130,8 @@
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
                   IsSwipeEnabled="True"
-                  Margin="0,25,0,0">
+                  Margin="-20,25,0,0"
+                  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <SwipeControl x:Name="ListViewSwipeContainer"
@@ -142,10 +143,12 @@
                 </ListView.ItemTemplate>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListView">
-                        <Setter Target="Padding" Value="0"/>
+                        <Setter Target="Padding" Value="0,0,0,0"/>
                         <Setter Target="Margin" Value="-10,0,-10,0"/>
+                        <Setter Target="BorderThickness" Value="0"/>
                         <Setter Target="HorizontalAlignment" Value="Stretch"/>
                         <Setter Target="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Target="MinWidth" Value="0"/>
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>

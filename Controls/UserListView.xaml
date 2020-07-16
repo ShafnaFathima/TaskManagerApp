@@ -12,7 +12,7 @@
         <converters:BoolToColourConverter x:Key="BoolToColour">
         </converters:BoolToColourConverter>
     </UserControl.Resources>
-    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="-20,0,-20,0">
+    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="-20,0,-20,0"  HorizontalAlignment="Stretch" >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="HamburgerStateGroup">
                 <VisualState x:Name="SmallWindow">
@@ -35,7 +35,7 @@
         </VisualStateManager.VisualStateGroups>
         <RelativePanel  
             HorizontalAlignment="Stretch"  
-            Margin="10,0,0,0"
+            Margin="20,0,0,0"
             Name="TaskListPanel"     
             >
             <TextBlock Name="TaskSymbol"
