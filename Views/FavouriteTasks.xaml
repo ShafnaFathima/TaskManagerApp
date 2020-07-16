@@ -90,7 +90,7 @@
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
-                  Margin="0,25,0,0"
+                  Margin="-20,25,0,0"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
                 SelectionChanged="TasksList_SelectionChanged">
