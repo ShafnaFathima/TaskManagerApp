@@ -135,7 +135,6 @@
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Icon.cs" />
     <Compile Include="Model\Reaction.cs" />
     <Compile Include="Converters\ReactionVisibilityConverter.cs" />
     <Compile Include="Converters\SwitchConverter.cs" />

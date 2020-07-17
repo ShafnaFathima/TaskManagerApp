@@ -96,6 +96,7 @@
                   VerticalAlignment="Top"
                   SelectionMode="Single"
                   Margin="-20,25,0,0"
+                      Width="570"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
                 SelectionChanged="TasksList_SelectionChanged">

@@ -4,7 +4,7 @@
     xmlns:local="using:TaskManagerApp">
 
     <Style TargetType="Button" x:Key="BtnStyle">
-        <Setter Property="Background" Value="DarkBlue"/>
+        <Setter Property="Background" Value="{ThemeResource SystemAccentColorDark2}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="BorderBrush" Value="DimGray"/>
@@ -166,7 +166,7 @@
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="180"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="ErrorTxt">
         <Setter Property="Foreground" Value="Red"/>
@@ -179,9 +179,9 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="ComboBox"  x:Key="ComboBoxStyle">
-        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        <!--<Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>-->
         <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
-        <Setter Property="PlaceholderForeground" Value="{ThemeResource SystemAccentColor}"/>
+        <!--<Setter Property="PlaceholderForeground" Value="{ThemeResource SystemAccentColor}"/>-->
         <Setter Property="Width" Value="230"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="FontSize" Value="14"/>
@@ -210,11 +210,6 @@
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="20"/>
         <Setter Property="Foreground" Value="Gray"/>
-    </Style>
-    <Style TargetType="Button" x:Key="AddCommentBtnStyle">
-        <Setter Property="Content" Value="Comment"/>
-        <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Margin" Value="5,2,2,0"/>
     </Style>
     <Style TargetType="TextBox" x:Key="CommentBoxStyle">
         <Setter Property="Margin" Value="2,2,5,0"/>

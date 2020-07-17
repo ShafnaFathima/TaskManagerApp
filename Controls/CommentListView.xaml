@@ -42,7 +42,6 @@
                  FontFamily="Segoe MDL2 Assets"
                 Content="&#xE74D;"
                 Foreground="Gray"
-                Background="White"
                 FontSize="12"
                 Click="RemoveComment_Click"
                 Margin="0,5,105,0"

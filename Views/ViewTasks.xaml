@@ -132,6 +132,7 @@
             <!--taskslistview-->
             <ListView Name="TasksList"
                   HorizontalAlignment="Stretch"
+                  Width="570"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
                   SelectionChanged="TasksList_SelectionChanged"
@@ -152,7 +153,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListView">
                         <Setter Target="Padding" Value="0,0,0,0"/>
-                        <Setter Target="Margin" Value="-10,0,-10,0"/>
+                        <Setter Target="Margin" Value="0,0,0,0"/>
                         <Setter Target="BorderThickness" Value="0"/>
                         <Setter Target="HorizontalAlignment" Value="Stretch"/>
                         <Setter Target="HorizontalContentAlignment" Value="Stretch"/>

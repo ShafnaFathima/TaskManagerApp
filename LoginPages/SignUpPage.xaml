@@ -45,7 +45,6 @@
                  Style="{StaticResource ResourceKey=PasswordBoxStyle}"
                  Margin="0,20,0,0"
                  PlaceholderText="Re-enter your password"
-                    Foreground="CornflowerBlue"
                  HorizontalAlignment="Center"
                  HorizontalContentAlignment="Center"/>
             <Button 
