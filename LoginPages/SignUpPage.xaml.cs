@@ -25,14 +25,15 @@ namespace TaskManagerApp.LoginPages
     /// </summary>
     public sealed partial class SignUpPage : Page
     {
-        private List<Icon> Icons = new List<Icon>();
+        private List<string> Icons = new List<string>();
         public SignUpPage()
         {
             this.InitializeComponent();     
-            Icons.Add(new Icon { IconPath = "/Assets/avatar1.PNG" });
-            Icons.Add(new Icon { IconPath = "/Assets/avatar2.PNG" });
-            Icons.Add(new Icon { IconPath = "/Assets/avatar3.PNG" });
-            Icons.Add(new Icon { IconPath = "/Assets/avatar4.PNG" });
+            Icons.Add("/Assets/avatar1.PNG");
+            Icons.Add("/Assets/avatar2.PNG");
+            Icons.Add("/Assets/avatar3.PNG");
+            Icons.Add("/Assets/avatar4.PNG");
+            AvatarComboBox.ItemsSource = Icons;
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
@@ -53,7 +54,7 @@ namespace TaskManagerApp.LoginPages
                 {
                     if (PasswordTxt.Password.Equals(ConfirmPasswordTxt.Password))
                     {
-                        string avatar = ((Icon)AvatarComboBox.SelectedValue).IconPath;
+                        string avatar = ((string)AvatarComboBox.SelectedValue);
                         AvatarComboBox.SelectedIndex = -1;
                         UserDB.AddUser(UsernameTxt.Text,avatar);
                         var vault = new Windows.Security.Credentials.PasswordVault();

@@ -28,14 +28,14 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TaskListPanel.Width" Value="200"/>
+                        <Setter Target="TaskListPanel.Width" Value="550"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <RelativePanel  
             HorizontalAlignment="Stretch"  
-            Margin="20,0,0,0"
+            Margin="30,0,0,0"
             Name="TaskListPanel"     
             >
             <TextBlock Name="TaskSymbol"

@@ -28,24 +28,25 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="ViewTasks.Margin" Value="30,10,0,0"/>
                         <Setter Target="BackBtn.Visibility" Value="Visible"/>
                         <Setter Target="ComboboxPanel.(Grid.Row)" Value="1"/>
                         <Setter Target="ComboboxPanel.(Grid.Column)" Value="0"/>
                         <Setter Target="ComboboxPanel.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="ComboboxPanel.Visibility" Value="Collapsed"/>
                         <Setter Target="ComboboxPanel.Margin" Value="10,0,0,0"/>
+                        <Setter Target="ComboboxPanel.HorizontalAlignment" Value="Left"/>
                         <Setter Target="TaskEmptyTxt.(Grid.Row)" Value="2"/>
                         <Setter Target="TaskEmptyTxt.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.(Grid.Row)" Value="3"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Collapsed"/>
                         <Setter Target="TasksList.(Grid.ColumnSpan)" Value="3"/>
-                        <Setter Target="DetailsGrid.(Grid.Row)" Value="3"/>
-                        <Setter Target="DetailsGrid.(Grid.Column)" Value="0"/>
-                        <Setter Target="DetailsGrid.(Grid.ColumnSpan)" Value="3"/>
-                        <Setter Target="DetailsGrid.Margin" Value="30,8,0,0"/>
-                        <Setter Target="Discussion.(Grid.Row)" Value="4"/>
-                        <Setter Target="Discussion.(Grid.Column)" Value="0"/>
-                        <Setter Target="Discussion.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="3"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="0"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.ColumnSpan)" Value="3"/>
+                        <!--<Setter Target="DetailAndDiscussion.Visibility" Value="Visible"/>-->
+                        <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Left"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
@@ -53,21 +54,21 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="ViewTasks.Margin" Value="10,10,0,0"/>
                         <Setter Target="BackBtn.Visibility" Value="Collapsed"/>
                         <Setter Target="ComboboxPanel.(Grid.Row)" Value="0"/>
                         <Setter Target="ComboboxPanel.(Grid.Column)" Value="1"/>
-                        <Setter Target="ComboboxPanel.Margin" Value="30,0,0,0"/>
+                        <Setter Target="ComboboxPanel.Margin" Value="-55,0,0,0"/>
+                        <Setter Target="ComboboxPanel.Visibility" Value="Visible"/>
+                        <Setter Target="ComboboxPanel.HorizontalAlignment" Value="Center"/>
                         <Setter Target="TaskEmptyTxt.(Grid.Row)" Value="1"/>
                         <Setter Target="TaskEmptyTxt.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Visible"/>
-                        <Setter Target="TasksList.(Grid.Row)" Value="2"/>
+                        <Setter Target="TasksList.(Grid.Row)" Value="1"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
-                        <Setter Target="TasksList.(Grid.ColumnSpan)" Value="1"/>
-                        <Setter Target="DetailsGrid.(Grid.Row)" Value="2"/>
-                        <Setter Target="DetailsGrid.(Grid.Column)" Value="1"/>
-                        <Setter Target="DetailsGrid.Margin" Value="30,18,0,0"/>
-                        <Setter Target="Discussion.(Grid.Row)" Value="2"/>
-                        <Setter Target="Discussion.(Grid.Column)" Value="2"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="1"/>
+                        <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Center"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -82,19 +83,28 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
+            <Button FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE72B;"
+                        Foreground="{ThemeResource SystemAccentColorDark1}"
+                        Name="BackBtn"
+                        Click="BackBtn_Click"
+                        Height="24"
+                        VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Left"
+                        Margin="0,10,10,0"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        />
             <TextBlock Name="ViewTasks"
-                    Text="View Tasks"
-                   Grid.Row="0" Grid.Column="0"
+                   Text="View Tasks"
                    Style="{StaticResource ResourceKey=TitleStyle}"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
-                   RelativePanel.AlignLeftWithPanel="True"
-                   Margin="10,10,0,0"/>
+                   Margin="10,10,0,0"
+                  />
             <TextBlock Name="TaskEmptyTxt"
                        Text="No tasks are assigned to this user!"
                        Grid.ColumnSpan="2"
@@ -110,8 +120,7 @@
                 <ComboBox 
                  Name="SelectUser"
                  PlaceholderText="   User"
-                 Foreground="DarkBlue"
-                 BorderBrush="DarkBlue"
+                 BorderBrush="{ThemeResource SystemAccentColor}"
                  PlaceholderForeground="CornflowerBlue"
                  FontSize="13"
                  Height="28"
@@ -122,7 +131,6 @@
             <!--</Border>-->
             <!--taskslistview-->
             <ListView Name="TasksList"
-                  Grid.Row="1"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
@@ -153,177 +161,166 @@
                 </ListView.ItemContainerStyle>
             </ListView>
             <!--details view starting-->
-
-            <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Name="DetailsGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Button FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE72B;"
-                        Foreground="Black"
-                        Background="White"
-                        Name="BackBtn"
-                        Click="BackBtn_Click"
-                        Height="24"
-                        VerticalContentAlignment="Stretch"
-                        HorizontalContentAlignment="Left"
-                        Margin="-27,10,-2,0"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        />
-                    <TextBlock Name="TitleTxt"
+            <StackPanel Orientation="Vertical" Name="DetailAndDiscussion" Margin="0,0,0,20" >
+                <Grid   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,17,0,0" Name="DetailsGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBlock Name="TitleTxt"
                        FontSize="16"
                        FontWeight="Bold"
                        HorizontalAlignment="Left"
                        Margin="0,10,0,0"/>
-                    <Button Name="StarBtnDetails"
+                        <Button Name="StarBtnDetails"
                       FontFamily="Segoe MDL2 Assets" 
-                      Background="White"
                       Foreground="Gold"
                       Style="{StaticResource TextBlockButtonStyle}"
                       Content="{Binding DataContext.IsFavourite,Converter={StaticResource BoolToColour},Mode=OneWay,UpdateSourceTrigger=PropertyChanged,ElementName=StarBtnDetails}"
                       Click="StarBtn_Click"
                         Margin="5,10,0,0"
                    />
-                </StackPanel>
-                <TextBlock Name="Assigned"
+                    </StackPanel>
+                    <TextBlock Name="Assigned"
                        Margin="0,0,0,20"
                        FontSize="12"
                        FontWeight="SemiLight"
                        Grid.Row="1"
                        />
-                <StackPanel Name="ParentStackPanel" Grid.Row="2" Orientation="Horizontal">
-                    <StackPanel Name="AssignedPanel" >
-                        <StackPanel Orientation="Horizontal"  >
-                            <TextBlock Name="Pic"
+                    <StackPanel Name="ParentStackPanel" Grid.Row="2" Orientation="Horizontal">
+                        <StackPanel Name="AssignedPanel" >
+                            <StackPanel Orientation="Horizontal"  >
+                                <TextBlock Name="Pic"
                            FontFamily="Segoe MDL2 Assets"
                            FontSize="12"
                            Text="&#xE77B;"
                            Margin="0,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                            <TextBlock Text="ASSIGNED BY"
+                                <TextBlock Text="ASSIGNED BY"
                            FontSize="11"
                            FontWeight="Bold"
                            Margin="2,2,0,0"
                            />
-                        </StackPanel>
-                        <TextBlock Name="AssignedTo"
+                            </StackPanel>
+                            <TextBlock Name="AssignedTo"
                                Margin="18,1,0,0"
                                FontSize="13"/>
-                    </StackPanel>
-                    <StackPanel Name="DatePanel" Margin="15,0,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="Calendar"
+                        </StackPanel>
+                        <StackPanel Name="DatePanel" Margin="15,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Name="Calendar"
                            FontFamily="Segoe MDL2 Assets"
                            FontSize="12"
                            Text="&#xE787;"
                            Margin="10,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                            <TextBlock Text="DUE ON"
+                                <TextBlock Text="DUE ON"
                            FontSize="11"
                            FontWeight="Bold"
                            Margin="2,2,0,0"
                            />
-                        </StackPanel>
-                        <TextBlock Name="DateTxt"
+                            </StackPanel>
+                            <TextBlock Name="DateTxt"
                                Margin="28,1,0,0"
                                FontSize="13"/>
-                    </StackPanel>
-                    <StackPanel Name="PriorityPanel" Margin="15,0,0,0">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock
+                        </StackPanel>
+                        <StackPanel Name="PriorityPanel" Margin="15,0,0,0">
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock
                            FontFamily="Segoe MDL2 Assets"
                            FontSize="12"
                            Text="&#xE8D0;"
                            Margin="10,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                            <TextBlock Text="PRIORITY"
+                                <TextBlock Text="PRIORITY"
                            FontSize="11"
                            Margin="2,2,0,0"
                                FontWeight="Bold"
                            />
-                        </StackPanel>
-                        <TextBlock Name="PriorityTxt"
+                            </StackPanel>
+                            <TextBlock Name="PriorityTxt"
                            Margin="28,1,0,0"
                            FontSize="13"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-                <!--EndofParentStack-->
-                <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" Name="DescriptionPanel">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
+                    <!--EndofParentStack-->
+                    <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,15,0,0" Name="DescriptionPanel">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
                            FontFamily="Segoe MDL2 Assets"
                            FontSize="12"
                            Text="&#xE8BD;"
                            Margin="0,5,2,0"
                            Foreground="CornflowerBlue"
                            FontWeight="SemiBold"/>
-                        <TextBlock Text="DESCRIPTION"                           
+                            <TextBlock Text="DESCRIPTION"                           
                               FontSize="11"
                               FontWeight="Bold"
                               Margin="2,2,0,0"/>
-                    </StackPanel>
-                    <TextBlock Name="DescriptionTxt"
+                        </StackPanel>
+                        <TextBlock Name="DescriptionTxt"
                            MaxWidth="276"
                            TextWrapping="Wrap"        
                            FontSize="13"
                            Margin="18,2,0,0"/>
-                </StackPanel>
+                    </StackPanel>
 
-            </Grid>
-            <!--End of details view-->
-            <!--comments section code-->
-            <RelativePanel Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" Margin="15,15,20,20" Width="400" Height="450" Name="Discussion">
-                <TextBlock Text="DISCUSSIONS"
+                </Grid>
+                <!--End of details view-->
+                <!--comments section code-->
+                <RelativePanel  HorizontalAlignment="Left" Margin="15,15,20,20" Width="400" Height="Auto" Name="Discussion">
+                    <TextBlock Text="DISCUSSIONS"
                        RelativePanel.AlignLeftWithPanel="True"
                        Name="CommentTitle"
                        FontSize="14"
                        FontWeight="SemiBold"
                        Margin="10,18,0,0"/>
-                <TextBox Name="EnterComment"
+                    <StackPanel Orientation="Horizontal"
+                                Name="EnterCommentPanel"
+                          RelativePanel.AlignLeftWithPanel="True"
+                         RelativePanel.Below="CommentTitle"
+                                 Margin="10,20,0,20">
+                        <TextBox Name="EnterComment"
                      PlaceholderForeground="Gray"
                      Height="35"
                      FontSize="13"
                      PlaceholderText="Enter your thoughts!"
-                     RelativePanel.AlignLeftWithPanel="True"
-                     RelativePanel.AlignRightWith="AddButton"
-                     RelativePanel.Below="CommentTitle"
                      AcceptsReturn="True" 
                      TextWrapping="Wrap"    
-                     Margin="12,20,0,20"
+                     Width="330"
                      />
-                <Button Name="AddButton"
+                        <Button Name="AddButton"
                     Click="AddButton_Click"     
                     Content="Add"
                     Background="LightBlue"
                     Foreground="CornflowerBlue"                      
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.Below="CommentTitle"
-                    Margin="0,20,0,0"
                     Height="35"
                     FontSize="13"
                     BorderBrush="CornflowerBlue"
+                                Margin="2,0,0,0"
                     BorderThickness="2"/>
-                <ListView Name="CommentsList"
-                      RelativePanel.Below="EnterComment"
+                    </StackPanel>
+                    <ListView Name="CommentsList"
+                      RelativePanel.Below="EnterCommentPanel"
                       RelativePanel.AlignBottomWithPanel="True"
                       Margin="0,5,0,0"  
                       SelectionMode="None"
                      >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <local:CommentListView ZComment="{Binding}"
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <local:CommentListView ZComment="{Binding}"
                                       />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </RelativePanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RelativePanel>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -8,45 +8,43 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="Login to TaskManagement"
                    Style="{StaticResource TitleStyle}"
-                   Margin="0,150,0,20"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="20" Margin="525,30,525,0" >
-            <StackPanel Width="Auto" Height="320" >
-                <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}" 
+                   Margin="0,0,0,20"/>
+        <StackPanel Width="Auto" Height="320" Margin="20,20,20,20" BorderBrush="Gray" CornerRadius="20"  BorderThickness="2"  >
+            <TextBox Template="{StaticResource TextBoxCenterAlignTemplate}" 
                  Name="UsernameTxt"
                  PlaceholderText="Enter your username"
                  HorizontalAlignment="Center"
                  Margin="0,50,0,0"
                  Style="{StaticResource TextBoxStyle}"/>
-                <PasswordBox 
+            <PasswordBox 
                  Name="PasswordTxt"
                  PlaceholderText="Enter your password"
                  HorizontalAlignment="Center"
                  Margin="0,20,0,0"
                  Style="{StaticResource PasswordBoxStyle}"/>
-                <Button
+            <Button
                 Name="LoginBtn"
                 Content="Login"
                 Click="LoginBtn_Click"
                 HorizontalAlignment="Center"
                 Margin="0,20,0,0"
                 Style="{StaticResource BtnStyle}"/>
-                <Button 
+            <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
                 Style="{StaticResource BtnStyle}"
                 HorizontalAlignment="Center"
                 Margin="0,20,0,0"/>
-                <TextBlock 
+            <TextBlock 
                  Name="ErrorTxt"
                  HorizontalAlignment="Center"
                  Margin="0,20,0,20"
                  Style="{StaticResource ErrorTxt}"
                    />
-            </StackPanel>
-        </Border>
+        </StackPanel>
     </StackPanel>
 </Page>

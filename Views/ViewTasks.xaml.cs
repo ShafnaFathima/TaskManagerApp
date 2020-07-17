@@ -73,14 +73,12 @@ namespace TaskManagerApp.Views
                 if (ActualWidth < 700)
                 {
                     TasksList.Visibility = Visibility.Visible;
-                    DetailsGrid.Visibility = Visibility.Collapsed;
-                    Discussion.Visibility = Visibility.Collapsed;
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
                 }
                 if (ActualWidth >= 700)
                 {
                     TasksList.Visibility = Visibility.Visible;
-                    DetailsGrid.Visibility = Visibility.Visible;
-                    Discussion.Visibility = Visibility.Visible;
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -88,8 +86,7 @@ namespace TaskManagerApp.Views
                 TasksList.ItemsSource = _tasks;
                 TaskEmptyTxt.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Collapsed;
-                Discussion.Visibility = Visibility.Collapsed;
+                DetailAndDiscussion.Visibility = Visibility.Collapsed;
             }
         }
         public static ObservableCollection<Comment> comments;
@@ -139,14 +136,12 @@ namespace TaskManagerApp.Views
             if (this.ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
             if (this.ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
         }
 
@@ -210,16 +205,15 @@ namespace TaskManagerApp.Views
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             TasksList.Visibility = Visibility.Visible;
-            DetailsGrid.Visibility = Visibility.Collapsed;
-            Discussion.Visibility = Visibility.Collapsed;
+            ComboboxPanel.Visibility = Visibility.Visible;
+            DetailAndDiscussion.Visibility = Visibility.Collapsed;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (ViewUserTask._tasks.Count != 0)
             {
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
             double Acutalwidth = this.ActualWidth;
             if (ActualWidth >= 700)
@@ -268,18 +262,17 @@ namespace TaskManagerApp.Views
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
             }
-            double Acutalwidth = this.ActualWidth;
-            if (ActualWidth < 700)
+            if (this.ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                ComboboxPanel.Visibility = Visibility.Collapsed;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
-            if (ActualWidth >= 700)
+            if (this.ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                ComboboxPanel.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
         }
 

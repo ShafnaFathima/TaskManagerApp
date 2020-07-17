@@ -43,16 +43,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <RelativePanel Background="CornflowerBlue">
-            <Button Name="HamburgerButton" 
-                    RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="20" 
-                    Content="&#xE700;" 
-                    Click="HamburgerButton_Click"
-                    Background="CornflowerBlue"
-                    Margin="2,0,0,0"/>
-        </RelativePanel>
         <SplitView Grid.Row="1" 
                    Name="MySplitView"
                    OpenPaneLength="210" 
@@ -63,6 +53,16 @@
                 <ListView SelectionMode="Single" 
                          SelectionChanged="ListBox_SelectionChanged"
                          Background="CornflowerBlue">
+                    <ListViewItem Name="Hamburger">
+                        <Button Name="HamburgerButton" 
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20" 
+                    HorizontalAlignment="Left"
+                    Content="&#xE700;" 
+                    Background="CornflowerBlue"
+                    Click="HamburgerButton_Click"
+                    Margin="-12,-2,0,0"/>
+                    </ListViewItem>
                     <ListViewItem Name="AddTask" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE710;" />

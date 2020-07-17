@@ -46,15 +46,13 @@ namespace TaskManagerApp.Views
                 TasksList.ItemsSource = _tasks;
                 TasksList.SelectedIndex = 0;
                 TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
             else
             {
                 NoTasks.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Collapsed;
-                Discussion.Visibility = Visibility.Collapsed;
+                DetailAndDiscussion.Visibility = Visibility.Collapsed;
             }
         }
         public static ObservableCollection<Comment> comments;
@@ -176,17 +174,19 @@ namespace TaskManagerApp.Views
         {   
            
             TasksList.Visibility = Visibility.Visible;
-            DetailsGrid.Visibility = Visibility.Collapsed;
-            Discussion.Visibility = Visibility.Collapsed;
-           // TasksList.SelectedIndex = -1;
+            DetailAndDiscussion.Visibility= Visibility.Collapsed;
+            //DetailsGrid.Visibility = Visibility.Collapsed;
+            //Discussion.Visibility = Visibility.Collapsed;
+            // TasksList.SelectedIndex = -1;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (ViewMyTaskPage._tasks.Count != 0)
             {
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
+                //DetailsGrid.Visibility = Visibility.Visible;
+                //Discussion.Visibility = Visibility.Visible;
             }
             double Acutalwidth = this.ActualWidth;
             if(ActualWidth>=700)
@@ -225,14 +225,12 @@ namespace TaskManagerApp.Views
             if (this.ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
             if (this.ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
         }
         private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)

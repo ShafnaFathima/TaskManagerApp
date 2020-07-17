@@ -158,7 +158,7 @@
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="180"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
         <Setter Property="HorizontalTextAlignment" Value="Left"/>
     </Style>
     <Style TargetType="PasswordBox" x:Key="PasswordBoxStyle">
@@ -179,15 +179,15 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="ComboBox"  x:Key="ComboBoxStyle">
-        <Setter Property="Foreground" Value="DarkBlue"/>
-        <Setter Property="BorderBrush" Value="DarkBlue"/>
-        <Setter Property="PlaceholderForeground" Value="CornflowerBlue"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemAccentColor}"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
+        <Setter Property="PlaceholderForeground" Value="{ThemeResource SystemAccentColor}"/>
         <Setter Property="Width" Value="230"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
     <Style TargetType="CalendarDatePicker" x:Key="DatePickerStyle">
-        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
         <Setter Property="Width" Value="230"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="VerticalAlignment" Value="Center"/>

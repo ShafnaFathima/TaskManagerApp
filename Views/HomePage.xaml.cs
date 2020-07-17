@@ -45,17 +45,26 @@ namespace TaskManagerApp.Views
             if (AddTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(AddTaskPage), null, new SuppressNavigationTransitionInfo());
-                MySplitView.IsPaneOpen = false;
+                if(this.ActualWidth < 700)
+                {
+                    MySplitView.IsPaneOpen = false;
+                }
             }
             if (ViewFavTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewMyTaskPage), null, new SuppressNavigationTransitionInfo());
-                MySplitView.IsPaneOpen = false;
+                if (this.ActualWidth < 700)
+                {
+                    MySplitView.IsPaneOpen = false;
+                }
             }
             if (ViewTask.IsSelected)
             {
                 HomeFrame.Navigate(typeof(ViewUserTask), null, new SuppressNavigationTransitionInfo());
-                MySplitView.IsPaneOpen = false;
+                if (this.ActualWidth < 700)
+                {
+                    MySplitView.IsPaneOpen = false;
+                }
             }
             else if (Logout.IsSelected)
             {
