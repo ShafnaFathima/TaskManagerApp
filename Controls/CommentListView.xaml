@@ -167,11 +167,9 @@
                   VerticalAlignment="Bottom"
                   RelativePanel.RightOf="CurrentReactionBtn"
                   RelativePanel.AlignBottomWithPanel="True"
-                  VerticalOffset="0"
-                  Margin="0,0,0,0"
                   IsLightDismissEnabled="True"           
                        >
-                <ListView x:Name="ReactedPeopleList" Background="White" SelectionMode="None"  BorderBrush="CornflowerBlue" BorderThickness="2" CornerRadius="5" VerticalAlignment="Bottom"
+                <ListView x:Name="ReactedPeopleList" Background="Black" SelectionMode="None" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="5" VerticalAlignment="Bottom"
                               VerticalContentAlignment="Bottom" Margin="0,0,0,0">
                     <ListView.ItemContainerStyle >
                         <Style TargetType="ListViewItem">
@@ -184,7 +182,7 @@
                     <ListView.ItemTemplate >
                         <DataTemplate>
                             <Grid  Width="70">
-                                <TextBlock  Text="{Binding UserName}" FontSize="11" Foreground="Black" Height="15" HorizontalAlignment="Left"  FontWeight="SemiBold"/>
+                                <TextBlock  Text="{Binding UserName}" FontSize="11" Foreground="White" Height="15" HorizontalAlignment="Left"  FontWeight="SemiBold"/>
                                 <Button Style="{StaticResource TextBlockButtonStyle}"
                                             HorizontalContentAlignment="Stretch"
                                             VerticalContentAlignment="Stretch"
@@ -193,7 +191,7 @@
                                     <Button.Content>
                                         <Image Source="{Binding ReactionType,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ImageConverter}}"
                                                    Stretch="UniformToFill"
-                                                   Height="12"
+                                                   Height="15"
                                                    Width="15"/>
                                     </Button.Content>
                                 </Button>
@@ -214,70 +212,5 @@
                           />
 
         </RelativePanel>
-        <!--reaction display section starts-->
-        <!--<StackPanel >
-                <StackPanel Orientation="Horizontal" RelativePanel.AlignTopWithPanel="True" Margin="50,3,0,0"
-                            RelativePanel.Above="CurrentReactionBtn">
-                    <Button Height="12"
-                            Width="15"
-                            Padding="0" BorderThickness="0"
-                            HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch"
-                            Visibility="{Binding ZComment.Like,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
-                            IsEnabled="False"
-                        >
-                        <Button.Content>
-                            <Image Source="Assets/like.PNG"
-                               Stretch="UniformToFill"  />
-                        </Button.Content>
-                    </Button>
-
-                    <Button Height="12"
-                        Width="15"
-                        Margin="0,0,0,0"
-                        IsEnabled="False"
-                        Padding="0" BorderThickness="0"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        Visibility="{Binding ZComment.Heart,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
-                        >
-                        <Button.Content>
-                            <Image Source="Assets/heart.PNG"
-                               Stretch="UniformToFill"/>
-                        </Button.Content>
-                    </Button>
-                    <Button Height="12"
-                        Width="15"
-                        IsEnabled="False"
-                        Padding="0" BorderThickness="0"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        Margin="0,0,0,0"
-                        Visibility="{Binding ZComment.Happy,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
-                     >
-                        <Button.Content>
-                            <Image Source="Assets/happy.PNG"
-                               Stretch="UniformToFill"
-                                   />
-                        </Button.Content>
-                    </Button>
-
-
-                    <Button Height="12"
-                        Width="15"
-                        IsEnabled="False"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        Margin="0,1,0,0"
-                        Padding="0" BorderThickness="0"
-                        Visibility="{Binding ZComment.Sad,ElementName=CommentsListView,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ReactionVisible }}"
-                       >
-                        <Button.Content>
-                            <Image Source="Assets/sad.PNG"
-                               Stretch="UniformToFill"/>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </StackPanel>-->
     </StackPanel>
 </UserControl>

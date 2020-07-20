@@ -284,28 +284,17 @@
                        Margin="10,18,0,0"/>
                     <StackPanel Orientation="Horizontal"
                                 Name="EnterCommentPanel"
-                          RelativePanel.AlignLeftWithPanel="True"
-                         RelativePanel.Below="CommentTitle"
-                                 Margin="10,20,0,20">
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.Below="CommentTitle"
+                                Margin="10,20,0,20">
                         <TextBox Name="EnterComment"
-                     PlaceholderForeground="Gray"
-                     Height="35"
-                     FontSize="13"
-                     PlaceholderText="Enter your thoughts!"
-                     AcceptsReturn="True" 
-                     TextWrapping="Wrap"    
-                     Width="330"
-                     />
+                                Style="{StaticResource AddCommentBox}" 
+                               />
                         <Button Name="AddButton"
-                    Click="AddButton_Click"     
-                    Content="Add"
-                    Background="LightBlue"
-                    Foreground="CornflowerBlue"                      
-                    Height="35"
-                    FontSize="13"
-                    BorderBrush="CornflowerBlue"
+                                Click="AddButton_Click"           
                                 Margin="2,0,0,0"
-                    BorderThickness="2"/>
+                                Style="{StaticResource AddCommentBtn}"
+                              />
                     </StackPanel>
                     <ListView Name="CommentsList"
                       RelativePanel.Below="EnterCommentPanel"

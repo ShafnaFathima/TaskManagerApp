@@ -29,7 +29,6 @@
                 Name="LoginBtn"
                 Content="Login"
                 Click="LoginBtn_Click"
-                HorizontalAlignment="Center"
                 Margin="0,20,0,0"
                 Style="{StaticResource BtnStyle}"/>
             <Button 
@@ -37,7 +36,6 @@
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
                 Style="{StaticResource BtnStyle}"
-                HorizontalAlignment="Center"
                 Margin="0,20,0,0"/>
             <TextBlock 
                  Name="ErrorTxt"

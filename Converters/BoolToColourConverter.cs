@@ -15,9 +15,6 @@ namespace TaskManagerApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //long taskId = long.Parse(value.ToString());
-            //bool IsFav = UserDB.IsFavouriteTask(taskId, App.CurrentUser);
-            
             bool isFav = bool.Parse(value.ToString());
             if ( isFav.Equals(false))
             {

@@ -116,6 +116,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converters\ReactionVisibilityConverter.cs" />
     <Compile Include="Views\AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>
@@ -123,7 +124,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToColourConverter.cs" />
-    <Compile Include="Converters\BoolToEnableConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Controls\CommentListView.xaml.cs">
       <DependentUpon>CommentListView.xaml</DependentUpon>
@@ -136,7 +136,6 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Reaction.cs" />
-    <Compile Include="Converters\ReactionVisibilityConverter.cs" />
     <Compile Include="Converters\SwitchConverter.cs" />
     <Compile Include="Controls\UserListView.xaml.cs">
       <DependentUpon>UserListView.xaml</DependentUpon>

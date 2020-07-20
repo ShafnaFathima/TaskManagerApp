@@ -96,7 +96,7 @@
                   VerticalAlignment="Top"
                   SelectionMode="Single"
                   Margin="-20,25,0,0"
-                      Width="570"
+                  Width="570"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
                 SelectionChanged="TasksList_SelectionChanged">
@@ -235,23 +235,13 @@
                                 RelativePanel.Below="CommentTitle"
                                 Margin="10,20,0,20">
                         <TextBox Name="EnterComment"
-                                 PlaceholderForeground="Gray"
-                                 Height="35"
-                                 FontSize="13"
-                                 PlaceholderText="Enter your thoughts!"
-                                 Width="330"
-                                 AcceptsReturn="True" 
-                                 TextWrapping="Wrap"/>
+                                 Style="{StaticResource AddCommentBox}"
+                                 />
                         <Button Name="AddButton"
                                 Click="AddButton_Click"     
-                                Content="Add"
-                                Background="LightBlue"
-                                Foreground="CornflowerBlue"                            
+                                Style="{StaticResource AddCommentBtn}"                        
                                 Margin="2,0,0,0"
-                                Height="35"
-                                FontSize="13"
-                                BorderBrush="CornflowerBlue"
-                                BorderThickness="2"/>
+                                />
                     </StackPanel>
                     <ListView Name="CommentsList"
                       RelativePanel.Below="EnterCommentPanel"

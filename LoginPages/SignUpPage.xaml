@@ -13,7 +13,7 @@
         <TextBlock Text="Sign Up to TaskManagement"
                    Style="{StaticResource TitleStyle}"
                     Margin="0,0,0,20" />
-            <StackPanel Width="Auto"  Margin="20,20,20,20" Height="450" BorderBrush="Gray" BorderThickness="2" CornerRadius="20">
+            <StackPanel Width="Auto"  Margin="20" Height="450" BorderBrush="Gray" BorderThickness="2" CornerRadius="20">
             <TextBox
                  Name="UsernameTxt"
                  Template="{StaticResource TextBoxCenterAlignTemplate}" 
@@ -37,29 +37,23 @@
                  Name="PasswordTxt"
                  Style="{StaticResource ResourceKey=PasswordBoxStyle}"
                  PlaceholderText="Enter your password"
-                 HorizontalAlignment="Center"
-                 HorizontalContentAlignment="Center"
                  Margin="0,20,0,0"/>
             <PasswordBox
                  Name="ConfirmPasswordTxt"
                  Style="{StaticResource ResourceKey=PasswordBoxStyle}"
                  Margin="0,20,0,0"
-                 PlaceholderText="Re-enter your password"
-                 HorizontalAlignment="Center"
-                 HorizontalContentAlignment="Center"/>
+                 PlaceholderText="Re-enter your password"/>
             <Button 
                 Name="SignUpBtn"
                 Content="Sign Up"
                 Click="SignUpBtn_Click"
                 Style="{StaticResource ResourceKey=BtnStyle}"
-                Margin="0,20,0,0"
-                HorizontalAlignment="Center"/>
+                Margin="0,20,0,0"/>
             <Button 
                 Name="LoginBtn"
                 Content="Login"
                 Click="LoginBtn_Click"
                 Style="{StaticResource ResourceKey=BtnStyle}"
-                HorizontalAlignment="Center"
                 Margin="0,20,0,0"/>
             <TextBlock 
                    Name="ErrorTxt"

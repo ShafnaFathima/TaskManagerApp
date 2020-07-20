@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
+
 namespace TaskManagerApp.Converters
 {
-    public class ReactionVisibilityConverter:IValueConverter
+    public class ReactionVisibilityConverter: IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             int reactionCount = int.Parse(value.ToString());
-            if(reactionCount==0)
+            if (reactionCount == 0)
             {
                 return Visibility.Collapsed;
             }
