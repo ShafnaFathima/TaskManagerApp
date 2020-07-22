@@ -34,7 +34,7 @@
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Collapsed"/>
                         <Setter Target="TasksList.(Grid.ColumnSpan)" Value="2"/>
-                        <Setter Target="TasksList.Width" Value="570"/>
+                        <Setter Target="TasksList.Width" Value="700"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="0"/>
                         <Setter Target="DetailAndDiscussion.(Grid.ColumnSpan)" Value="2"/>
@@ -51,7 +51,7 @@
                         <Setter Target="TasksList.Visibility" Value="Visible"/>
                         <Setter Target="TasksList.(Grid.Row)" Value="1"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
-                        <Setter Target="TasksList.Width" Value="700"/>
+                        <Setter Target="TasksList.Width" Value="570"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="1"/>
                         <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Center"/>

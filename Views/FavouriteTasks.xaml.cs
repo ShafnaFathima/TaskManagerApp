@@ -166,7 +166,7 @@ namespace TaskManagerApp.Views
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (this.ActualWidth < 700)
+            if (ActualWidth < 700)
             {
                 if (TasksList.Visibility == Visibility.Visible)
                 {

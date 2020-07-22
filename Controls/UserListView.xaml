@@ -12,7 +12,7 @@
         <converters:BoolToColourConverter x:Key="BoolToColour">
         </converters:BoolToColourConverter>
     </UserControl.Resources>
-    <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Stretch" Width="570">
+    <Border BorderBrush="LightGray" Name="GreyBorder" BorderThickness="0,0,0,1" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Stretch" >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="HamburgerStateGroup">
                 <VisualState x:Name="SmallWindow">
@@ -21,6 +21,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TaskListPanel.Width" Value="700"/>
+                        <Setter Target="GreyBorder.Width" Value="700"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
@@ -29,6 +30,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TaskListPanel.Width" Value="570"/>
+                        <Setter Target="GreyBorder.Width" Value="570"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
