@@ -337,7 +337,7 @@ namespace TaskManagerApp.Controls
 
            // ReactedPeople.HorizontalOffset = Convert.ToDouble(x);
             int no = Convert.ToInt32(CountText.Text);
-            ReactedPeople.VerticalOffset = -25-(18.35)*no;
+            ReactedPeople.VerticalOffset = -25-(18.8)*no;
             ReactedPeople.IsOpen = true;
             List<Reaction> ReactedUsers = CommentDB.GetReactedUsers(ZComment.CommentId);
             ReactedPeopleList.ItemsSource = ReactedUsers;

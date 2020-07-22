@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using Windows.UI;
+using Windows.UI.Xaml.Media.Animation;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using TaskManagerApp.Controls;
@@ -75,7 +76,7 @@ namespace TaskManagerApp.Views
                     TasksList.Visibility = Visibility.Visible;
                     DetailAndDiscussion.Visibility = Visibility.Collapsed;
                 }
-                if (ActualWidth >= 700)
+                if (ActualWidth >=700)
                 {
                     TasksList.Visibility = Visibility.Visible;
                     DetailAndDiscussion.Visibility = Visibility.Visible;
@@ -106,22 +107,6 @@ namespace TaskManagerApp.Views
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                if (string.IsNullOrEmpty(task.Description))
-                {
-                    DescriptionPanel.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    DescriptionPanel.Visibility = Visibility.Visible;
-                    DescriptionTxt.Text = task.Description;
-                }
-                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
-                PriorityTxt.Text = priority;
-                AssignedTo.Text = task.AssignedToUser;
-                string fmt = "d";
-                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on "+ task.StartDate.Date.ToString(fmt); ;              
-                string EndDate = task.EndDate.Date.ToString(fmt);
-                DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
                 if(!IsAlreadyFav)
                 {
@@ -132,6 +117,7 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId); 
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+                DetailsFrame.Navigate(typeof(DetailView), task, new SuppressNavigationTransitionInfo());
             }
             if (this.ActualWidth < 700)
             {
@@ -210,17 +196,24 @@ namespace TaskManagerApp.Views
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (ViewUserTask._tasks.Count != 0)
+        {   
+            if(this.ActualWidth<700)
             {
-                DetailAndDiscussion.Visibility = Visibility.Visible;
+                if(TasksList.Visibility==Visibility.Visible)
+                {
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
+                }
             }
-            double Acutalwidth = this.ActualWidth;
-            if (ActualWidth >= 700)
+            else
             {
                 if (ViewUserTask._tasks.Count != 0)
                 {
                     TasksList.Visibility = Visibility.Visible;
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -235,22 +228,6 @@ namespace TaskManagerApp.Views
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                if (string.IsNullOrEmpty(task.Description))
-                {
-                    DescriptionPanel.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    DescriptionPanel.Visibility = Visibility.Visible;
-                    DescriptionTxt.Text = task.Description;
-                }
-                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
-                PriorityTxt.Text = priority;
-                AssignedTo.Text = task.AssignedToUser;
-                string fmt = "d";
-                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on " + task.StartDate.Date.ToString(fmt); ;
-                string EndDate = task.EndDate.Date.ToString(fmt);
-                DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
                 if (!IsAlreadyFav)
                 {
@@ -261,6 +238,7 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId);
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+                DetailsFrame.Navigate(typeof(DetailView), task, new SuppressNavigationTransitionInfo());
             }
             if (this.ActualWidth < 700)
             {

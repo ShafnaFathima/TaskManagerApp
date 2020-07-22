@@ -34,6 +34,7 @@
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Collapsed"/>
                         <Setter Target="TasksList.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="TasksList.Width" Value="570"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="0"/>
                         <Setter Target="DetailAndDiscussion.(Grid.ColumnSpan)" Value="2"/>
@@ -50,6 +51,7 @@
                         <Setter Target="TasksList.Visibility" Value="Visible"/>
                         <Setter Target="TasksList.(Grid.Row)" Value="1"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
+                        <Setter Target="TasksList.Width" Value="700"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="1"/>
                         <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Center"/>
@@ -96,10 +98,9 @@
                   VerticalAlignment="Top"
                   SelectionMode="Single"
                   Margin="-20,25,0,0"
-                  Width="570"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
-                SelectionChanged="TasksList_SelectionChanged">
+                 SelectionChanged="TasksList_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <SwipeControl x:Name="ListViewSwipeContainer"
@@ -110,20 +111,18 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Orientation="Vertical" Name="DetailAndDiscussion"  Margin="0,0,0,20">
-                <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,17,0,0" Name="DetailsGrid" Height="Auto">
+            <StackPanel Orientation="Vertical" Name="DetailAndDiscussion"  Margin="0,15,0,20">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Grid.Row="0">
                         <TextBlock Name="TitleTxt"
                        FontSize="16"
                        FontWeight="Bold"
                        HorizontalAlignment="Left"
-                       Margin="0,10,0,0"/>
+                       Margin="25,10,0,0"/>
                         <Button Name="StarBtnDetails"
                       FontFamily="Segoe MDL2 Assets" 
                       Foreground="Gold"
@@ -133,92 +132,7 @@
                       Margin="5,10,0,0"
                    />
                     </StackPanel>
-                    <TextBlock Name="Assigned"
-                       Margin="0,0,0,20"
-                       FontSize="12"
-                       FontWeight="SemiLight"
-                       Grid.Row="1"
-                       />
-                    <StackPanel Name="ParentStackPanel" Grid.Row="2" Orientation="Horizontal">
-                        <StackPanel Name="AssignedPanel" >
-                            <StackPanel Orientation="Horizontal"  >
-                                <TextBlock Name="Pic"
-                           FontFamily="Segoe MDL2 Assets"
-                           FontSize="12"
-                           Text="&#xE77B;"
-                           Margin="0,5,2,0"
-                           Foreground="CornflowerBlue"
-                           FontWeight="SemiBold"/>
-                                <TextBlock Text="ASSIGNED BY"
-                           FontSize="11"
-                           FontWeight="Bold"
-                           Margin="2,2,0,0"
-                           />
-                            </StackPanel>
-                            <TextBlock Name="AssignedTo"
-                               Margin="18,1,0,0"
-                               FontSize="13"/>
-                        </StackPanel>
-                        <StackPanel Name="DatePanel" Margin="15,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Name="Calendar"
-                           FontFamily="Segoe MDL2 Assets"
-                           FontSize="12"
-                           Text="&#xE787;"
-                           Margin="10,5,2,0"
-                           Foreground="CornflowerBlue"
-                           FontWeight="SemiBold"/>
-                                <TextBlock Text="DUE ON"
-                           FontSize="11"
-                           FontWeight="Bold"
-                           Margin="2,2,0,0"
-                           />
-                            </StackPanel>
-                            <TextBlock Name="DateTxt"
-                               Margin="28,1,0,0"
-                               FontSize="13"/>
-                        </StackPanel>
-                        <StackPanel Name="PriorityPanel" Margin="15,0,0,0">
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock
-                           FontFamily="Segoe MDL2 Assets"
-                           FontSize="12"
-                           Text="&#xE8D0;"
-                           Margin="10,5,2,0"
-                           Foreground="CornflowerBlue"
-                           FontWeight="SemiBold"/>
-                                <TextBlock Text="PRIORITY"
-                           FontSize="11"
-                           Margin="2,2,0,0"
-                               FontWeight="Bold"
-                           />
-                            </StackPanel>
-                            <TextBlock Name="PriorityTxt"
-                           Margin="28,1,0,0"
-                           FontSize="13"/>
-                        </StackPanel>
-                    </StackPanel>
-                    <!--EndofParentStack-->
-                    <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,0,0,0" Name="DescriptionPanel">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                           FontFamily="Segoe MDL2 Assets"
-                           FontSize="12"
-                           Text="&#xE8BD;"
-                           Margin="0,5,2,0"
-                           Foreground="CornflowerBlue"
-                           FontWeight="SemiBold"/>
-                            <TextBlock Text="DESCRIPTION"                           
-                              FontSize="11"
-                              FontWeight="Bold"
-                              Margin="2,2,0,0"/>
-                        </StackPanel>
-                        <TextBlock Name="DescriptionTxt"
-                           MaxWidth="276"
-                           TextWrapping="Wrap"        
-                           FontSize="13"
-                           Margin="18,2,0,0"/>
-                    </StackPanel>
+                    <Frame Name="DetailsFrame" Grid.Row="1" Margin="25,0,0,0"/>
                 </Grid>
                 <!--End of details view-->
                 <!--comments section code-->

@@ -20,7 +20,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TaskListPanel.Width" Value="600"/>
+                        <Setter Target="TaskListPanel.Width" Value="700"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">

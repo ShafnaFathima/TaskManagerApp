@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using Windows.UI;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -63,22 +64,6 @@ namespace TaskManagerApp.Views
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                if (string.IsNullOrEmpty(task.Description))
-                {
-                    DescriptionPanel.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    DescriptionPanel.Visibility = Visibility.Visible;
-                    DescriptionTxt.Text = task.Description;
-                }
-                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
-                PriorityTxt.Text = priority;
-                AssignedTo.Text = task.AssignedToUser;
-                string fmt = "d";
-                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on " + task.StartDate.Date.ToString(fmt); ;
-                string EndDate = task.EndDate.Date.ToString(fmt);
-                DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
                 if (!IsAlreadyFav)
                 {
@@ -89,19 +74,18 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId);
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+                DetailsFrame.Navigate(typeof(DetailView),task, new SuppressNavigationTransitionInfo());
             }
             double Acutalwidth = this.ActualWidth;
             if(ActualWidth<700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility= Visibility.Visible;
             }
             if (ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
-                DetailsGrid.Visibility = Visibility.Visible;
-                Discussion.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
             }
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -182,16 +166,28 @@ namespace TaskManagerApp.Views
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (ViewMyTaskPage._tasks.Count != 0)
+            if (this.ActualWidth < 700)
             {
-                DetailAndDiscussion.Visibility = Visibility.Visible;
-                //DetailsGrid.Visibility = Visibility.Visible;
-                //Discussion.Visibility = Visibility.Visible;
+                if (TasksList.Visibility == Visibility.Visible)
+                {
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
+                }
             }
-            double Acutalwidth = this.ActualWidth;
-            if(ActualWidth>=700)
+            else
             {
-                TasksList.Visibility = Visibility.Visible;
+                if (ViewMyTaskPage._tasks.Count != 0)
+                {
+                    TasksList.Visibility = Visibility.Visible;
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    TasksList.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -201,15 +197,6 @@ namespace TaskManagerApp.Views
             if (task != null)
             {
                 TitleTxt.Text = task.TaskName;
-                DescriptionTxt.Text = task.Description;
-                //TaskIdTxt.Text = task.TaskId.ToString();
-                string priority = Enum.GetName(typeof(PriorityTypes), task.Priority);
-                PriorityTxt.Text = priority;
-                AssignedTo.Text = task.AssignedToUser;
-                string fmt = "d";
-                Assigned.Text = "Assigned to " + task.AssignedToUser + " | Starts on " + task.StartDate.Date.ToString(fmt); ;
-                string EndDate = task.EndDate.Date.ToString(fmt);
-                DateTxt.Text = EndDate;
                 bool IsAlreadyFav = UserDB.IsFavouriteTask(task.TaskId, App.CurrentUser);
                 if (!IsAlreadyFav)
                 {
@@ -220,12 +207,20 @@ namespace TaskManagerApp.Views
                 comments = CommentDB.GetComments(task.TaskId);
                 CommentsList.ItemsSource = comments;
                 AddButton.Tag = task.TaskId;
+                DetailsFrame.Navigate(typeof(DetailView), task,new SuppressNavigationTransitionInfo());
             }
 
             if (this.ActualWidth < 700)
             {
-                TasksList.Visibility = Visibility.Collapsed;
-                DetailAndDiscussion.Visibility = Visibility.Visible;
+                
+                
+                    TasksList.Visibility = Visibility.Visible;
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
+                
+                
+                    TasksList.Visibility = Visibility.Collapsed;
+                    DetailAndDiscussion.Visibility = Visibility.Visible;
+                
             }
             if (this.ActualWidth >= 700)
             {
