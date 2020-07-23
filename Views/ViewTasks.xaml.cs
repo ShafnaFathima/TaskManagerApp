@@ -196,16 +196,23 @@ namespace TaskManagerApp.Views
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
-        {   
-            if(this.ActualWidth<700)
+        {
+            if (ActualWidth < 700)
             {
-                if(TasksList.Visibility==Visibility.Visible)
+                if (ViewUserTask._tasks.Count != 0)
                 {
-                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
+                    if (TasksList.Visibility == Visibility.Visible)
+                    {
+                        DetailAndDiscussion.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        DetailAndDiscussion.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {
-                    DetailAndDiscussion.Visibility = Visibility.Visible;
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
                 }
             }
             else
@@ -218,6 +225,7 @@ namespace TaskManagerApp.Views
                 else
                 {
                     TasksList.Visibility = Visibility.Collapsed;
+                    DetailAndDiscussion.Visibility = Visibility.Collapsed;
                 }
             }
         }

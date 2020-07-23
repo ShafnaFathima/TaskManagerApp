@@ -52,7 +52,7 @@
                   Text= "{Binding ZTask.TaskName,ElementName=TaskListControl,Mode=OneWay}"
                   Name="TaskName"
                   HorizontalAlignment="Stretch"
-                  MaxWidth="130"
+                  MaxWidth="330"
                   TextWrapping="Wrap"
                   FontWeight="Black"
                   Margin="10,3,0,0"
