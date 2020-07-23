@@ -59,8 +59,26 @@ namespace TaskManagerApp.Views
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
             list= new ListViewUserControl();
+            ViewUserTask._tasks = TaskDB.GetTasks(App.CurrentUser);
+            this.OnLoaded();
         }
-
+        public void OnLoaded()
+        {
+            if (ViewUserTask._tasks.Count != 0)
+            {
+                TaskEmptyTxt.Visibility = Visibility.Collapsed;
+                TasksList.ItemsSource = _tasks;
+                TasksList.SelectedIndex = 0;
+                TasksList.Visibility = Visibility.Visible;
+                DetailAndDiscussion.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TaskEmptyTxt.Visibility = Visibility.Visible;
+                TasksList.Visibility = Visibility.Collapsed;
+                DetailAndDiscussion.Visibility = Visibility.Collapsed;
+            }
+        }
         private void SelectUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserModel user = (UserModel)SelectUser.SelectedItem;
