@@ -66,6 +66,14 @@ namespace TaskManagerApp.Views
                     MySplitView.IsPaneOpen = false;
                 }
             }
+            if (EditTask.IsSelected)
+            {
+                HomeFrame.Navigate(typeof(EditTaskPage), null, new SuppressNavigationTransitionInfo());
+                if (this.ActualWidth < 700)
+                {
+                    MySplitView.IsPaneOpen = false;
+                }
+            }
             else if (Logout.IsSelected)
             {
                 App.localSettings.Values["UserLoggedIn"] = null;

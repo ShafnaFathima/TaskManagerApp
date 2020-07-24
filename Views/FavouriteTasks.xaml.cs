@@ -81,6 +81,7 @@ namespace TaskManagerApp.Views
             {
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailAndDiscussion.Visibility= Visibility.Visible;
+                BackBtn.Visibility = Visibility.Visible;
             }
             if (ActualWidth >= 700)
             {
@@ -159,6 +160,7 @@ namespace TaskManagerApp.Views
            
             TasksList.Visibility = Visibility.Visible;
             DetailAndDiscussion.Visibility= Visibility.Collapsed;
+            BackBtn.Visibility = Visibility.Collapsed;
             //DetailsGrid.Visibility = Visibility.Collapsed;
             //Discussion.Visibility = Visibility.Collapsed;
             // TasksList.SelectedIndex = -1;

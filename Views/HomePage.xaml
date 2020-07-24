@@ -81,6 +81,12 @@
                             <TextBlock  Style="{StaticResource NameStyle}">View User Task</TextBlock>
                         </StackPanel>
                     </ListViewItem>
+                    <ListViewItem Name="EditTask" Margin="0,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE70F;" />
+                            <TextBlock  Style="{StaticResource NameStyle}">Edit Task</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
                     <ListViewItem Name="Logout" Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE7E8;" />

@@ -42,7 +42,6 @@ namespace TaskManagerApp.DB
             {
                 foreach (long Id in taskIds)
                 {
-
                     if (task.TaskId == Id)
                     {
                         tasks.Add(task);
@@ -50,6 +49,54 @@ namespace TaskManagerApp.DB
                 }
             }
             return tasks;
+        }
+        public static ObservableCollection<TaskModel> GetAssignedTasks(string userName)
+        {
+            ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
+            var query = DBAdapter.Connection.Table<TaskModel>();
+            foreach (TaskModel task in query)
+            {
+               if(task.AssignedByUser.Equals(userName))
+                {
+                    tasks.Add(task);
+                }
+            }
+            return tasks;
+        }
+        public static void UpdateStartDate(long taskId,DateTimeOffset sDate)
+        {
+            var query = DBAdapter.Connection;
+            var curTask = query.Table<TaskModel>().Where(task => task.TaskId == taskId).SingleOrDefault();
+            curTask.StartDate=sDate;
+            query.Update(curTask);
+        }
+        public static void UpdateEndDate(long taskId, DateTimeOffset eDate)
+        {
+            var query = DBAdapter.Connection;
+            var curTask = query.Table<TaskModel>().Where(task => task.TaskId == taskId).SingleOrDefault();
+            curTask.EndDate = eDate;
+            query.Update(curTask);
+        }
+        public static void UpdatePriority(long taskId, int curPriority)
+        {
+            var query = DBAdapter.Connection;
+            var curTask = query.Table<TaskModel>().Where(task => task.TaskId == taskId).SingleOrDefault();
+            curTask.Priority = curPriority;
+            query.Update(curTask);
+        }
+        public static void UpdateDescription(long taskId, string description)
+        {
+            var query = DBAdapter.Connection;
+            var curTask = query.Table<TaskModel>().Where(task => task.TaskId == taskId).SingleOrDefault();
+            curTask.Description = description;
+            query.Update(curTask);
+        }
+        public static void UpdateAssignedTo(long taskId, string assignedTo)
+        {
+            var query = DBAdapter.Connection;
+            var curTask = query.Table<TaskModel>().Where(task => task.TaskId == taskId).SingleOrDefault();
+            curTask.AssignedToUser = assignedTo;
+            query.Update(curTask);
         }
     }
 }

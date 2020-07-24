@@ -51,16 +51,16 @@ namespace TaskManagerApp.Views
         public ViewUserTask()
         {
             this.InitializeComponent();
-
             List<UserModel> users = UserDB.GetUserList();
-
             int index = users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
             SelectUser.ItemsSource = users;
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
             list= new ListViewUserControl();
             ViewUserTask._tasks = TaskDB.GetTasks(App.CurrentUser);
-            this.OnLoaded();
+            TasksList.ItemsSource = _tasks;
+            TasksList.SelectedIndex = 0;
+           // this.OnLoaded();
         }
         public void OnLoaded()
         {
@@ -137,14 +137,17 @@ namespace TaskManagerApp.Views
                 AddButton.Tag = task.TaskId;
                 DetailsFrame.Navigate(typeof(DetailView), task, new SuppressNavigationTransitionInfo());
             }
-            if (this.ActualWidth < 700)
+            if (ActualWidth < 700)
             {
                 TasksList.Visibility = Visibility.Collapsed;
+                ComboboxPanel.Visibility = Visibility.Collapsed;
                 DetailAndDiscussion.Visibility = Visibility.Visible;
+                BackBtn.Visibility = Visibility.Visible;
             }
-            if (this.ActualWidth >= 700)
+            if (ActualWidth >= 700)
             {
                 TasksList.Visibility = Visibility.Visible;
+                ComboboxPanel.Visibility = Visibility.Visible;
                 DetailAndDiscussion.Visibility = Visibility.Visible;
             }
         }
@@ -210,6 +213,7 @@ namespace TaskManagerApp.Views
         {
             TasksList.Visibility = Visibility.Visible;
             ComboboxPanel.Visibility = Visibility.Visible;
+            BackBtn.Visibility = Visibility.Collapsed;
             DetailAndDiscussion.Visibility = Visibility.Collapsed;
         }
 
@@ -219,7 +223,7 @@ namespace TaskManagerApp.Views
             {
                 if (ViewUserTask._tasks.Count != 0)
                 {
-                    if (TasksList.Visibility == Visibility.Visible)
+                    if (this.TasksList.Visibility == Visibility.Visible)
                     {
                         DetailAndDiscussion.Visibility = Visibility.Collapsed;
                     }
@@ -235,7 +239,7 @@ namespace TaskManagerApp.Views
             }
             else
             {
-                if (ViewUserTask._tasks.Count != 0)
+               if (ViewUserTask._tasks.Count != 0)
                 {
                     TasksList.Visibility = Visibility.Visible;
                     DetailAndDiscussion.Visibility = Visibility.Visible;

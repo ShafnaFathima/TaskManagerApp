@@ -135,6 +135,9 @@
     <Compile Include="DB\DBAdapter.cs" />
     <Compile Include="DB\TaskDB.cs" />
     <Compile Include="DB\UserDB.cs" />
+    <Compile Include="Views\EditTaskPage.xaml.cs">
+      <DependentUpon>EditTaskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourcesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTaskPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
