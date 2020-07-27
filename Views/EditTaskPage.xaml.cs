@@ -26,19 +26,21 @@ namespace TaskManagerApp.Views
     public sealed partial class EditTaskPage : Page
     {
         private static ObservableCollection<TaskModel> _tasks;
-      
+        private static ObservableCollection<TaskModel> _initialTasks=new ObservableCollection<TaskModel>();
+        static int count = 0;
         public EditTaskPage()
         {
             this.InitializeComponent();
-            _tasks = _tasks = TaskDB.GetAssignedTasks(App.CurrentUser);
-            this.OnLoaded();
         }
-        public void OnLoaded()
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _tasks = _tasks = TaskDB.GetAssignedTasks(App.CurrentUser);
+            count = 0;
             if (EditTaskPage._tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
-                TasksList.ItemsSource = _tasks;
+                EditTaskPage.AddItems();
+                TasksList.ItemsSource = _initialTasks;
                 TasksList.SelectedIndex = 0;
                 TasksList.Visibility = Visibility.Visible;
                 EditView.Visibility = Visibility.Visible;
@@ -50,6 +52,7 @@ namespace TaskManagerApp.Views
                 EditView.Visibility = Visibility.Collapsed;
             }
         }
+        
         List<UserModel> Users = UserDB.GetUserList();
         TaskModel task;
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -132,6 +135,31 @@ namespace TaskManagerApp.Views
         private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)
         {
 
+        }
+
+        private void TasksListScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)sender;
+            if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            {
+                AddItems();
+            }
+        }
+        private static void AddItems()
+        {
+            int iterator;
+            for( iterator=count; iterator<count+15; iterator++ )
+            {
+                if(iterator<_tasks.Count)
+                {
+                    _initialTasks.Add(_tasks[iterator]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            count += iterator;
         }
     }
 }

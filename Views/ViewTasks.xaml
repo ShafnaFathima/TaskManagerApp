@@ -28,7 +28,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ViewTasks.Margin" Value="30,10,0,0"/>
+                        <Setter Target="FavTasks.Margin" Value="30,10,0,0"/>
                         <Setter Target="BackBtn.Visibility" Value="Visible"/>
                         <Setter Target="ComboboxPanel.(Grid.Row)" Value="1"/>
                         <Setter Target="ComboboxPanel.(Grid.Column)" Value="0"/>
@@ -36,18 +36,16 @@
                         <Setter Target="ComboboxPanel.Visibility" Value="Collapsed"/>
                         <Setter Target="ComboboxPanel.Margin" Value="30,0,0,0"/>
                         <Setter Target="ComboboxPanel.HorizontalAlignment" Value="Left"/>
-                        <Setter Target="TaskEmptyTxt.(Grid.Row)" Value="2"/>
-                        <Setter Target="TaskEmptyTxt.(Grid.Column)" Value="0"/>
-                        <Setter Target="TasksList.(Grid.Row)" Value="3"/>
+                        <Setter Target="TasksList.(Grid.Row)" Value="2"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Collapsed"/>
-                        <Setter Target="TasksList.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="TasksList.(Grid.ColumnSpan)" Value="2"/>
                         <Setter Target="TasksList.Width" Value="700"/>
-                        <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="3"/>
+                        <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="2"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="0"/>
-                        <Setter Target="DetailAndDiscussion.(Grid.ColumnSpan)" Value="3"/>
-                        <!--<Setter Target="DetailAndDiscussion.Visibility" Value="Visible"/>-->
+                        <Setter Target="DetailAndDiscussion.(Grid.ColumnSpan)" Value="2"/>
                         <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Left"/>
+                        <Setter Target="NoTasks.Margin" Value="30,10,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeWindow">
@@ -55,15 +53,13 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ViewTasks.Margin" Value="10,10,0,0"/>
+                        <Setter Target="FavTasks.Margin" Value="10,10,0,0"/>
                         <Setter Target="BackBtn.Visibility" Value="Collapsed"/>
                         <Setter Target="ComboboxPanel.(Grid.Row)" Value="0"/>
                         <Setter Target="ComboboxPanel.(Grid.Column)" Value="1"/>
                         <Setter Target="ComboboxPanel.Margin" Value="-75,0,0,0"/>
                         <Setter Target="ComboboxPanel.Visibility" Value="Visible"/>
                         <Setter Target="ComboboxPanel.HorizontalAlignment" Value="Center"/>
-                        <Setter Target="TaskEmptyTxt.(Grid.Row)" Value="1"/>
-                        <Setter Target="TaskEmptyTxt.(Grid.Column)" Value="0"/>
                         <Setter Target="TasksList.Visibility" Value="Visible"/>
                         <Setter Target="TasksList.(Grid.Row)" Value="1"/>
                         <Setter Target="TasksList.(Grid.Column)" Value="0"/>
@@ -71,48 +67,37 @@
                         <Setter Target="DetailAndDiscussion.(Grid.Row)" Value="1"/>
                         <Setter Target="DetailAndDiscussion.(Grid.Column)" Value="1"/>
                         <Setter Target="DetailAndDiscussion. HorizontalAlignment" Value="Center"/>
+                        <Setter Target="NoTasks.Margin" Value="10,10,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-
             <Button FontFamily="Segoe MDL2 Assets"
                         Content="&#xE72B;"
                         Foreground="{ThemeResource SystemAccentColorDark1}"
                         Name="BackBtn"
                         Click="BackBtn_Click"
-                        Height="24"
-                        VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Left"
                         Margin="0,10,10,0"
                         Style="{StaticResource TextBlockButtonStyle}"
                         />
-            <TextBlock Name="ViewTasks"
+            <TextBlock Name="FavTasks"
                    Text="View Tasks"
                    Style="{StaticResource ResourceKey=TitleStyle}"
-                   VerticalAlignment="Top"
                    HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
                    Margin="10,10,0,0"
                   />
-            <TextBlock Name="TaskEmptyTxt"
-                       Text="No tasks are assigned to this user!"
-                       Grid.ColumnSpan="2"
-                       FontSize="13"
-                       Margin="10,5,0,0"
-                       Foreground="Red"/>
             <StackPanel Orientation="Horizontal"  Name="ComboboxPanel">
                 <TextBlock Name="ChooseUser"
                 Text="FILTER BY USER: "
@@ -130,39 +115,32 @@
                  Margin="0,13,0,5"
                  SelectionChanged="SelectUser_SelectionChanged"/>
             </StackPanel>
-            <!--</Border>-->
-            <!--taskslistview-->
+            <TextBlock Name="NoTasks"
+                   Text="No favourite tasks!"
+                   FontSize="14"
+                   Grid.Row="2"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   
+                   Foreground="Red"/>
             <ListView Name="TasksList"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
-                  SelectionChanged="TasksList_SelectionChanged"
+                  Margin="-20,25,0,0"
                   IsItemClickEnabled="True"
                   ItemClick="TasksList_ItemClick"
-                  IsSwipeEnabled="True"
-                  Margin="-20,25,0,0"
-                  >
+                 SelectionChanged="TasksList_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <SwipeControl x:Name="ListViewSwipeContainer"
                                       RightItems="{StaticResource ExecuteDelete}">
-                            <local:ListViewUserControl ZTask="{Binding}" 
-                                               StatusChanged="list_FavChanged"/>
+                            <local:ListViewUserControl ZTask="{Binding}"
+                                                StatusChanged="list_FavChanged"/>
                         </SwipeControl>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListView">
-                        <Setter Target="Padding" Value="0,0,0,0"/>
-                        <Setter Target="Margin" Value="0,0,0,0"/>
-                        <Setter Target="BorderThickness" Value="0"/>
-                        <Setter Target="HorizontalAlignment" Value="Stretch"/>
-                        <Setter Target="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Target="MinWidth" Value="0"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
             </ListView>
-            <!--details view starting-->
             <StackPanel Orientation="Vertical" Name="DetailAndDiscussion"  Margin="0,15,0,20">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -186,12 +164,11 @@
                     </StackPanel>
                     <Frame Name="DetailsFrame" Grid.Row="1" Margin="25,0,0,0"/>
                 </Grid>
-            
-            <!--End of details view-->
+                <!--End of details view-->
                 <!--comments section code-->
-                <RelativePanel  HorizontalAlignment="Left" Margin="15,15,20,20" Width="400" Height="Auto" Name="Discussion">
+                <RelativePanel  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,13,20,10" Width="400" Height="Auto" Name="Discussion">
                     <TextBlock Text="DISCUSSIONS"
-                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignLeftWithPanel="True" 
                        Name="CommentTitle"
                        FontSize="14"
                        FontWeight="SemiBold"
@@ -202,13 +179,13 @@
                                 RelativePanel.Below="CommentTitle"
                                 Margin="10,20,0,20">
                         <TextBox Name="EnterComment"
-                                Style="{StaticResource AddCommentBox}" 
-                               />
+                                 Style="{StaticResource AddCommentBox}"
+                                 />
                         <Button Name="AddButton"
-                                Click="AddButton_Click"           
+                                Click="AddButton_Click"     
+                                Style="{StaticResource AddCommentBtn}"                        
                                 Margin="2,0,0,0"
-                                Style="{StaticResource AddCommentBtn}"
-                              />
+                                />
                     </StackPanel>
                     <ListView Name="CommentsList"
                       RelativePanel.Below="EnterCommentPanel"
@@ -218,8 +195,7 @@
                      >
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <local:CommentListView ZComment="{Binding}"
-                                      />
+                                <local:CommentListView ZComment="{Binding}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

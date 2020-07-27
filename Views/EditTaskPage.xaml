@@ -19,7 +19,7 @@
                    Background="Red" Invoked="Delete_Invoked"/>
             </SwipeItems>
         </Page.Resources>
-    <ScrollViewer>
+    <ScrollViewer ViewChanged="TasksListScrollViewer_ViewChanged">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="HamburgerStateGroup">
                 <VisualState x:Name="SmallWindow">
@@ -91,13 +91,14 @@
                    VerticalAlignment="Top"
                    Margin="10,10,0,0"
                    Foreground="Red"/>
-        <ListView Name="TasksList"
+           
+                <ListView Name="TasksList"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Top"
                   SelectionMode="Single"
                   Margin="-20,25,0,0"
                   IsItemClickEnabled="True"
-               
+        
                  SelectionChanged="TasksList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -109,6 +110,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+            
             <Grid Name="EditView" Margin="0,15,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
