@@ -31,20 +31,24 @@ namespace TaskManagerApp.Views
     {
         private static ObservableCollection<TaskModel> _tasks;
         ObservableCollection<long> _favTaskIds;
+        private static ObservableCollection<TaskModel> _initialTasks = new ObservableCollection<TaskModel>();
+        static int count = 0;
         public ViewMyTaskPage()
         {
-            this.InitializeComponent();
-            _favTaskIds= UserDB.GetFavTasks(App.CurrentUser.ToString());
-            _tasks = _tasks=TaskDB.GetTasksFromId(_favTaskIds);
-            this.OnLoaded();
+            this.InitializeComponent();         
         }
 
-        public void OnLoaded()
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _favTaskIds = UserDB.GetFavTasks(App.CurrentUser.ToString());
+            _tasks = _tasks = TaskDB.GetTasksFromId(_favTaskIds);
+            count = 0;
+            _initialTasks.Clear();
             if (ViewMyTaskPage._tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
-                TasksList.ItemsSource = _tasks;
+                ViewMyTaskPage.AddItems();
+                TasksList.ItemsSource = _initialTasks;
                 TasksList.SelectedIndex = 0;
                 TasksList.Visibility = Visibility.Visible;
                 DetailAndDiscussion.Visibility = Visibility.Visible;
@@ -147,7 +151,7 @@ namespace TaskManagerApp.Views
                         {
                             ViewMyTaskPage._tasks.Remove(favtask);
                             this.TasksList.ItemsSource = _tasks;
-                            this.OnLoaded();
+                           // this.OnLoaded();
                             break;
                         }
                     }
@@ -244,5 +248,31 @@ namespace TaskManagerApp.Views
             TaskModel swipedTask = (TaskModel)args.SwipeControl.DataContext;
             TaskDB.RemoveTask(swipedTask.TaskId);
         }
+        private void TasksListScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)sender;
+            if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            {
+                AddItems();
+            }
+        }
+        private static void AddItems()
+        {
+            int iterator;
+            for (iterator = count; iterator < count + 15; iterator++)
+            {
+                if (iterator < _tasks.Count)
+                {
+                    _initialTasks.Add(_tasks[iterator]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            count += iterator;
+        }
+
     }
 }
+

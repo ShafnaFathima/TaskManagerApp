@@ -36,6 +36,7 @@ namespace TaskManagerApp.Views
         {
             _tasks = _tasks = TaskDB.GetAssignedTasks(App.CurrentUser);
             count = 0;
+            _initialTasks.Clear();
             if (EditTaskPage._tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
@@ -56,33 +57,36 @@ namespace TaskManagerApp.Views
         List<UserModel> Users = UserDB.GetUserList();
         TaskModel task;
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {   
             task = (TaskModel)TasksList.SelectedItem;
-            TaskName.Text = task.TaskName;
-            int index = Users.FindIndex(user => user.Username.Equals(task.AssignedToUser));
-            AssignedToUser.ItemsSource = Users;
-            AssignedToUser.DisplayMemberPath = "Username";
-            AssignedToUser.SelectedValuePath = "Username";
-            AssignedToUser.SelectedIndex = index;
-            var enumval = Enum.GetValues(typeof(PriorityTypes)).Cast<PriorityTypes>();
-            Priority.ItemsSource = enumval.ToList();
-            Priority.SelectedIndex = task.Priority;
-            StartDate.Date = task.StartDate;
-            EndDate.Date = task.EndDate;
-            if(task.Description!=null)
+            if (task != null)
             {
-                DescriptionTxt.Text = task.Description;
-            }
-            if (ActualWidth < 700)
-            {
-                TasksList.Visibility = Visibility.Collapsed;
-                BackBtn.Visibility = Visibility.Visible;
-               EditView.Visibility = Visibility.Visible;
-            }
-            if (ActualWidth >= 700)
-            {
-                TasksList.Visibility = Visibility.Visible;
-              EditView.Visibility = Visibility.Visible;
+                TaskName.Text = task.TaskName;
+                int index = Users.FindIndex(user => user.Username.Equals(task.AssignedToUser));
+                AssignedToUser.ItemsSource = Users;
+                AssignedToUser.DisplayMemberPath = "Username";
+                AssignedToUser.SelectedValuePath = "Username";
+                AssignedToUser.SelectedIndex = index;
+                var enumval = Enum.GetValues(typeof(PriorityTypes)).Cast<PriorityTypes>();
+                Priority.ItemsSource = enumval.ToList();
+                Priority.SelectedIndex = task.Priority;
+                StartDate.Date = task.StartDate;
+                EndDate.Date = task.EndDate;
+                if (task.Description != null)
+                {
+                    DescriptionTxt.Text = task.Description;
+                }
+                if (ActualWidth < 700)
+                {
+                    TasksList.Visibility = Visibility.Collapsed;
+                    BackBtn.Visibility = Visibility.Visible;
+                    EditView.Visibility = Visibility.Visible;
+                }
+                if (ActualWidth >= 700)
+                {
+                    TasksList.Visibility = Visibility.Visible;
+                    EditView.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -134,7 +138,9 @@ namespace TaskManagerApp.Views
 
         private void Delete_Invoked(SwipeItem sender, SwipeItemInvokedEventArgs args)
         {
-
+            EditTaskPage._tasks.Remove((TaskModel)args.SwipeControl.DataContext);
+            TaskModel swipedTask = (TaskModel)args.SwipeControl.DataContext;
+            TaskDB.RemoveTask(swipedTask.TaskId);
         }
 
         private void TasksListScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)

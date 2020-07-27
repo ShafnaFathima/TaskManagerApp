@@ -30,28 +30,10 @@ namespace TaskManagerApp.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class ViewUserTask : Page, INotifyPropertyChanged
-    {
-
-
-        //public ViewUserTask()
-        //{
-        //    this.InitializeComponent();
-        //    //this._tasks = TaskDB.GetTasks(App.CurrentUser.ToString());
-        //    // this.OnLoaded();
-        //}
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    this._tasks = TaskDB.GetTasks(App.CurrentUser.ToString()); 
-        //     List<UserModel> users = UserDB.GetUserList();
-        //      int index = users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
-        //      SelectUser.ItemsSource = users;
-        //      SelectUser.DisplayMemberPath = "Username";
-        //     SelectUser.SelectedIndex = index;
-        //}
-
-       
+    {  
         private static ObservableCollection<TaskModel> _tasks;
-        
+        private static ObservableCollection<TaskModel> _initialTasks = new ObservableCollection<TaskModel>();
+        static int count = 0;
         public ViewUserTask()
         {
             this.InitializeComponent();
@@ -61,13 +43,13 @@ namespace TaskManagerApp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _tasks = TaskDB.GetTasks(App.CurrentUser.ToString());
+           
             List<UserModel> users = UserDB.GetUserList();
             int index = users.FindIndex(user => user.Username.Equals(App.CurrentUser.ToString()));
             SelectUser.ItemsSource = users;
             SelectUser.DisplayMemberPath = "Username";
             SelectUser.SelectedIndex = index;
-            if (ViewUserTask._tasks.Count != 0)
+            /*if (ViewUserTask._tasks.Count != 0)
             {
                 NoTasks.Visibility = Visibility.Collapsed;
                 TasksList.ItemsSource = _tasks;
@@ -80,7 +62,7 @@ namespace TaskManagerApp.Views
                 NoTasks.Visibility = Visibility.Visible;
                 TasksList.Visibility = Visibility.Collapsed;
                 DetailAndDiscussion.Visibility = Visibility.Collapsed;
-            }
+            }*/
         }
         public static ObservableCollection<Comment> comments;
         public static FavoriteTask fav;
@@ -90,35 +72,22 @@ namespace TaskManagerApp.Views
         {
             UserModel user = (UserModel)SelectUser.SelectedItem;
             ViewUserTask._tasks = TaskDB.GetTasks(user.Username);
-            if (ViewUserTask._tasks != null)
+            count = 0;
+            _initialTasks.Clear();
+            if (ViewUserTask._tasks.Count != 0)
             {
-                if (ViewUserTask._tasks.Count != 0)
+                ViewUserTask.AddItems();
+                TasksList.ItemsSource = _initialTasks;
+                TasksList.SelectedIndex = 0;
+                NoTasks.Visibility = Visibility.Collapsed;
+            }
+            else
                 {
-                    TasksList.ItemsSource = ViewUserTask._tasks;
-                    TasksList.SelectedIndex = 0;
-                    NoTasks.Visibility = Visibility.Collapsed;
-                   /* double Acutalwidth = this.ActualWidth;
-                    if (ActualWidth < 700)
-                    {
-                        TasksList.Visibility = Visibility.Visible;
-                        ComboboxPanel.Visibility = Visibility.Visible;
-                        DetailAndDiscussion.Visibility = Visibility.Collapsed;
-                        BackBtn.Visibility = Visibility.Collapsed;
-                    }
-                    if (ActualWidth >= 700)
-                    {
-                        TasksList.Visibility = Visibility.Visible;
-                        DetailAndDiscussion.Visibility = Visibility.Visible;
-                    }*/
-                }
-                else
-                {
-                    //TasksList.ItemsSource = _tasks;
                     NoTasks.Visibility = Visibility.Visible;
                     TasksList.Visibility = Visibility.Collapsed;
                     DetailAndDiscussion.Visibility = Visibility.Collapsed;
-                }
             }
+            
         }
 
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -310,6 +279,30 @@ namespace TaskManagerApp.Views
             TaskDB.RemoveTask(swipedTask.TaskId);
         }
 
+        private void TasksListScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)sender;
+            if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            {
+                AddItems();
+            }
+        }
+        private static void AddItems()
+        {
+            int iterator;
+            for (iterator = count; iterator < count + 15; iterator++)
+            {
+                if (iterator < _tasks.Count)
+                {
+                    _initialTasks.Add(_tasks[iterator]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            count += iterator;
+        }
 
 
     }

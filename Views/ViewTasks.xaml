@@ -20,7 +20,7 @@
                    Background="Red" Invoked="Delete_Invoked"/>
         </SwipeItems>
     </Page.Resources>
-    <ScrollViewer>
+    <ScrollViewer ViewChanged="TasksListScrollViewer_ViewChanged">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="HamburgerStateGroup">
                 <VisualState x:Name="SmallWindow">
